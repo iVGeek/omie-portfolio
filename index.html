@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Omie — handcrafted crochet garments and accessories. Custom pieces, commissions, and small-batch fashion." />
+  <title>Omie</title>
+
+  <!-- Preload hero image for faster LCP -->
+  <link rel="preload" as="image" href="public/images/photo1.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Open Graph & Twitter metadata (update image URLs if you host elsewhere) -->
+  <meta property="og:title" content="Omie — Handcrafted Crochet Portfolio">
+  <meta property="og:description" content="Showcasing handcrafted crochet garments and accessories.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/iVGeek/omie-portfolio/main/public/logo.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Omie — Handcrafted Crochet Portfolio">
+  <meta name="twitter:description" content="Showcasing handcrafted crochet garments and accessories.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/iVGeek/omie-portfolio/main/public/logo.png">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- skip link for keyboard users -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand" aria-hidden="false">
+        <img src="public/logo.png" alt="Omie logo — yarn and floral emblem" class="logo" onerror="this.style.display='none'">
+        <span class="site-title">Omie</span>
+      </div>
+
+      <nav class="nav" role="navigation" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1 id="hero-title">Omie — Handcrafted Crochet</h1>
+            <p class="lead">A curated portfolio of handcrafted crochet fashion. Custom pieces and small-batch collections — placeholder content. Replace with your description and bio.</p>
+            <p class="ctas">
+              <a class="btn btn-primary" href="#projects">See Projects</a>
+              <a class="btn" href="#contact">Get in touch</a>
+            </p>
+            <ul class="social" aria-hidden="false">
+              <li><a href="https://github.com/iVGeek" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">Contact</a></li>
+            </ul>
+          </div>
+          <div class="hero-media" aria-hidden="false">
+            <img src="public/images/photo1.jpg" alt="Blue handcrafted crochet set with matching bag, outdoor photo" loading="eager" decoding="async">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title">About</h2>
+        <p class="muted">This portfolio showcases handcrafted crochet pieces — placeholder text. Update with your bio, story, and approach.</p>
+        <div class="two-col">
+          <div>
+            <h3>Craft</h3>
+            <ul>
+              <li>Unique crochet garments and accessories</li>
+              <li>Custom sizing and colorways</li>
+              <li>Made-to-order and limited runs</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contact</h3>
+            <p>For commissions and orders, email <a id="contact-email-link" href="mailto:hello@omie.example">hello@omie.example</a> or use the contact form below.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section section-alt" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 id="projects-title">Selected Projects</h2>
+        <p class="muted">Featured pieces — replace entries with actual projects and links.</p>
+
+        <div class="projects-grid" id="projects-grid" aria-live="polite">
+          <!-- Projects populated by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section" aria-labelledby="gallery-title">
+      <div class="container">
+        <h2 id="gallery-title">Gallery</h2>
+        <p class="muted">Photos and videos from recent shoots. Add additional images to public/images/ and videos to public/videos/</p>
+
+        <div class="projects-grid" id="gallery-grid" aria-live="polite">
+          <!-- Gallery populated by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 id="contact-title">Contact</h2>
+        <p class="muted">Interested in a custom piece or collaboration? Send a quick message.</p>
+
+        <!--
+          By default this form uses mailto fallback (opens user's email client).
+          To capture messages on the web, replace the form action with a Formspree/Netlify URL:
+          Example (Formspree): action="https://formspree.io/f/YOUR_ID" method="POST"
+        -->
+        <form id="contact-form" class="contact-form" action="mailto:hello@omie.example" method="post" enctype="text/plain" aria-label="Contact form">
+          <label>
+            <span class="sr-only">Name</span>
+            <input name="name" type="text" required placeholder="Your name">
+          </label>
+
+          <label>
+            <span class="sr-only">Email</span>
+            <input name="email" type="email" required placeholder="you@example.com">
+          </label>
+
+          <label>
+            <span class="sr-only">Message</span>
+            <textarea name="message" rows="6" required placeholder="Brief message..."></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="button" id="copy-email" class="btn">Copy email</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© <span id="year"></span> Omie — Portfolio</p>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
