@@ -1,54 +1,56 @@
-/* main.js
-   Populates projects and gallery, improves accessibility and performance.
-   - Uses CONTACT_EMAIL as single source for contact address
-   - Adds loading="lazy" and decoding="async" to non-hero images
-   - Safe: does not identify people in images in alt text
-*/
+// main.js — themed to match Omie
+// Header scroll color change and project/gallery rendering
+// CONTACT_EMAIL is single source for contact email
 
 const CONTACT_EMAIL = 'hello@omie.example'; // change to your email
 
-// Projects (placeholders) - include descriptive alt text (non-identifying)
+// Color palette (same order used in Omie for header transitions)
+const navbarThemeColors = [
+  '#FF7F50', // Orange Sunset
+  '#FF99C8', // Pink Sorbet
+  '#FFD166', // Warm Yellow
+  '#7FD8B0', // Mint
+  '#B393FF'  // Lavender (optional)
+];
+
+// Placeholder projects and gallery — use your media in public/images/
 const projects = [
   {
-    title: "Blue Set",
-    desc: "Handcrafted blue crochet set with matching bag.",
-    img: "public/images/photo1.jpg",
-    alt: "Blue handcrafted crochet set with matching bag, outdoor photo",
-    url: "#"
+    title: 'Blue Set',
+    desc: 'Handcrafted blue crochet set with matching bag.',
+    img: 'public/images/photo1.jpg',
+    alt: 'Blue handcrafted crochet set with matching bag'
   },
   {
-    title: "Pink Romper",
-    desc: "Handcrafted pink crochet romper with floral detail.",
-    img: "public/images/photo2.jpg",
-    alt: "Pink crochet romper styled with floral detail, outdoor photo",
-    url: "#"
+    title: 'Pink Romper',
+    desc: 'Handcrafted pink crochet romper with floral detail.',
+    img: 'public/images/photo2.jpg',
+    alt: 'Pink crochet romper styled with floral detail'
   },
   {
-    title: "Sunny Set",
-    desc: "Yellow and orange crochet set, bright garden styling.",
-    img: "public/images/photo3.jpg",
-    alt: "Yellow and orange crochet set, portrait in garden",
-    url: "#"
+    title: 'Sunny Set',
+    desc: 'Yellow & orange crochet set with garden styling.',
+    img: 'public/images/photo3.jpg',
+    alt: 'Yellow and orange crochet set, portrait in garden'
   }
 ];
 
-// Gallery items (images & optional videos)
 const gallery = [
-  { type: 'image', src: 'public/images/photo1.jpg', alt: 'Blue handcrafted crochet set with matching bag' },
-  { type: 'image', src: 'public/images/photo2.jpg', alt: 'Pink crochet romper with floral detail' },
-  { type: 'image', src: 'public/images/photo3.jpg', alt: 'Yellow and orange crochet set portrait' }
-  // Add videos like: { type: 'video', src: 'public/videos/video1.mp4', poster: 'public/images/photo1.jpg' }
+  { type: 'image', src: 'public/images/photo1.jpg', alt: 'Blue handcrafted crochet set' },
+  { type: 'image', src: 'public/images/photo2.jpg', alt: 'Pink crochet romper' },
+  { type: 'image', src: 'public/images/photo3.jpg', alt: 'Yellow & orange crochet set' }
 ];
 
+// Simple DOM helper
 function el(tag, attrs = {}, children = []) {
-  const node = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) {
-    if (k === 'class') node.className = v;
-    else if (k === 'html') node.innerHTML = v;
-    else node.setAttribute(k, v);
+  const n = document.createElement(tag);
+  for (const k of Object.keys(attrs)) {
+    if (k === 'class') n.className = attrs[k];
+    else if (k === 'html') n.innerHTML = attrs[k];
+    else n.setAttribute(k, attrs[k]);
   }
-  children.forEach(c => node.appendChild(c));
-  return node;
+  children.forEach(c => n.appendChild(c));
+  return n;
 }
 
 function renderProjects() {
@@ -57,22 +59,12 @@ function renderProjects() {
   grid.innerHTML = '';
   projects.forEach(p => {
     const card = el('article', { class: 'project' });
-    const img = el('img', {
-      src: p.img,
-      alt: p.alt || p.title,
-      loading: 'lazy',
-      decoding: 'async'
-    });
-    const title = el('h3', {}, []);
-    title.textContent = p.title;
-    const desc = el('p', {}, []);
-    desc.textContent = p.desc;
-    const link = el('a', { href: p.url || '#', rel: 'noopener noreferrer', target: '_blank' }, []);
-    link.textContent = 'View project →';
+    const img = el('img', { src: p.img, alt: p.alt || p.title, loading: 'lazy', decoding: 'async' });
+    const h3 = el('h3'); h3.textContent = p.title;
+    const pdesc = el('p'); pdesc.textContent = p.desc;
     card.appendChild(img);
-    card.appendChild(title);
-    card.appendChild(desc);
-    card.appendChild(link);
+    card.appendChild(h3);
+    card.appendChild(pdesc);
     grid.appendChild(card);
   });
 }
@@ -84,20 +76,11 @@ function renderGallery() {
   gallery.forEach(item => {
     const card = el('article', { class: 'project' });
     if (item.type === 'video') {
-      const video = el('video', {
-        controls: '',
-        src: item.src,
-        poster: item.poster || '',
-        preload: 'metadata'
-      });
-      card.appendChild(video);
+      const v = el('video', { controls: '', src: item.src, preload: 'metadata' });
+      if (item.poster) v.setAttribute('poster', item.poster);
+      card.appendChild(v);
     } else {
-      const img = el('img', {
-        src: item.src,
-        alt: item.alt || '',
-        loading: 'lazy',
-        decoding: 'async'
-      });
+      const img = el('img', { src: item.src, alt: item.alt || '', loading: 'lazy', decoding: 'async' });
       card.appendChild(img);
     }
     grid.appendChild(card);
@@ -105,12 +88,16 @@ function renderGallery() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Populate content
+  // populate content
   renderProjects();
   renderGallery();
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Wire copy email button
+  // update email link
+  const emailLink = document.getElementById('contact-email-link');
+  if (emailLink) emailLink.href = `mailto:${CONTACT_EMAIL}`;
+
+  // copy-email button
   const copyBtn = document.getElementById('copy-email');
   if (copyBtn) {
     copyBtn.addEventListener('click', () => {
@@ -124,20 +111,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Update the email link in about section (if present)
-  const emailLink = document.getElementById('contact-email-link');
-  if (emailLink) emailLink.href = `mailto:${CONTACT_EMAIL}`;
-
-  // Contact form behaviour: we keep mailto fallback but notify user
-  const form = document.getElementById('contact-form');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      // With mailto action the browser opens the mail client.
-      // If you replace action with a Formspree endpoint, remove this behavior.
-      // Provide simple confirmation feedback to the user.
-      setTimeout(() => {
-        // no-op: mail client opened; optionally show a notification if you use AJAX
-      }, 150);
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => {
+      const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+      mobileBtn.setAttribute('aria-expanded', String(!expanded));
+      if (expanded) {
+        mobileMenu.hidden = true;
+      } else {
+        mobileMenu.hidden = false;
+      }
     });
   }
+
+  // Header scroll behavior — change header shadow and cycle accent color based on scroll percentage
+  const header = document.getElementById('header');
+  const hero = document.getElementById('hero');
+  function updateHeader() {
+    const scrolled = window.scrollY > 10;
+    if (scrolled) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+
+    // dynamic accent color based on scroll position across document height
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = docHeight > 0 ? (window.scrollY / docHeight) : 0;
+    const idx = Math.floor(ratio * navbarThemeColors.length);
+    const color = navbarThemeColors[Math.min(idx, navbarThemeColors.length - 1)];
+    // set CSS custom property for any components that want accent (not necessary but available)
+    document.documentElement.style.setProperty('--accent-current', color);
+  }
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
 });
