@@ -6,41 +6,57 @@
   <meta name="description" content="Omie — handcrafted crochet garments and accessories. Custom pieces, commissions, and small-batch fashion." />
   <title>Omie</title>
 
+  <!-- Fonts: Playfair Display for headings, Roboto for body (same as Omie) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Material Icons (used on original Omie) -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <!-- Preload hero image for faster LCP -->
   <link rel="preload" as="image" href="public/images/photo1.jpg">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Open Graph & Twitter metadata (update image URLs if you host elsewhere) -->
-  <meta property="og:title" content="Omie — Handcrafted Crochet Portfolio">
-  <meta property="og:description" content="Showcasing handcrafted crochet garments and accessories.">
+  <!-- Open Graph & Twitter metadata -->
+  <meta property="og:title" content="Omie — Handcrafted Crochet Fashion">
+  <meta property="og:description" content="Omie — handcrafted crochet garments and accessories. Custom pieces and small-batch collections.">
   <meta property="og:image" content="https://raw.githubusercontent.com/iVGeek/omie-portfolio/main/public/logo.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Omie — Handcrafted Crochet Portfolio">
-  <meta name="twitter:description" content="Showcasing handcrafted crochet garments and accessories.">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/iVGeek/omie-portfolio/main/public/logo.png">
 
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- skip link for keyboard users -->
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" role="banner">
+  <header id="header" class="site-header" role="banner" aria-label="Site header">
     <div class="container header-inner">
-      <div class="brand" aria-hidden="false">
+      <div class="brand">
         <img src="public/logo.png" alt="Omie logo — yarn and floral emblem" class="logo" onerror="this.style.display='none'">
-        <span class="site-title">Omie</span>
+        <div class="brand-text">
+          <span class="site-title">Omie</span>
+          <small class="tagline">Handcrafted Summer Crochet</small>
+        </div>
       </div>
 
       <nav class="nav" role="navigation" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
+          <span class="material-icons">menu</span>
+        </button>
+
+        <div id="mobile-menu" class="mobile-menu" hidden>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
       </nav>
     </div>
   </header>
@@ -51,18 +67,18 @@
         <div class="hero-grid">
           <div class="hero-copy">
             <h1 id="hero-title">Omie — Handcrafted Crochet</h1>
-            <p class="lead">A curated portfolio of handcrafted crochet fashion. Custom pieces and small-batch collections — placeholder content. Replace with your description and bio.</p>
+            <p class="lead">Premium handcrafted crochet dresses and accessories with vibrant summer vibes. Custom pieces, commissions, and small-batch collections.</p>
             <p class="ctas">
               <a class="btn btn-primary" href="#projects">See Projects</a>
-              <a class="btn" href="#contact">Get in touch</a>
+              <a class="btn" href="#contact">Contact</a>
             </p>
-            <ul class="social" aria-hidden="false">
+            <ul class="social">
               <li><a href="https://github.com/iVGeek" target="_blank" rel="noopener noreferrer">GitHub</a></li>
               <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-              <li><a href="#" target="_blank" rel="noopener noreferrer">Contact</a></li>
             </ul>
           </div>
-          <div class="hero-media" aria-hidden="false">
+
+          <div class="hero-media">
             <img src="public/images/photo1.jpg" alt="Blue handcrafted crochet set with matching bag, outdoor photo" loading="eager" decoding="async">
           </div>
         </div>
@@ -71,20 +87,18 @@
 
     <section id="about" class="section" aria-labelledby="about-title">
       <div class="container">
-        <h2 id="about-title">About</h2>
-        <p class="muted">This portfolio showcases handcrafted crochet pieces — placeholder text. Update with your bio, story, and approach.</p>
-        <div class="two-col">
+        <h2 id="about-title">About Omie</h2>
+        <p class="muted">Omie crafts one-of-a-kind crochet fashion inspired by summer palettes and tactile textures. Replace this placeholder text with your story and approach.</p>
+
+        <div class="about-grid">
           <div>
-            <h3>Craft</h3>
-            <ul>
-              <li>Unique crochet garments and accessories</li>
-              <li>Custom sizing and colorways</li>
-              <li>Made-to-order and limited runs</li>
-            </ul>
+            <h3>Materials & Care</h3>
+            <p>High-quality yarns, hand-finished details, and careful construction for long-lasting wear.</p>
           </div>
+
           <div>
-            <h3>Contact</h3>
-            <p>For commissions and orders, email <a id="contact-email-link" href="mailto:hello@omie.example">hello@omie.example</a> or use the contact form below.</p>
+            <h3>Commissions</h3>
+            <p>Custom commissions and small-batch runs available — contact via email below or use the form.</p>
           </div>
         </div>
       </div>
@@ -92,11 +106,11 @@
 
     <section id="projects" class="section section-alt" aria-labelledby="projects-title">
       <div class="container">
-        <h2 id="projects-title">Selected Projects</h2>
-        <p class="muted">Featured pieces — replace entries with actual projects and links.</p>
+        <h2 id="projects-title">Featured Pieces</h2>
+        <p class="muted">A selection of recent handcrafted pieces — replace with your real project entries.</p>
 
-        <div class="projects-grid" id="projects-grid" aria-live="polite">
-          <!-- Projects populated by main.js -->
+        <div id="projects-grid" class="projects-grid" aria-live="polite">
+          <!-- populated by main.js -->
         </div>
       </div>
     </section>
@@ -104,10 +118,10 @@
     <section id="gallery" class="section" aria-labelledby="gallery-title">
       <div class="container">
         <h2 id="gallery-title">Gallery</h2>
-        <p class="muted">Photos and videos from recent shoots. Add additional images to public/images/ and videos to public/videos/</p>
+        <p class="muted">Photos & optional videos from shoots. Add more media to public/ and update main.js.</p>
 
-        <div class="projects-grid" id="gallery-grid" aria-live="polite">
-          <!-- Gallery populated by main.js -->
+        <div id="gallery-grid" class="projects-grid" aria-live="polite">
+          <!-- populated by main.js -->
         </div>
       </div>
     </section>
@@ -115,13 +129,8 @@
     <section id="contact" class="section" aria-labelledby="contact-title">
       <div class="container">
         <h2 id="contact-title">Contact</h2>
-        <p class="muted">Interested in a custom piece or collaboration? Send a quick message.</p>
+        <p class="muted">For commissions and orders, email <a id="contact-email-link" href="mailto:hello@omie.example">hello@omie.example</a>.</p>
 
-        <!--
-          By default this form uses mailto fallback (opens user's email client).
-          To capture messages on the web, replace the form action with a Formspree/Netlify URL:
-          Example (Formspree): action="https://formspree.io/f/YOUR_ID" method="POST"
-        -->
         <form id="contact-form" class="contact-form" action="mailto:hello@omie.example" method="post" enctype="text/plain" aria-label="Contact form">
           <label>
             <span class="sr-only">Name</span>
@@ -149,9 +158,14 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>© <span id="year"></span> Omie — Portfolio</p>
+      <p>© <span id="year"></span> Omie</p>
     </div>
   </footer>
+
+  <!-- WhatsApp floating action button (same pattern used in Omie) -->
+  <a class="md-fab whatsapp-fab" href="https://wa.me/254700000000?text=Hello%20Omie!" target="_blank" rel="noopener noreferrer" aria-label="Contact on WhatsApp">
+    <span class="material-icons">chat</span>
+  </a>
 
   <script src="main.js" defer></script>
 </body>
