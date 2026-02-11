@@ -1,147 +1,208 @@
-// main.js — themed to match Omie
-// Header scroll color change and project/gallery rendering
-// CONTACT_EMAIL is single source for contact email
+// main.js — Omie Fashion Atelier
+// Renders collections, lookbook, press sections; handles scroll and animations
 
-const CONTACT_EMAIL = 'hello@omie.example'; // change to your email
+const CONTACT_EMAIL = 'hello@omie.example';
 
-// Color palette (same order used in Omie for header transitions)
-const navbarThemeColors = [
-  '#FF7F50', // Orange Sunset
-  '#FF99C8', // Pink Sorbet
-  '#FFD166', // Warm Yellow
-  '#7FD8B0', // Mint
-  '#B393FF'  // Lavender (optional)
-];
+// ── Data ────────────────────────────────────────────
 
-// Placeholder projects and gallery — use your media in public/images/
-const projects = [
+const collections = [
   {
-    title: 'Blue Set',
-    desc: 'Handcrafted blue crochet set with matching bag.',
-    img: 'public/images/photo1.jpg',
-    alt: 'Blue handcrafted crochet set with matching bag'
+    title: 'Petal Noir',
+    desc: 'Spring / Summer 2025',
+    gradient: 'linear-gradient(160deg, #f5e6e0 0%, #e8cfc7 50%, #c9a09a 100%)'
   },
   {
-    title: 'Pink Romper',
-    desc: 'Handcrafted pink crochet romper with floral detail.',
-    img: 'public/images/photo2.jpg',
-    alt: 'Pink crochet romper styled with floral detail'
+    title: 'Golden Hour',
+    desc: 'Resort Collection',
+    gradient: 'linear-gradient(160deg, #f5e6e0 0%, #d4836d 60%, #c9a09a 100%)'
   },
   {
-    title: 'Sunny Set',
-    desc: 'Yellow & orange crochet set with garden styling.',
-    img: 'public/images/photo3.jpg',
-    alt: 'Yellow and orange crochet set, portrait in garden'
+    title: 'Ivory Dreams',
+    desc: 'Bridal Capsule',
+    gradient: 'linear-gradient(160deg, #faf4f2 0%, #f5e6e0 50%, #e8cfc7 100%)'
+  },
+  {
+    title: 'Dusk Rose',
+    desc: 'Autumn / Winter 2025',
+    gradient: 'linear-gradient(160deg, #e8cfc7 0%, #c9a09a 50%, #8a7e7a 100%)'
+  },
+  {
+    title: 'La Lumière',
+    desc: 'Evening Wear',
+    gradient: 'linear-gradient(160deg, #c9a09a 0%, #d4836d 50%, #2c2421 100%)'
+  },
+  {
+    title: 'Soft Silhouettes',
+    desc: 'Ready-to-Wear',
+    gradient: 'linear-gradient(160deg, #faf4f2 0%, #e8cfc7 60%, #d4836d 100%)'
   }
 ];
 
-const gallery = [
-  { type: 'image', src: 'public/images/photo1.jpg', alt: 'Blue handcrafted crochet set' },
-  { type: 'image', src: 'public/images/photo2.jpg', alt: 'Pink crochet romper' },
-  { type: 'image', src: 'public/images/photo3.jpg', alt: 'Yellow & orange crochet set' }
+const lookbookItems = [
+  { gradient: 'linear-gradient(135deg, #f5e6e0, #c9a09a)', alt: 'Editorial lookbook — flowing silk gown' },
+  { gradient: 'linear-gradient(135deg, #e8cfc7, #d4836d)', alt: 'Editorial lookbook — tailored blazer' },
+  { gradient: 'linear-gradient(135deg, #faf4f2, #e8cfc7)', alt: 'Editorial lookbook — evening dress' },
+  { gradient: 'linear-gradient(135deg, #c9a09a, #8a7e7a)', alt: 'Editorial lookbook — accessories' },
+  { gradient: 'linear-gradient(135deg, #d4836d, #c9a09a)', alt: 'Editorial lookbook — bridal collection' }
 ];
 
-// Simple DOM helper
-function el(tag, attrs = {}, children = []) {
+const pressItems = [
+  { title: 'Vogue', desc: '"A fresh voice in modern luxury — elegant restraint at its finest."' },
+  { title: 'Harper\'s Bazaar', desc: '"The new standard for understated sophistication."' },
+  { title: 'Elle', desc: '"Omie redefines timeless femininity with a contemporary edge."' },
+  { title: 'W Magazine', desc: '"Quietly powerful — each collection tells a story."' }
+];
+
+// ── Helpers ─────────────────────────────────────────
+
+function el(tag, attrs, children) {
   const n = document.createElement(tag);
-  for (const k of Object.keys(attrs)) {
-    if (k === 'class') n.className = attrs[k];
-    else if (k === 'html') n.innerHTML = attrs[k];
-    else n.setAttribute(k, attrs[k]);
+  if (attrs) {
+    for (const k of Object.keys(attrs)) {
+      if (k === 'class') n.className = attrs[k];
+      else n.setAttribute(k, attrs[k]);
+    }
   }
-  children.forEach(c => n.appendChild(c));
+  if (children) children.forEach(function(c) { if (c) n.appendChild(c); });
   return n;
 }
 
-function renderProjects() {
-  const grid = document.getElementById('projects-grid');
+// ── Render Collections ──────────────────────────────
+
+function renderCollections() {
+  var grid = document.getElementById('collections-grid');
   if (!grid) return;
   grid.innerHTML = '';
-  projects.forEach(p => {
-    const card = el('article', { class: 'project' });
-    const img = el('img', { src: p.img, alt: p.alt || p.title, loading: 'lazy', decoding: 'async' });
-    const h3 = el('h3'); h3.textContent = p.title;
-    const pdesc = el('p'); pdesc.textContent = p.desc;
-    card.appendChild(img);
+  collections.forEach(function(item, i) {
+    var card = el('article', { class: 'collection-card fade-in' });
+
+    var placeholder = el('div', {
+      class: 'collection-placeholder',
+      role: 'img',
+      'aria-label': item.title + ' — ' + item.desc,
+      style: 'background: ' + item.gradient + ';'
+    });
+
+    var overlay = el('div', { class: 'collection-card-overlay' });
+    var h3 = el('h3');
+    h3.textContent = item.title;
+    var p = el('p');
+    p.textContent = item.desc;
+    overlay.appendChild(h3);
+    overlay.appendChild(p);
+
+    card.appendChild(placeholder);
+    card.appendChild(overlay);
+    grid.appendChild(card);
+  });
+}
+
+// ── Render Lookbook ─────────────────────────────────
+
+function renderLookbook() {
+  var grid = document.getElementById('lookbook-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  lookbookItems.forEach(function(item) {
+    var wrapper = el('div', { class: 'lookbook-item fade-in' });
+
+    var placeholder = el('div', {
+      class: 'lookbook-placeholder',
+      role: 'img',
+      'aria-label': item.alt,
+      style: 'background: ' + item.gradient + ';'
+    });
+
+    wrapper.appendChild(placeholder);
+    grid.appendChild(wrapper);
+  });
+}
+
+// ── Render Press ────────────────────────────────────
+
+function renderPress() {
+  var grid = document.getElementById('press-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  pressItems.forEach(function(item) {
+    var card = el('article', { class: 'press-item' });
+    var h3 = el('h3');
+    h3.textContent = item.title;
+    var p = el('p');
+    p.textContent = item.desc;
     card.appendChild(h3);
-    card.appendChild(pdesc);
+    card.appendChild(p);
     grid.appendChild(card);
   });
 }
 
-function renderGallery() {
-  const grid = document.getElementById('gallery-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  gallery.forEach(item => {
-    const card = el('article', { class: 'project' });
-    if (item.type === 'video') {
-      const v = el('video', { controls: '', src: item.src, preload: 'metadata' });
-      if (item.poster) v.setAttribute('poster', item.poster);
-      card.appendChild(v);
-    } else {
-      const img = el('img', { src: item.src, alt: item.alt || '', loading: 'lazy', decoding: 'async' });
-      card.appendChild(img);
-    }
-    grid.appendChild(card);
-  });
+// ── Intersection Observer for fade-in ───────────────
+
+function initFadeIn() {
+  var targets = document.querySelectorAll('.fade-in');
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(function(t) { t.classList.add('visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  targets.forEach(function(t) { observer.observe(t); });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // populate content
-  renderProjects();
-  renderGallery();
+// ── Init ────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderCollections();
+  renderLookbook();
+  renderPress();
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // update email link
-  const emailLink = document.getElementById('contact-email-link');
-  if (emailLink) emailLink.href = `mailto:${CONTACT_EMAIL}`;
+  // Update email link
+  var emailLink = document.getElementById('contact-email-link');
+  if (emailLink) emailLink.href = 'mailto:' + CONTACT_EMAIL;
 
-  // copy-email button
-  const copyBtn = document.getElementById('copy-email');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard?.writeText(CONTACT_EMAIL).then(() => {
-        const prev = copyBtn.textContent;
-        copyBtn.textContent = 'Copied!';
-        setTimeout(() => copyBtn.textContent = prev, 1500);
-      }).catch(() => {
-        window.location.href = `mailto:${CONTACT_EMAIL}`;
-      });
+  // Contact form submission
+  var form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var subject = data.get('subject') || 'Portfolio Inquiry';
+      var body = 'Name: ' + data.get('name') + '\n\n' + data.get('message');
+      window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     });
   }
 
   // Mobile menu toggle
-  const mobileBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  var mobileBtn = document.getElementById('mobile-menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
   if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', () => {
-      const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+    mobileBtn.addEventListener('click', function() {
+      var expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
       mobileBtn.setAttribute('aria-expanded', String(!expanded));
-      if (expanded) {
-        mobileMenu.hidden = true;
-      } else {
-        mobileMenu.hidden = false;
-      }
+      mobileMenu.hidden = expanded;
     });
   }
 
-  // Header scroll behavior — change header shadow and cycle accent color based on scroll percentage
-  const header = document.getElementById('header');
-  const hero = document.getElementById('hero');
+  // Header scroll behavior
+  var header = document.getElementById('header');
   function updateHeader() {
-    const scrolled = window.scrollY > 10;
-    if (scrolled) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-
-    // dynamic accent color based on scroll position across document height
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const ratio = docHeight > 0 ? (window.scrollY / docHeight) : 0;
-    const idx = Math.floor(ratio * navbarThemeColors.length);
-    const color = navbarThemeColors[Math.min(idx, navbarThemeColors.length - 1)];
-    // set CSS custom property for any components that want accent (not necessary but available)
-    document.documentElement.style.setProperty('--accent-current', color);
+    if (window.scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
   }
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
+
+  // Initialize fade-in animations
+  initFadeIn();
 });
