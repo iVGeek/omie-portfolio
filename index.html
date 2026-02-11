@@ -3,24 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Omie — handcrafted crochet garments and accessories. Custom pieces, commissions, and small-batch fashion." />
-  <title>Omie</title>
+  <meta name="description" content="Omie — A high-end fashion designer portfolio. Timeless elegance, refined craftsmanship, and understated sophistication." />
+  <title>Omie — Fashion Atelier</title>
 
-  <!-- Fonts: Playfair Display for headings, Roboto for body (same as Omie) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Material Icons (used on original Omie) -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Preload hero image for faster LCP -->
-  <link rel="preload" as="image" href="public/images/photo1.jpg">
-
-  <!-- Open Graph & Twitter metadata -->
-  <meta property="og:title" content="Omie — Handcrafted Crochet Fashion">
-  <meta property="og:description" content="Omie — handcrafted crochet garments and accessories. Custom pieces and small-batch collections.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/iVGeek/omie-portfolio/main/public/logo.png">
+  <meta property="og:title" content="Omie — Fashion Atelier">
+  <meta property="og:description" content="Timeless elegance, refined craftsmanship, and understated sophistication.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -31,30 +22,28 @@
 
   <header id="header" class="site-header" role="banner" aria-label="Site header">
     <div class="container header-inner">
-      <div class="brand">
-        <img src="public/logo.png" alt="Omie logo — yarn and floral emblem" class="logo" onerror="this.style.display='none'">
-        <div class="brand-text">
-          <span class="site-title">Omie</span>
-          <small class="tagline">Handcrafted Summer Crochet</small>
-        </div>
-      </div>
+      <a href="#" class="brand" aria-label="Omie — home">
+        <span class="site-title">Omie</span>
+      </a>
 
       <nav class="nav" role="navigation" aria-label="Primary">
         <button id="mobile-menu-btn" class="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
-          <span class="material-icons">menu</span>
+          <span class="hamburger"></span>
         </button>
 
         <div id="mobile-menu" class="mobile-menu" hidden>
           <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#gallery">Gallery</a>
+          <a href="#collections">Collections</a>
+          <a href="#lookbook">Lookbook</a>
+          <a href="#press">Press</a>
           <a href="#contact">Contact</a>
         </div>
 
         <div class="nav-links">
           <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#gallery">Gallery</a>
+          <a href="#collections">Collections</a>
+          <a href="#lookbook">Lookbook</a>
+          <a href="#press">Press</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -62,110 +51,127 @@
   </header>
 
   <main id="main">
+
+    <!-- Hero — full-screen editorial -->
     <section id="hero" class="hero" aria-labelledby="hero-title">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <h1 id="hero-title">Omie — Handcrafted Crochet</h1>
-            <p class="lead">Premium handcrafted crochet dresses and accessories with vibrant summer vibes. Custom pieces, commissions, and small-batch collections.</p>
-            <p class="ctas">
-              <a class="btn btn-primary" href="#projects">See Projects</a>
-              <a class="btn" href="#contact">Contact</a>
-            </p>
-            <ul class="social">
-              <li><a href="https://github.com/iVGeek" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            </ul>
-          </div>
-
-          <div class="hero-media">
-            <img src="public/images/photo1.jpg" alt="Blue handcrafted crochet set with matching bag, outdoor photo" loading="eager" decoding="async">
-          </div>
+      <div class="hero-overlay">
+        <div class="hero-content fade-in">
+          <p class="hero-eyebrow">Spring / Summer Collection</p>
+          <h1 id="hero-title">The Art of<br>Timeless Elegance</h1>
+          <p class="hero-sub">Refined craftsmanship meets modern femininity</p>
+          <a class="btn-hero" href="#collections">Explore the Collection</a>
         </div>
       </div>
     </section>
 
+    <!-- About the Designer -->
     <section id="about" class="section" aria-labelledby="about-title">
-      <div class="container">
-        <h2 id="about-title">About Omie</h2>
-        <p class="muted">Omie crafts one-of-a-kind crochet fashion inspired by summer palettes and tactile textures. Replace this placeholder text with your story and approach.</p>
-
-        <div class="about-grid">
-          <div>
-            <h3>Materials & Care</h3>
-            <p>High-quality yarns, hand-finished details, and careful construction for long-lasting wear.</p>
-          </div>
-
-          <div>
-            <h3>Commissions</h3>
-            <p>Custom commissions and small-batch runs available — contact via email below or use the form.</p>
-          </div>
+      <div class="container about-layout fade-in">
+        <div class="about-image">
+          <div class="about-image-placeholder" role="img" aria-label="Portrait of the designer in her atelier"></div>
+        </div>
+        <div class="about-copy">
+          <p class="section-eyebrow">The Designer</p>
+          <h2 id="about-title">A Story Woven in Fabric</h2>
+          <p>Born from a reverence for timeless silhouettes and the quiet power of understated luxury, Omie is the vision of a designer who believes that true elegance whispers rather than shouts.</p>
+          <p>Each garment is conceived as a dialogue between heritage craftsmanship and contemporary sensibility — where hand-finished details meet clean, modern lines. The atelier sources only the finest fabrics, ensuring every piece carries an unmistakable sense of quality.</p>
+          <p class="about-signature">— Omie, Creative Director</p>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section section-alt" aria-labelledby="projects-title">
+    <!-- Collections -->
+    <section id="collections" class="section section-blush" aria-labelledby="collections-title">
       <div class="container">
-        <h2 id="projects-title">Featured Pieces</h2>
-        <p class="muted">A selection of recent handcrafted pieces — replace with your real project entries.</p>
+        <div class="section-header fade-in">
+          <p class="section-eyebrow">Curated Pieces</p>
+          <h2 id="collections-title">Collections</h2>
+        </div>
 
-        <div id="projects-grid" class="projects-grid" aria-live="polite">
+        <div id="collections-grid" class="collections-grid" aria-live="polite">
           <!-- populated by main.js -->
         </div>
       </div>
     </section>
 
-    <section id="gallery" class="section" aria-labelledby="gallery-title">
+    <!-- Featured Lookbook -->
+    <section id="lookbook" class="section" aria-labelledby="lookbook-title">
       <div class="container">
-        <h2 id="gallery-title">Gallery</h2>
-        <p class="muted">Photos & optional videos from shoots. Add more media to public/ and update main.js.</p>
+        <div class="section-header fade-in">
+          <p class="section-eyebrow">Editorial</p>
+          <h2 id="lookbook-title">Featured Lookbook</h2>
+        </div>
 
-        <div id="gallery-grid" class="projects-grid" aria-live="polite">
+        <div id="lookbook-grid" class="lookbook-grid" aria-live="polite">
           <!-- populated by main.js -->
         </div>
       </div>
     </section>
 
+    <!-- Press / Collaborations -->
+    <section id="press" class="section section-blush" aria-labelledby="press-title">
+      <div class="container">
+        <div class="section-header fade-in">
+          <p class="section-eyebrow">As Seen In</p>
+          <h2 id="press-title">Press &amp; Collaborations</h2>
+        </div>
+
+        <div id="press-grid" class="press-grid fade-in" aria-live="polite">
+          <!-- populated by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
     <section id="contact" class="section" aria-labelledby="contact-title">
-      <div class="container">
-        <h2 id="contact-title">Contact</h2>
-        <p class="muted">For commissions and orders, email <a id="contact-email-link" href="mailto:hello@omie.example">hello@omie.example</a>.</p>
+      <div class="container contact-layout fade-in">
+        <div class="contact-copy">
+          <p class="section-eyebrow">Get in Touch</p>
+          <h2 id="contact-title">Let&rsquo;s Create<br>Something Beautiful</h2>
+          <p>For inquiries, commissions, or collaborations, reach out via the form or email us at <a id="contact-email-link" href="mailto:hello@omie.example">hello@omie.example</a>.</p>
+        </div>
 
-        <form id="contact-form" class="contact-form" action="mailto:hello@omie.example" method="post" enctype="text/plain" aria-label="Contact form">
+        <form id="contact-form" class="contact-form" aria-label="Contact form">
           <label>
             <span class="sr-only">Name</span>
-            <input name="name" type="text" required placeholder="Your name">
+            <input name="name" type="text" required placeholder="Your Name" autocomplete="name">
           </label>
 
           <label>
             <span class="sr-only">Email</span>
-            <input name="email" type="email" required placeholder="you@example.com">
+            <input name="email" type="email" required placeholder="Email Address" autocomplete="email">
+          </label>
+
+          <label>
+            <span class="sr-only">Subject</span>
+            <input name="subject" type="text" placeholder="Subject">
           </label>
 
           <label>
             <span class="sr-only">Message</span>
-            <textarea name="message" rows="6" required placeholder="Brief message..."></textarea>
+            <textarea name="message" rows="5" required placeholder="Your message..."></textarea>
           </label>
 
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Send</button>
-            <button type="button" id="copy-email" class="btn">Copy email</button>
+            <button type="submit" class="btn-primary">Send Message</button>
           </div>
         </form>
       </div>
     </section>
+
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <p>© <span id="year"></span> Omie</p>
+    <div class="container footer-inner">
+      <p class="footer-brand">Omie</p>
+      <p class="footer-copy">&copy; <span id="year"></span> Omie Atelier. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#collections">Collections</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
   </footer>
-
-  <!-- WhatsApp floating action button (same pattern used in Omie) -->
-  <a class="md-fab whatsapp-fab" href="https://wa.me/254700000000?text=Hello%20Omie!" target="_blank" rel="noopener noreferrer" aria-label="Contact on WhatsApp">
-    <span class="material-icons">chat</span>
-  </a>
 
   <script src="main.js" defer></script>
 </body>
