@@ -3,24 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Omie — handcrafted crochet garments and accessories. Custom pieces, commissions, and small-batch fashion." />
-  <title>Omie</title>
+  <meta name="description" content="Omie — Bold, modern fashion design. Contemporary collections and custom pieces that make a statement." />
+  <title>Omie — Fashion Designer Portfolio</title>
 
-  <!-- Fonts: Playfair Display for headings, Roboto for body (same as Omie) -->
+  <!-- Fonts: Playfair Display (bold serif) for headings, Inter (clean sans-serif) for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Material Icons (used on original Omie) -->
+  <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- Preload hero image for faster LCP -->
-  <link rel="preload" as="image" href="public/images/photo1.jpg">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&q=80">
 
   <!-- Open Graph & Twitter metadata -->
-  <meta property="og:title" content="Omie — Handcrafted Crochet Fashion">
-  <meta property="og:description" content="Omie — handcrafted crochet garments and accessories. Custom pieces and small-batch collections.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/iVGeek/omie-portfolio/main/public/logo.png">
+  <meta property="og:title" content="Omie — Fashion Designer Portfolio">
+  <meta property="og:description" content="Bold, modern fashion design. Contemporary collections and custom pieces.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -32,11 +31,7 @@
   <header id="header" class="site-header" role="banner" aria-label="Site header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="public/logo.png" alt="Omie logo — yarn and floral emblem" class="logo" onerror="this.style.display='none'">
-        <div class="brand-text">
-          <span class="site-title">Omie</span>
-          <small class="tagline">Handcrafted Summer Crochet</small>
-        </div>
+        <span class="site-title">OMIE</span>
       </div>
 
       <nav class="nav" role="navigation" aria-label="Primary">
@@ -46,15 +41,15 @@
 
         <div id="mobile-menu" class="mobile-menu" hidden>
           <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#gallery">Gallery</a>
+          <a href="#collections">Collections</a>
+          <a href="#lookbook">Lookbook</a>
           <a href="#contact">Contact</a>
         </div>
 
         <div class="nav-links">
           <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#gallery">Gallery</a>
+          <a href="#collections">Collections</a>
+          <a href="#lookbook">Lookbook</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -62,107 +57,195 @@
   </header>
 
   <main id="main">
-    <section id="hero" class="hero" aria-labelledby="hero-title">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <h1 id="hero-title">Omie — Handcrafted Crochet</h1>
-            <p class="lead">Premium handcrafted crochet dresses and accessories with vibrant summer vibes. Custom pieces, commissions, and small-batch collections.</p>
-            <p class="ctas">
-              <a class="btn btn-primary" href="#projects">See Projects</a>
-              <a class="btn" href="#contact">Contact</a>
-            </p>
-            <ul class="social">
-              <li><a href="https://github.com/iVGeek" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            </ul>
+    <!-- Hero Section with Full-Screen Slideshow -->
+    <section id="hero" class="hero-slideshow" aria-labelledby="hero-title">
+      <div class="slideshow-container">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&q=80')">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600&q=80')">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1600&q=80')">
+          <div class="slide-overlay"></div>
+        </div>
+      </div>
+      
+      <div class="hero-content">
+        <div class="container">
+          <h1 id="hero-title" class="hero-title fade-in">BOLD.<br>MODERN.<br>CONFIDENT.</h1>
+          <p class="hero-subtitle fade-in">Fashion that makes a statement</p>
+          <div class="hero-cta fade-in">
+            <a class="btn btn-primary" href="#collections">View Collections</a>
           </div>
+        </div>
+      </div>
 
-          <div class="hero-media">
-            <img src="public/images/photo1.jpg" alt="Blue handcrafted crochet set with matching bag, outdoor photo" loading="eager" decoding="async">
+      <div class="slideshow-controls">
+        <button class="slide-btn prev" aria-label="Previous slide">
+          <span class="material-icons">chevron_left</span>
+        </button>
+        <button class="slide-btn next" aria-label="Next slide">
+          <span class="material-icons">chevron_right</span>
+        </button>
+      </div>
+
+      <div class="slideshow-indicators">
+        <button class="indicator active" aria-label="Slide 1"></button>
+        <button class="indicator" aria-label="Slide 2"></button>
+        <button class="indicator" aria-label="Slide 3"></button>
+      </div>
+    </section>
+
+    <!-- About Section with Stylish Storytelling -->
+    <section id="about" class="section about-section" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-layout">
+          <div class="about-image parallax-element" data-speed="0.5">
+            <img src="https://images.unsplash.com/photo-1558769132-cb1aea1c8347?w=800&q=80" alt="Fashion designer at work" loading="lazy">
+          </div>
+          <div class="about-content">
+            <h2 id="about-title" class="section-title">The Vision</h2>
+            <div class="about-text">
+              <p class="lead-text">Creating bold, contemporary fashion that empowers individuals to express their unique identity.</p>
+              <p>Each piece is designed with meticulous attention to detail, blending modern aesthetics with timeless elegance. Our collections celebrate confidence, creativity, and the art of self-expression.</p>
+              <p>From concept to creation, every garment tells a story of craftsmanship, innovation, and passion for design.</p>
+            </div>
+            <div class="about-values">
+              <div class="value-item">
+                <h3>Innovation</h3>
+                <p>Pushing boundaries with bold designs and contemporary silhouettes</p>
+              </div>
+              <div class="value-item">
+                <h3>Quality</h3>
+                <p>Premium materials and exceptional craftsmanship in every piece</p>
+              </div>
+              <div class="value-item">
+                <h3>Individuality</h3>
+                <p>Custom designs that celebrate your unique style and personality</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section" aria-labelledby="about-title">
+    <!-- Collections Gallery with Interactive Hover Effects -->
+    <section id="collections" class="section section-dark collections-section" aria-labelledby="collections-title">
       <div class="container">
-        <h2 id="about-title">About Omie</h2>
-        <p class="muted">Omie crafts one-of-a-kind crochet fashion inspired by summer palettes and tactile textures. Replace this placeholder text with your story and approach.</p>
+        <h2 id="collections-title" class="section-title centered">Latest Collections</h2>
+        <p class="section-subtitle centered">Contemporary designs that make a statement</p>
 
-        <div class="about-grid">
-          <div>
-            <h3>Materials & Care</h3>
-            <p>High-quality yarns, hand-finished details, and careful construction for long-lasting wear.</p>
-          </div>
-
-          <div>
-            <h3>Commissions</h3>
-            <p>Custom commissions and small-batch runs available — contact via email below or use the form.</p>
-          </div>
+        <div id="collections-grid" class="collections-grid" aria-live="polite">
+          <!-- Populated by JavaScript -->
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section section-alt" aria-labelledby="projects-title">
+    <!-- Lookbook - Magazine Style Grid -->
+    <section id="lookbook" class="section lookbook-section" aria-labelledby="lookbook-title">
       <div class="container">
-        <h2 id="projects-title">Featured Pieces</h2>
-        <p class="muted">A selection of recent handcrafted pieces — replace with your real project entries.</p>
+        <h2 id="lookbook-title" class="section-title centered">Lookbook</h2>
+        <p class="section-subtitle centered">Editorial fashion moments</p>
 
-        <div id="projects-grid" class="projects-grid" aria-live="polite">
-          <!-- populated by main.js -->
+        <div id="lookbook-grid" class="lookbook-grid" aria-live="polite">
+          <!-- Populated by JavaScript -->
         </div>
       </div>
     </section>
 
-    <section id="gallery" class="section" aria-labelledby="gallery-title">
+    <!-- Contact Section - Simple & Elegant -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-title">
       <div class="container">
-        <h2 id="gallery-title">Gallery</h2>
-        <p class="muted">Photos & optional videos from shoots. Add more media to public/ and update main.js.</p>
+        <div class="contact-layout">
+          <div class="contact-info">
+            <h2 id="contact-title" class="section-title">Let's Create Together</h2>
+            <p class="lead-text">Ready to bring your vision to life? Get in touch for custom commissions and collaborations.</p>
+            
+            <div class="contact-details">
+              <div class="contact-item">
+                <span class="material-icons">email</span>
+                <div>
+                  <h3>Email</h3>
+                  <a id="contact-email-link" href="mailto:hello@omie.example">hello@omie.example</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="material-icons">phone</span>
+                <div>
+                  <h3>Phone</h3>
+                  <p>+254 700 000 000</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="material-icons">location_on</span>
+                <div>
+                  <h3>Studio</h3>
+                  <p>Nairobi, Kenya</p>
+                </div>
+              </div>
+            </div>
 
-        <div id="gallery-grid" class="projects-grid" aria-live="polite">
-          <!-- populated by main.js -->
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section" aria-labelledby="contact-title">
-      <div class="container">
-        <h2 id="contact-title">Contact</h2>
-        <p class="muted">For commissions and orders, email <a id="contact-email-link" href="mailto:hello@omie.example">hello@omie.example</a>.</p>
-
-        <form id="contact-form" class="contact-form" action="mailto:hello@omie.example" method="post" enctype="text/plain" aria-label="Contact form">
-          <label>
-            <span class="sr-only">Name</span>
-            <input name="name" type="text" required placeholder="Your name">
-          </label>
-
-          <label>
-            <span class="sr-only">Email</span>
-            <input name="email" type="email" required placeholder="you@example.com">
-          </label>
-
-          <label>
-            <span class="sr-only">Message</span>
-            <textarea name="message" rows="6" required placeholder="Brief message..."></textarea>
-          </label>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Send</button>
-            <button type="button" id="copy-email" class="btn">Copy email</button>
+            <div class="social-links">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <span class="material-icons">photo_camera</span>
+              </a>
+              <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+                <span class="material-icons">image</span>
+              </a>
+              <a href="https://github.com/iVGeek" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <span class="material-icons">code</span>
+              </a>
+            </div>
           </div>
-        </form>
+
+          <div class="contact-form-wrapper">
+            <form id="contact-form" class="contact-form" action="mailto:hello@omie.example" method="post" enctype="text/plain" aria-label="Contact form">
+              <label>
+                <span>Your Name</span>
+                <input name="name" type="text" required placeholder="Jane Doe">
+              </label>
+
+              <label>
+                <span>Email Address</span>
+                <input name="email" type="email" required placeholder="jane@example.com">
+              </label>
+
+              <label>
+                <span>Message</span>
+                <textarea name="message" rows="6" required placeholder="Tell us about your project..."></textarea>
+              </label>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="button" id="copy-email" class="btn btn-secondary">Copy Email</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>© <span id="year"></span> Omie</p>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>OMIE</h3>
+          <p>Bold. Modern. Confident.</p>
+        </div>
+        <div class="footer-nav">
+          <a href="#about">About</a>
+          <a href="#collections">Collections</a>
+          <a href="#lookbook">Lookbook</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> Omie. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- WhatsApp floating action button (same pattern used in Omie) -->
+  <!-- WhatsApp floating action button -->
   <a class="md-fab whatsapp-fab" href="https://wa.me/254700000000?text=Hello%20Omie!" target="_blank" rel="noopener noreferrer" aria-label="Contact on WhatsApp">
     <span class="material-icons">chat</span>
   </a>
