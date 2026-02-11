@@ -63,7 +63,7 @@ function el(tag, attrs, children) {
       else n.setAttribute(k, attrs[k]);
     }
   }
-  if (children) children.forEach(function(c) { n.appendChild(c); });
+  if (children) children.forEach(function(c) { if (c) n.appendChild(c); });
   return n;
 }
 
