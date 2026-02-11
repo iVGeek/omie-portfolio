@@ -1,5 +1,5 @@
 // ================================
-// Modern Fashion Portfolio - Omie
+// Crochet Pattern Portfolio - YouSayICrochet
 // Interactive Features & Animations
 // ================================
 
