@@ -1,0 +1,93 @@
+:root{
+  --bg: #fff;
+  --muted: #6b7280;
+  --accent-1: #FF7F50; /* orange sunset */
+  --accent-2: #FF99C8; /* pink sorbet */
+  --accent-3: #FFD166; /* warm yellow */
+  --accent-4: #7FD8B0; /* mint */
+  --surface: #FBFBFD;
+  --max-width:1200px;
+  --gap:24px;
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #0b1220;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.5}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:40;background:transparent;transition:background-color .28s ease, box-shadow .28s ease}
+.site-header.scrolled{box-shadow:0 6px 18px rgba(11,19,32,0.08)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:54px;height:54px;object-fit:contain}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.site-title{font-family:"Playfair Display", serif;font-size:20px;font-weight:600}
+.tagline{font-size:12px;color:var(--muted)}
+
+/* Navigation */
+.nav {display:flex;align-items:center;gap:12px}
+.nav a{color:var(--muted);text-decoration:none;margin-left:16px;font-weight:500}
+.nav a:hover{color:var(--accent-1)}
+.mobile-menu-btn{display:none;background:transparent;border:0;cursor:pointer}
+
+/* Hero */
+.hero{padding:64px 0}
+.hero-grid{display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center}
+.hero-copy h1{font-family:"Playfair Display", serif;font-size:40px;margin:0 0 12px}
+.lead{color:var(--muted);max-width:56ch}
+.ctas{margin-top:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:8px;text-decoration:none;border:1px solid rgba(11,19,32,0.06);background:white;color:inherit;cursor:pointer}
+.btn-primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white;border:0;box-shadow:0 6px 18px rgba(255,127,80,0.12)}
+.hero-media img{width:100%;height:auto;border-radius:12px;display:block;object-fit:cover}
+
+/* Sections */
+.section{padding:56px 0}
+.section-alt{background:var(--surface)}
+h2{margin:0 0 12px;font-family:"Playfair Display", serif}
+.muted{color:var(--muted);margin:0 0 18px}
+
+/* Layout - projects & gallery */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.project{background:white;border-radius:12px;padding:12px;border:1px solid rgba(11,19,32,0.04);transition:transform .18s ease}
+.project:hover{transform:translateY(-6px)}
+.project img,.project video{width:100%;height:200px;object-fit:cover;border-radius:8px}
+.project h3{margin:12px 0 8px;font-size:16px}
+.project p{margin:0;color:var(--muted)}
+
+/* About grid */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+/* Contact form */
+.contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #e6eef8}
+.form-actions{display:flex;gap:12px;margin-top:12px}
+
+/* WhatsApp FAB (styled similar to Omie) */
+.md-fab.whatsapp-fab{
+  position:fixed;right:18px;bottom:22px;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 20px rgba(37,211,102,0.18);text-decoration:none;z-index:60
+}
+.md-fab.whatsapp-fab .material-icons{font-size:24px}
+
+/* Footer */
+.site-footer{padding:20px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(11,19,32,0.03)}
+
+/* Utilities */
+.skip-link{position:absolute;left:-10000px;top:auto;overflow:hidden}
+.skip-link:focus{left:10px;top:10px;background:var(--accent-1);color:#fff;padding:8px 12px;border-radius:6px;z-index:80}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* Responsive */
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
+  .mobile-menu-btn{display:inline-flex}
+  .nav-links{display:none}
+  .mobile-menu{display:flex;flex-direction:column;gap:8px}
+}
+@media(max-width:540px){
+  .projects-grid{grid-template-columns:1fr}
+  .hero-copy h1{font-size:28px}
+  .brand-text{display:none}
+}
