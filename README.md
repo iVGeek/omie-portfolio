@@ -31,7 +31,7 @@ A warm, welcoming, and visually appealing crochet pattern portfolio website feat
 #### Change Email and Contact Info
 Edit `main.js`:
 ```javascript
-const CONTACT_EMAIL = 'your-email@example.com'; // Line 1
+const CONTACT_EMAIL = 'your-email@example.com'; // Line 6
 ```
 
 Update contact details in `index.html`:
