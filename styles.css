@@ -1,20 +1,20 @@
 /* ================================
-   Modern Fashion Portfolio - Omie
-   Bold, Vibrant & Confident Design
+   Crochet Pattern Portfolio - YouSayICrochet
+   Warm, Welcoming & Creative Design
    ================================ */
 
 :root {
-  /* Hot Pink & Vibrant Color Palette */
-  --hot-pink: #FF1493;
-  --vibrant-pink: #FF69B4;
-  --deep-pink: #C71585;
-  --accent-gold: #FFD700;
-  --accent-coral: #FF6B6B;
-  --text-dark: #1a1a1a;
-  --text-muted: #666;
+  /* Warm & Craft-Friendly Color Palette */
+  --primary-coral: #FF6B6B;
+  --soft-peach: #FFB4A2;
+  --warm-pink: #E27D60;
+  --accent-teal: #6FB3B8;
+  --accent-mint: #A3D9A5;
+  --text-dark: #2C3E50;
+  --text-muted: #7F8C8D;
   --bg-white: #FFFFFF;
-  --bg-light: #FAFAFA;
-  --bg-dark: #0a0a0a;
+  --bg-cream: #FFF8F3;
+  --bg-dark: #2C3E50;
   
   /* Typography */
   --font-serif: "Playfair Display", serif;
@@ -345,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--hot-pink) 0%, var(--deep-pink) 100%);
+  background: linear-gradient(135deg, var(--hot-pink) 0%, var(--warm-pink) 100%);
   color: white;
   box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
 }
@@ -757,7 +757,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   right: 2rem;
   bottom: 2rem;
-  background: linear-gradient(135deg, var(--hot-pink) 0%, var(--deep-pink) 100%);
+  background: linear-gradient(135deg, var(--hot-pink) 0%, var(--warm-pink) 100%);
   color: white;
   width: 64px;
   height: 64px;
