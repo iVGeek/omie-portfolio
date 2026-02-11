@@ -31,7 +31,7 @@ A modern, bold, and visually striking fashion designer portfolio website featuri
 #### Change Email and Contact Info
 Edit `main.js`:
 ```javascript
-const CONTACT_EMAIL = 'your-email@example.com'; // Line 8
+const CONTACT_EMAIL = 'your-email@example.com'; // Line 6
 ```
 
 Update contact details in `index.html`:
@@ -44,7 +44,7 @@ Update contact details in `index.html`:
 
 Replace the Unsplash URLs in `main.js` with your own images:
 
-1. **Hero Slideshow** (lines 18-20 in `index.html`):
+1. **Hero Slideshow** (in `index.html`, around lines 63-71):
    - Add 3-5 high-resolution images (1920x1080px recommended)
    - Save to `public/images/` as `hero1.jpg`, `hero2.jpg`, etc.
 
@@ -56,12 +56,12 @@ Replace the Unsplash URLs in `main.js` with your own images:
    - Add 6+ editorial images (various sizes for asymmetric layout)
    - Mix of portrait and landscape orientations
 
-4. **About Section** (line 90 in `index.html`):
+4. **About Section** (in `index.html`, around line 105):
    - Add a compelling image of you or your workspace
 
 ### Color Customization
 
-Edit CSS variables in `styles.css` (lines 7-14):
+Edit CSS variables in `styles.css` (around lines 8-17):
 ```css
 :root {
   --hot-pink: #FF1493;      /* Primary brand color */
@@ -78,7 +78,7 @@ The site uses:
 - **Headings**: Playfair Display (bold serif) - modern, editorial feel
 - **Body Text**: Inter (clean sans-serif) - excellent readability
 
-To change fonts, update the Google Fonts link in `index.html` (line 12) and CSS variables (lines 16-17).
+To change fonts, update the Google Fonts link in `index.html` (line 12) and CSS variables (around lines 20-21).
 
 ## Development
 
