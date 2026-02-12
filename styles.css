@@ -622,7 +622,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-image:hover img {
-  transform: scale(1.08) rotate(0.5deg);
+  transform: scale(1.08);
 }
 
 .about-content {
@@ -773,7 +773,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lookbook-item:hover img {
-  transform: scale(1.1) rotate(1deg);
+  transform: scale(1.1);
 }
 
 /* Magazine-style asymmetric layout */
@@ -1529,5 +1529,34 @@ h1, h2, h3, h4, h5, h6 {
   
   .collection-indicator .material-icons {
     font-size: 14px;
+  }
+}
+
+/* ================================
+   Accessibility - Reduced Motion
+   ================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable floating animation for chat FAB */
+  .md-fab.chat-fab {
+    animation: hueShift 10s ease-in-out infinite;
+  }
+  
+  /* Disable wiggle animation for chat icon */
+  .md-fab.chat-fab .material-icons {
+    animation: none;
+  }
+  
+  /* Disable pulse animation for collection indicators */
+  .collection-indicator .material-icons {
+    animation: none;
+    opacity: 1;
+  }
+  
+  /* Simplify all transitions to instant or very fast */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
