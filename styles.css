@@ -32,9 +32,6 @@
   /* Animations */
   --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: all 0.2s ease;
-  
-  /* Hue effect animation */
-  --gradient-angle: 135deg;
 }
 
 /* ================================
@@ -771,10 +768,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ================================
-   WhatsApp FAB
+   Chat FAB (Instagram DM)
    ================================ */
 
-.md-fab.whatsapp-fab {
+.md-fab.chat-fab {
   position: fixed;
   right: 2rem;
   bottom: 2rem;
@@ -794,12 +791,12 @@ h1, h2, h3, h4, h5, h6 {
   background-size: 200% 200%;
 }
 
-.md-fab.whatsapp-fab:hover {
+.md-fab.chat-fab:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 15px 40px rgba(230, 139, 190, 0.5);
 }
 
-.md-fab.whatsapp-fab .material-icons {
+.md-fab.chat-fab .material-icons {
   font-size: 28px;
 }
 
