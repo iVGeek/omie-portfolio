@@ -13,6 +13,27 @@
 const CONTACT_EMAIL = 'hello@yousayicrochet.com';
 
 // ================================
+// Performance Utilities
+// ================================
+
+/**
+ * Throttle function to limit execution rate
+ * @param {Function} fn - Function to throttle
+ * @param {number} delay - Minimum delay between executions in ms
+ * @returns {Function} Throttled function
+ */
+function throttle(fn, delay) {
+  let lastRun = 0;
+  return function(...args) {
+    const now = Date.now();
+    if (now - lastRun >= delay) {
+      fn.apply(this, args);
+      lastRun = now;
+    }
+  };
+}
+
+// ================================
 // Crochet Patterns Data
 // ================================
 
@@ -210,7 +231,8 @@ class ParallaxEffect {
   init() {
     if (this.elements.length === 0) return;
     
-    window.addEventListener('scroll', () => {
+    // Use throttle to limit scroll handler execution to ~60fps
+    const handleScroll = throttle(() => {
       this.elements.forEach(el => {
         const speed = el.dataset.speed || 0.5;
         const rect = el.getBoundingClientRect();
@@ -221,7 +243,9 @@ class ParallaxEffect {
           el.style.transform = `translateY(${rate}px)`;
         }
       });
-    }, { passive: true });
+    }, 16); // ~60fps
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
   }
 }
 
@@ -238,13 +262,24 @@ class HeaderScroll {
   init() {
     if (!this.header) return;
     
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        this.header.classList.add('scrolled');
-      } else {
-        this.header.classList.remove('scrolled');
+    // Use requestAnimationFrame for smooth, optimized DOM updates
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (window.scrollY > 50) {
+            this.header.classList.add('scrolled');
+          } else {
+            this.header.classList.remove('scrolled');
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    }, { passive: true });
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
   }
 }
 
@@ -287,7 +322,11 @@ function renderCollections() {
   const grid = document.getElementById('collections-grid');
   if (!grid) return;
   
+  // Clear existing content first
   grid.innerHTML = '';
+  
+  // Use DocumentFragment for efficient DOM manipulation
+  const fragment = document.createDocumentFragment();
   
   collections.forEach((item, index) => {
     const article = document.createElement('article');
@@ -312,8 +351,11 @@ function renderCollections() {
     overlay.appendChild(desc);
     article.appendChild(img);
     article.appendChild(overlay);
-    grid.appendChild(article);
+    fragment.appendChild(article);
   });
+  
+  // Single DOM update
+  grid.appendChild(fragment);
 }
 
 // ================================
@@ -324,7 +366,11 @@ function renderLookbook() {
   const grid = document.getElementById('lookbook-grid');
   if (!grid) return;
   
+  // Clear existing content first
   grid.innerHTML = '';
+  
+  // Use DocumentFragment for efficient DOM manipulation
+  const fragment = document.createDocumentFragment();
   
   lookbook.forEach((item, index) => {
     const article = document.createElement('article');
@@ -337,8 +383,11 @@ function renderLookbook() {
     img.loading = 'lazy';
     
     article.appendChild(img);
-    grid.appendChild(article);
+    fragment.appendChild(article);
   });
+  
+  // Single DOM update
+  grid.appendChild(fragment);
 }
 
 // ================================
@@ -379,6 +428,10 @@ function setupContactForm() {
 // ================================
 
 function setupSmoothScroll() {
+  // Cache header element for better performance
+  const header = document.getElementById('header');
+  if (!header) return;
+  
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
@@ -387,7 +440,7 @@ function setupSmoothScroll() {
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        const headerHeight = document.getElementById('header').offsetHeight;
+        const headerHeight = header.offsetHeight;
         const targetPosition = target.offsetTop - headerHeight;
         
         window.scrollTo({
