@@ -66,7 +66,7 @@ function throttle(fn, delay) {
 // ================================
 // Crochet Patterns Data
 // ================================
-// 
+//
 // Image URLs can be:
 // - Regular image URLs: 'https://...' or 'public/images/...'
 // - Instagram post URLs: Full Instagram URL like 'https://www.instagram.com/p/POST_ID/'
