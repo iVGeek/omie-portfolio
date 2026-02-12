@@ -59,6 +59,9 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
   <header id="header" class="site-header" role="banner" aria-label="Site header">
     <div class="container header-inner">
       <div class="brand">
@@ -133,10 +136,10 @@
     <section id="about" class="section about-section" aria-labelledby="about-title">
       <div class="container">
         <div class="about-layout">
-          <div class="about-image parallax-element" data-speed="0.5">
+          <div class="about-image parallax-element scroll-fade-left" data-speed="0.5">
             <img src="https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80" alt="Crochet work in progress" loading="lazy">
           </div>
-          <div class="about-content">
+          <div class="about-content scroll-fade-right">
             <h2 id="about-title" class="section-title">The Story</h2>
             <div class="about-text">
               <p class="lead-text">Showcasing the beauty of handcrafted artistry through a carefully curated portfolio of creative works.</p>
@@ -144,15 +147,15 @@
               <p>Whether you're here for inspiration or to appreciate the craft, you'll find a collection that speaks to the heart of artisanal work and creative expression.</p>
             </div>
             <div class="about-values">
-              <div class="value-item">
+              <div class="value-item scroll-fade-up">
                 <h3>Artistry</h3>
                 <p>Every piece showcases meticulous attention to detail and creative vision</p>
               </div>
-              <div class="value-item">
+              <div class="value-item scroll-fade-up">
                 <h3>Craftsmanship</h3>
                 <p>Unique designs that blend traditional techniques with modern aesthetics</p>
               </div>
-              <div class="value-item">
+              <div class="value-item scroll-fade-up">
                 <h3>Inspiration</h3>
                 <p>A collection that sparks creativity and celebrates handmade beauty</p>
               </div>
@@ -165,8 +168,8 @@
     <!-- Gallery - Finished Projects -->
     <section id="gallery" class="section lookbook-section" aria-labelledby="gallery-title">
       <div class="container">
-        <h2 id="gallery-title" class="section-title centered">Gallery</h2>
-        <p class="section-subtitle centered">A showcase of handcrafted creations and artistic designs</p>
+        <h2 id="gallery-title" class="section-title centered scroll-fade-up">Gallery</h2>
+        <p class="section-subtitle centered scroll-fade-up">A showcase of handcrafted creations and artistic designs</p>
 
         <div id="lookbook-grid" class="lookbook-grid" aria-live="polite">
           <!-- Populated by JavaScript -->
@@ -178,26 +181,26 @@
     <section id="contact" class="section contact-section" aria-labelledby="contact-title">
       <div class="container">
         <div class="contact-layout">
-          <div class="contact-info">
+          <div class="contact-info scroll-fade-left">
             <h2 id="contact-title" class="section-title">Let's Connect</h2>
             <p class="lead-text">Have questions about a pattern? Want to share your finished project? I'd love to hear from you!</p>
             
             <div class="contact-details">
-              <div class="contact-item">
+              <div class="contact-item scroll-fade-up">
                 <span class="material-icons">email</span>
                 <div>
                   <h3>Email</h3>
                   <a id="contact-email-link" href="mailto:hello@omie.com">hello@omie.com</a>
                 </div>
               </div>
-              <div class="contact-item">
+              <div class="contact-item scroll-fade-up">
                 <span class="material-icons">phone</span>
                 <div>
                   <h3>Phone</h3>
                   <p>+1 (555) 123-4567</p>
                 </div>
               </div>
-              <div class="contact-item">
+              <div class="contact-item scroll-fade-up">
                 <span class="material-icons">location_on</span>
                 <div>
                   <h3>Location</h3>
@@ -206,7 +209,7 @@
               </div>
             </div>
 
-            <div class="social-links">
+            <div class="social-links scroll-scale">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <span class="material-icons">photo_camera</span>
               </a>
@@ -219,7 +222,7 @@
             </div>
           </div>
 
-          <div class="contact-form-wrapper">
+          <div class="contact-form-wrapper scroll-fade-right">
             <form id="contact-form" class="contact-form" action="mailto:hello@omie.com" method="post" enctype="text/plain" aria-label="Contact form">
               <label>
                 <span>Your Name</span>
