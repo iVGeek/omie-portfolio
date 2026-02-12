@@ -18,7 +18,7 @@ In 5 minutes, you'll learn how to:
 ## Features
 
 ✨ **Full-Screen Hero Slideshow** - Beautiful image slideshow showcasing crochet projects  
-🎨 **Warm & Cozy Theme** - Craft-friendly color palette with coral (#FF6B6B) and peach tones  
+🎨 **Warm & Cozy Theme** - Craft-friendly color palette with pink and orange tones  
 📐 **Responsive Design** - Fully responsive across all devices  
 🎭 **Interactive Elements** - Hover effects, parallax scrolling, and smooth animations  
 🖼️ **Project Gallery** - Asymmetric grid layout for showcasing finished crochet projects  
@@ -79,11 +79,19 @@ Update contact details in `index.html`:
 Edit CSS variables in `styles.css`:
 ```css
 :root {
-  --primary-coral: #FF6B6B;    /* Primary brand color */
-  --soft-peach: #FFB4A2;       /* Lighter accent */
-  --warm-pink: #E27D60;        /* Warm accent */
-  --accent-teal: #6FB3B8;      /* Complementary color */
-  --accent-mint: #A3D9A5;      /* Fresh accent */
+  /* Pink tones */
+  --primary-coral: #e68bbe;     /* Deep pink */
+  --warm-pink: #eea1cd;         /* Medium pink */
+  --accent-mint: #f9cee7;       /* Light pink */
+  --lightest-pink: #fde4f2;     /* Lightest pink */
+  --pink-medium: #f4b8da;       /* Medium-light pink */
+  
+  /* Orange tones */
+  --soft-peach: #ffa472;        /* Soft orange */
+  --accent-teal: #ff7e26;       /* Vibrant orange */
+  --orange-deep: #ff580f;       /* Deep orange */
+  --orange-light: #ffc99d;      /* Light orange */
+  --orange-mid: #ff9c59;        /* Mid orange */
 }
 ```
 
