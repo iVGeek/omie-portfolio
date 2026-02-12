@@ -712,6 +712,25 @@ function setupSmoothScroll() {
 // Initialize Everything
 // ================================
 
+// Hide loading screen after page loads
+window.addEventListener('load', () => {
+  const LOADING_SCREEN_MIN_DURATION = 500; // Minimum time to show loading screen (ms)
+  const LOADING_SCREEN_FADE_DURATION = 500; // Time for fade-out animation (ms)
+  
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) {
+    // Add a small delay to ensure smooth transition
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+      
+      // Remove from DOM after animation completes
+      setTimeout(() => {
+        loadingScreen.remove();
+      }, LOADING_SCREEN_FADE_DURATION);
+    }, LOADING_SCREEN_MIN_DURATION);
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   // Set current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
