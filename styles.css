@@ -6,12 +6,10 @@
 :root {
   /* Warm & Craft-Friendly Color Palette - Deep Pink & Vibrant Orange */
   --primary-coral: #FF1493;     /* Deep pink */
-  --soft-peach: #FF6600;        /* Vibrant orange */
+  --vibrant-orange: #FF6600;    /* Vibrant orange */
   --warm-pink: #FF69B4;         /* Hot pink */
-  --accent-teal: #FF6600;       /* Vibrant orange */
-  --accent-mint: #FFB6C1;       /* Light pink */
+  --light-pink: #FFB6C1;        /* Light pink */
   --lightest-pink: #FFF0F5;     /* Lightest pink */
-  --pink-medium: #FF69B4;       /* Medium pink */
   --orange-deep: #FF4500;       /* Deep orange-red */
   --orange-light: #FFA500;      /* Light orange */
   --orange-mid: #FF7F00;        /* Mid orange */
