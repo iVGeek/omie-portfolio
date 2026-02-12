@@ -41,30 +41,74 @@ function throttle(fn, delay) {
 // Gallery Data
 // ================================
 
+// Updated lookbook structure to support collections with multiple images
+// Each project can have a single image or an array of images for book view
 const lookbook = [
   {
-    src: 'https://images.unsplash.com/photo-1614963326505-842876ff4238?w=1200&q=80',
-    alt: 'Beautiful handcrafted sweater project'
+    title: 'Beautiful handcrafted sweater project',
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1614963326505-842876ff4238?w=1200&q=80',
+        alt: 'Beautiful handcrafted sweater - main view'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
+        alt: 'Beautiful handcrafted sweater - detail view'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
+        alt: 'Beautiful handcrafted sweater - lifestyle shot'
+      }
+    ]
   },
   {
-    src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
-    alt: 'Stylish handmade cardigan'
+    title: 'Stylish handmade cardigan',
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
+        alt: 'Stylish handmade cardigan'
+      }
+    ]
   },
   {
-    src: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80',
-    alt: 'Handcrafted accessories collection'
+    title: 'Handcrafted accessories collection',
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80',
+        alt: 'Handcrafted accessories collection'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1000&q=80',
+        alt: 'Handcrafted accessories - alternate view'
+      }
+    ]
   },
   {
-    src: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
-    alt: 'Cozy handmade blanket'
+    title: 'Cozy handmade blanket',
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
+        alt: 'Cozy handmade blanket'
+      }
+    ]
   },
   {
-    src: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1000&q=80',
-    alt: 'Baby handcrafted items'
+    title: 'Baby handcrafted items',
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1000&q=80',
+        alt: 'Baby handcrafted items'
+      }
+    ]
   },
   {
-    src: 'https://images.unsplash.com/photo-1611849583569-7a1a8f4d0f7e?w=1000&q=80',
-    alt: 'Artistic handmade creations'
+    title: 'Artistic handmade creations',
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1611849583569-7a1a8f4d0f7e?w=1000&q=80',
+        alt: 'Artistic handmade creations'
+      }
+    ]
   }
 ];
 
@@ -276,6 +320,260 @@ class MobileMenu {
 }
 
 // ================================
+// Lightbox Gallery (Book View)
+// ================================
+
+class LightboxGallery {
+  constructor() {
+    this.currentProject = 0;
+    this.currentImage = 0;
+    this.modal = null;
+    this.init();
+  }
+  
+  init() {
+    // Create modal structure
+    this.createModal();
+    
+    // Add event listeners
+    this.setupEventListeners();
+  }
+  
+  createModal() {
+    const modal = document.createElement('div');
+    modal.className = 'lightbox-modal';
+    modal.id = 'lightbox-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Image gallery viewer');
+    
+    modal.innerHTML = `
+      <div class="lightbox-overlay"></div>
+      <div class="lightbox-content">
+        <button class="lightbox-close" aria-label="Close gallery">
+          <span class="material-icons">close</span>
+        </button>
+        
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous image">
+          <span class="material-icons">chevron_left</span>
+        </button>
+        
+        <div class="lightbox-image-container">
+          <img class="lightbox-image" src="" alt="" />
+          <div class="lightbox-caption"></div>
+        </div>
+        
+        <button class="lightbox-nav lightbox-next" aria-label="Next image">
+          <span class="material-icons">chevron_right</span>
+        </button>
+        
+        <div class="lightbox-indicators"></div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    this.modal = modal;
+  }
+  
+  setupEventListeners() {
+    // Close button
+    const closeBtn = this.modal.querySelector('.lightbox-close');
+    closeBtn.addEventListener('click', () => this.close());
+    
+    // Overlay click to close
+    const overlay = this.modal.querySelector('.lightbox-overlay');
+    overlay.addEventListener('click', () => this.close());
+    
+    // Navigation buttons
+    const prevBtn = this.modal.querySelector('.lightbox-prev');
+    const nextBtn = this.modal.querySelector('.lightbox-next');
+    
+    prevBtn.addEventListener('click', () => this.previousImage());
+    nextBtn.addEventListener('click', () => this.nextImage());
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!this.modal.classList.contains('active')) return;
+      
+      switch(e.key) {
+        case 'Escape':
+          this.close();
+          break;
+        case 'ArrowLeft':
+          this.previousImage();
+          break;
+        case 'ArrowRight':
+          this.nextImage();
+          break;
+      }
+    });
+    
+    // Touch/swipe support for mobile
+    this.setupTouchEvents();
+  }
+  
+  setupTouchEvents() {
+    const imageContainer = this.modal.querySelector('.lightbox-image-container');
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    imageContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    imageContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      this.handleSwipe();
+    }, { passive: true });
+    
+    const handleSwipe = () => {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left - next image
+          this.nextImage();
+        } else {
+          // Swipe right - previous image
+          this.previousImage();
+        }
+      }
+    };
+    
+    this.handleSwipe = handleSwipe;
+  }
+  
+  open(projectIndex) {
+    this.currentProject = projectIndex;
+    this.currentImage = 0;
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+    
+    // Show modal
+    this.modal.classList.add('active');
+    
+    // Load and display image
+    this.updateImage();
+    
+    // Create indicators
+    this.createIndicators();
+    
+    // Focus trap for accessibility
+    this.modal.querySelector('.lightbox-close').focus();
+  }
+  
+  close() {
+    this.modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
+  updateImage() {
+    const project = lookbook[this.currentProject];
+    const image = project.images[this.currentImage];
+    
+    const imgElement = this.modal.querySelector('.lightbox-image');
+    const captionElement = this.modal.querySelector('.lightbox-caption');
+    
+    // Fade out
+    imgElement.style.opacity = '0';
+    
+    setTimeout(() => {
+      imgElement.src = image.src;
+      imgElement.alt = image.alt;
+      captionElement.textContent = project.title;
+      
+      // Fade in
+      imgElement.style.opacity = '1';
+    }, 200);
+    
+    // Update navigation buttons visibility
+    const prevBtn = this.modal.querySelector('.lightbox-prev');
+    const nextBtn = this.modal.querySelector('.lightbox-next');
+    
+    // Show/hide navigation based on image count
+    if (project.images.length === 1) {
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+    } else {
+      prevBtn.style.display = 'flex';
+      nextBtn.style.display = 'flex';
+    }
+    
+    // Update active indicator
+    this.updateIndicators();
+  }
+  
+  createIndicators() {
+    const project = lookbook[this.currentProject];
+    const indicatorsContainer = this.modal.querySelector('.lightbox-indicators');
+    
+    indicatorsContainer.innerHTML = '';
+    
+    // Only show indicators if there are multiple images
+    if (project.images.length <= 1) {
+      indicatorsContainer.style.display = 'none';
+      return;
+    }
+    
+    indicatorsContainer.style.display = 'flex';
+    
+    project.images.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'lightbox-indicator';
+      dot.setAttribute('aria-label', `Go to image ${index + 1}`);
+      
+      if (index === this.currentImage) {
+        dot.classList.add('active');
+      }
+      
+      dot.addEventListener('click', () => {
+        this.currentImage = index;
+        this.updateImage();
+      });
+      
+      indicatorsContainer.appendChild(dot);
+    });
+  }
+  
+  updateIndicators() {
+    const indicators = this.modal.querySelectorAll('.lightbox-indicator');
+    indicators.forEach((indicator, index) => {
+      if (index === this.currentImage) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }
+  
+  nextImage() {
+    const project = lookbook[this.currentProject];
+    
+    if (this.currentImage < project.images.length - 1) {
+      this.currentImage++;
+    } else {
+      this.currentImage = 0; // Loop back to first image
+    }
+    
+    this.updateImage();
+  }
+  
+  previousImage() {
+    const project = lookbook[this.currentProject];
+    
+    if (this.currentImage > 0) {
+      this.currentImage--;
+    } else {
+      this.currentImage = project.images.length - 1; // Loop to last image
+    }
+    
+    this.updateImage();
+  }
+}
+
+// ================================
 // Render Lookbook
 // ================================
 
@@ -289,15 +587,47 @@ function renderLookbook() {
   // Use DocumentFragment for efficient DOM manipulation
   const fragment = document.createDocumentFragment();
   
-  lookbook.forEach((item, index) => {
+  lookbook.forEach((project, projectIndex) => {
     const article = document.createElement('article');
     article.className = 'lookbook-item reveal';
-    article.style.animationDelay = `${index * 0.15}s`;
+    article.style.animationDelay = `${projectIndex * 0.15}s`;
     
+    // Use first image from the collection as thumbnail
+    const firstImage = project.images[0];
     const img = document.createElement('img');
-    img.src = item.src;
-    img.alt = item.alt;
+    img.src = firstImage.src;
+    img.alt = firstImage.alt;
     img.loading = 'lazy';
+    
+    // Add click handler to open lightbox
+    article.style.cursor = 'pointer';
+    article.setAttribute('role', 'button');
+    article.setAttribute('tabindex', '0');
+    article.setAttribute('aria-label', `View ${project.title}`);
+    
+    article.addEventListener('click', () => {
+      if (window.lightboxGallery) {
+        window.lightboxGallery.open(projectIndex);
+      }
+    });
+    
+    // Add keyboard support for accessibility
+    article.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (window.lightboxGallery) {
+          window.lightboxGallery.open(projectIndex);
+        }
+      }
+    });
+    
+    // Add collection indicator if project has multiple images
+    if (project.images.length > 1) {
+      const indicator = document.createElement('div');
+      indicator.className = 'collection-indicator';
+      indicator.innerHTML = `<span class="material-icons">collections</span><span class="count">${project.images.length}</span>`;
+      article.appendChild(indicator);
+    }
     
     article.appendChild(img);
     fragment.appendChild(article);
@@ -388,6 +718,9 @@ document.addEventListener('DOMContentLoaded', () => {
   new ParallaxEffect();
   new HeaderScroll();
   new MobileMenu();
+  
+  // Initialize lightbox gallery (stored globally for access from renderLookbook)
+  window.lightboxGallery = new LightboxGallery();
   
   // Add loading complete class
   setTimeout(() => {
