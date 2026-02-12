@@ -1,16 +1,17 @@
-# YouSayICrochet Pattern Portfolio
+# OMIE Pattern Portfolio
 
 A warm, welcoming, and visually appealing crochet pattern portfolio website featuring coral and peach accents, smooth animations, and a cozy design aesthetic.
 
 ## 🚀 Quick Start: Using Your Own Media
 
-**Want to replace the placeholder images with your own crochet photos?**
+**Want to replace the placeholder images with your own crochet photos or link your Instagram posts?**
 
 👉 **[Complete Media Customization Guide →](MEDIA_GUIDE.md)**  
 👉 **[Code Examples (Before/After) →](EXAMPLES.md)**
 
 In 5 minutes, you'll learn how to:
 - Add your images to the right folders
+- Link Instagram posts to use as media
 - Update the code with your image paths
 - Optimize images for web performance
 - Troubleshoot common issues
@@ -66,13 +67,14 @@ In 5 minutes, you'll learn how to:
 #### Change Email and Contact Info
 Edit `main.js`:
 ```javascript
-const CONTACT_EMAIL = 'your-email@example.com'; // Line 6
+const CONTACT_EMAIL = 'your-email@example.com'; // Line 14
 ```
 
 Update contact details in `index.html`:
-- Email link (search for `hello@yousayicrochet.com`)
+- Email link (search for `hello@omie.com`)
 - Phone number (search for `+1 (555) 123-4567`)
 - WhatsApp link (search for `wa.me/15551234567`)
+- Instagram handle in floating button (search for `ig.me/m/omie`)
 
 ### Color Customization
 

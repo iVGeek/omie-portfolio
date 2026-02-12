@@ -1,5 +1,5 @@
 /* ================================
-   Crochet Pattern Portfolio - YouSayICrochet
+   Crochet Pattern Portfolio - OMIE
    Warm, Welcoming & Creative Design
    ================================ */
 
@@ -128,6 +128,18 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand .site-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 .brand .site-title {
@@ -517,6 +529,14 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.95rem;
 }
 
+/* Instagram embed styles for collections */
+.collection-item .instagram-embed {
+  width: 100%;
+  height: 100%;
+  border: none;
+  min-height: 400px;
+}
+
 /* ================================
    Lookbook - Magazine Style Grid
    ================================ */
@@ -583,6 +603,14 @@ h1, h2, h3, h4, h5, h6 {
 .lookbook-item:nth-child(6) {
   grid-column: span 7;
   aspect-ratio: 16 / 9;
+}
+
+/* Instagram embed styles for lookbook */
+.lookbook-item .instagram-embed {
+  width: 100%;
+  height: 100%;
+  border: none;
+  min-height: 400px;
 }
 
 /* ================================
