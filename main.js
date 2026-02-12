@@ -417,15 +417,6 @@ class LightboxGallery {
     let touchStartX = 0;
     let touchEndX = 0;
     
-    imageContainer.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-    
-    imageContainer.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      this.handleSwipe();
-    }, { passive: true });
-    
     const handleSwipe = () => {
       const swipeThreshold = 50;
       const diff = touchStartX - touchEndX;
@@ -441,7 +432,14 @@ class LightboxGallery {
       }
     };
     
-    this.handleSwipe = handleSwipe;
+    imageContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    imageContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
   }
   
   open(projectIndex) {
@@ -625,7 +623,18 @@ function renderLookbook() {
     if (project.images.length > 1) {
       const indicator = document.createElement('div');
       indicator.className = 'collection-indicator';
-      indicator.innerHTML = `<span class="material-icons">collections</span><span class="count">${project.images.length}</span>`;
+      indicator.setAttribute('aria-label', `${project.images.length} images in collection`);
+      
+      const icon = document.createElement('span');
+      icon.className = 'material-icons';
+      icon.textContent = 'collections';
+      
+      const count = document.createElement('span');
+      count.className = 'count';
+      count.textContent = project.images.length;
+      
+      indicator.appendChild(icon);
+      indicator.appendChild(count);
       article.appendChild(indicator);
     }
     
