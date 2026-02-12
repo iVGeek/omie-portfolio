@@ -2,6 +2,13 @@
 // Crochet Pattern Portfolio - YouSayICrochet
 // Interactive Features & Animations
 // ================================
+//
+// 📸 Want to use your own images?
+// See MEDIA_GUIDE.md for complete instructions!
+//
+// Quick: Replace the Unsplash URLs below with paths to your own images
+// Example: 'public/images/patterns/sweaters.jpg'
+// ================================
 
 const CONTACT_EMAIL = 'hello@yousayicrochet.com';
 
