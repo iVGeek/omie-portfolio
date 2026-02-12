@@ -240,11 +240,14 @@ This will:
 
 After optimization, update your paths to use the optimized versions:
 
+**For JavaScript arrays:**
 ```javascript
 // Example: Use responsive images
 img: 'public/images/patterns/sweaters-800.jpg',  // Instead of sweaters.jpg
+```
 
-// Or use WebP with fallback
+**For HTML with WebP support:**
+```html
 <picture>
   <source srcset="public/images/hero/hero1.webp" type="image/webp">
   <img src="public/images/hero/hero1.jpg" alt="Hero image">
