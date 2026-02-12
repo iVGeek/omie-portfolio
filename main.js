@@ -186,7 +186,7 @@ class Slideshow {
 
 class ScrollAnimations {
   constructor() {
-    this.elements = document.querySelectorAll('.reveal');
+    this.elements = document.querySelectorAll('.reveal, .scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-scale, .stagger-item');
     this.init();
   }
   
@@ -196,13 +196,17 @@ class ScrollAnimations {
     sections.forEach(section => {
       const children = section.querySelectorAll('h2, .section-subtitle, .about-text, .value-item, .collection-item, .lookbook-item');
       children.forEach(child => {
-        if (!child.classList.contains('reveal')) {
+        if (!child.classList.contains('reveal') && 
+            !child.classList.contains('scroll-fade-up') &&
+            !child.classList.contains('scroll-fade-left') &&
+            !child.classList.contains('scroll-fade-right') &&
+            !child.classList.contains('scroll-scale')) {
           child.classList.add('reveal');
         }
       });
     });
     
-    // Observe elements
+    // Observe elements with IntersectionObserver for better performance
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -213,13 +217,41 @@ class ScrollAnimations {
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
       }
     );
     
-    document.querySelectorAll('.reveal').forEach(el => {
+    // Observe all animated elements
+    this.elements.forEach(el => {
       this.observer.observe(el);
     });
+  }
+}
+
+// ================================
+// Scroll Progress Indicator
+// ================================
+
+class ScrollProgress {
+  constructor() {
+    this.progressBar = document.getElementById('scroll-progress');
+    this.init();
+  }
+  
+  init() {
+    if (!this.progressBar) return;
+    
+    const updateProgress = throttle(() => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+      
+      this.progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
+    }, 16);
+    
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
   }
 }
 
@@ -587,8 +619,7 @@ function renderLookbook() {
   
   lookbook.forEach((project, projectIndex) => {
     const article = document.createElement('article');
-    article.className = 'lookbook-item reveal';
-    article.style.animationDelay = `${projectIndex * 0.15}s`;
+    article.className = 'lookbook-item stagger-item';
     
     // Use first image from the collection as thumbnail
     const firstImage = project.images[0];
@@ -743,6 +774,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize features
   new Slideshow();
   new ScrollAnimations();
+  new ScrollProgress();
   new ParallaxEffect();
   new HeaderScroll();
   new MobileMenu();
