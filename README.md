@@ -2,6 +2,19 @@
 
 A warm, welcoming, and visually appealing crochet pattern portfolio website featuring coral and peach accents, smooth animations, and a cozy design aesthetic.
 
+## 🚀 Quick Start: Using Your Own Media
+
+**Want to replace the placeholder images with your own crochet photos?**
+
+👉 **[Complete Media Customization Guide →](MEDIA_GUIDE.md)**  
+👉 **[Code Examples (Before/After) →](EXAMPLES.md)**
+
+In 5 minutes, you'll learn how to:
+- Add your images to the right folders
+- Update the code with your image paths
+- Optimize images for web performance
+- Troubleshoot common issues
+
 ## Features
 
 ✨ **Full-Screen Hero Slideshow** - Beautiful image slideshow showcasing crochet projects  
@@ -26,6 +39,28 @@ A warm, welcoming, and visually appealing crochet pattern portfolio website feat
 
 ## Customization
 
+### 📸 Using Your Own Media
+
+**The portfolio comes with placeholder images. Here's how to add your own:**
+
+**Quick Start:**
+1. Add your images to the `public/images/` folder
+2. Replace Unsplash URLs in `index.html` (hero slideshow, about section)
+3. Replace Unsplash URLs in `main.js` (pattern categories, project gallery)
+
+**📖 [Read the Complete Media Customization Guide](MEDIA_GUIDE.md)** for:
+- Detailed step-by-step instructions with code examples
+- Recommended image sizes and formats
+- File organization tips
+- Image optimization guide
+- Troubleshooting help
+
+**Minimum Required Images:**
+- 3 hero slideshow images (1920x1080px)
+- 6 pattern category images (800x1000px)
+- 6 project gallery images (800-1200px)
+- 1 about section image (800x600px)
+
 ### Update Your Content
 
 #### Change Email and Contact Info
@@ -38,25 +73,6 @@ Update contact details in `index.html`:
 - Email link (search for `hello@yousayicrochet.com`)
 - Phone number (search for `+1 (555) 123-4567`)
 - WhatsApp link (search for `wa.me/15551234567`)
-
-#### Add Your Images
-
-Replace the Unsplash URLs in both `index.html` and `main.js` with your own crochet images:
-
-1. **Hero Slideshow** (in `index.html`):
-   - Add 3-5 high-resolution crochet project images (1920x1080px recommended)
-   - Save to `public/images/` as `hero1.jpg`, `hero2.jpg`, etc.
-
-2. **Pattern Categories** (`collections` array in `main.js`):
-   - Add 6-9 pattern category images (800x1000px recommended)
-   - Update title, description, and image paths
-
-3. **Project Gallery** (`lookbook` array in `main.js`):
-   - Add 6+ project images (various sizes for asymmetric layout)
-   - Mix of different crochet items
-
-4. **About Section** (in `index.html`):
-   - Add an image of your workspace or crochet in progress
 
 ### Color Customization
 
