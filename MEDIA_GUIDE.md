@@ -347,15 +347,6 @@ Then use paths like: `public/images/hero1.jpg`
 
 ## Troubleshooting
 
-### Instagram embeds not showing up?
-
-1. **Check URL format**: Make sure you're using the correct Instagram post URL
-   - Full URL: `https://www.instagram.com/p/POST_ID/`
-   - Shorthand: `instagram:POST_ID`
-2. **Check post privacy**: Instagram post must be public (not private)
-3. **Check browser console**: Press F12 and look for errors
-4. **Try the full URL**: If shorthand doesn't work, use the full Instagram URL
-
 ### Images not showing up?
 
 1. **Check file paths**: Make sure paths match exactly (case-sensitive!)

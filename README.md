@@ -4,14 +4,13 @@ A warm, welcoming, and visually appealing crochet pattern portfolio website feat
 
 ## 🚀 Quick Start: Using Your Own Media
 
-**Want to replace the placeholder images with your own crochet photos or link your Instagram posts?**
+**Want to replace the placeholder images with your own crochet photos?**
 
 👉 **[Complete Media Customization Guide →](MEDIA_GUIDE.md)**  
 👉 **[Code Examples (Before/After) →](EXAMPLES.md)**
 
 In 5 minutes, you'll learn how to:
 - Add your images to the right folders
-- Link Instagram posts to use as media
 - Update the code with your image paths
 - Optimize images for web performance
 - Troubleshoot common issues

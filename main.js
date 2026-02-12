@@ -7,9 +7,7 @@
 // See MEDIA_GUIDE.md for complete instructions!
 //
 // Quick: Replace the Unsplash URLs below with paths to your own images
-// OR use Instagram post URLs to embed Instagram content
 // Example: 'public/images/patterns/sweaters.jpg'
-// Instagram: Use instagram: prefix like 'instagram:POST_ID' or full URL
 // ================================
 
 const CONTACT_EMAIL = 'hello@omie.com';
@@ -17,34 +15,6 @@ const CONTACT_EMAIL = 'hello@omie.com';
 // ================================
 // Performance Utilities
 // ================================
-
-/**
- * Check if a URL is an Instagram post
- * @param {string} url - URL or identifier to check
- * @returns {boolean|string} False if not Instagram, or post ID if it is
- */
-function isInstagramPost(url) {
-  if (!url) return false;
-  
-  // Handle shorthand format: instagram:POST_ID
-  if (url.startsWith('instagram:')) {
-    return url.substring(10);
-  }
-  
-  // Handle full Instagram URL
-  const instagramRegex = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/p\/([A-Za-z0-9_-]+)/;
-  const match = url.match(instagramRegex);
-  return match ? match[1] : false;
-}
-
-/**
- * Get Instagram embed URL from post ID
- * @param {string} postId - Instagram post ID
- * @returns {string} Embed URL
- */
-function getInstagramEmbedUrl(postId) {
-  return `https://www.instagram.com/p/${postId}/embed/`;
-}
 
 /**
  * Throttle function to limit execution rate
@@ -66,11 +36,6 @@ function throttle(fn, delay) {
 // ================================
 // Crochet Patterns Data
 // ================================
-//
-// Image URLs can be:
-// - Regular image URLs: 'https://...' or 'public/images/...'
-// - Instagram post URLs: Full Instagram URL like 'https://www.instagram.com/p/POST_ID/'
-// - Instagram shorthand: 'instagram:POST_ID' (will be converted to embed URL)
 
 const collections = [
   {
@@ -82,8 +47,6 @@ const collections = [
   {
     title: 'Stylish Cardigans',
     desc: 'Versatile cardigan designs from casual to elegant',
-    // Example: Instagram post - replace with your actual Instagram post URL
-    // img: 'https://www.instagram.com/p/YOUR_POST_ID/',
     img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
     alt: 'Crochet cardigan pattern'
   },
@@ -116,11 +79,6 @@ const collections = [
 // ================================
 // Project Gallery Data
 // ================================
-//
-// Images can be:
-// - Regular image URLs: 'https://...' or 'public/images/...'
-// - Instagram post URLs: Full Instagram URL like 'https://www.instagram.com/p/POST_ID/'
-// - Instagram shorthand: 'instagram:POST_ID' (will be converted to embed URL)
 
 const lookbook = [
   {
@@ -128,8 +86,6 @@ const lookbook = [
     alt: 'Beautiful crochet sweater project'
   },
   {
-    // Example: Instagram post - replace with your actual Instagram post URL
-    // src: 'instagram:YOUR_POST_ID',
     src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
     alt: 'Stylish crochet cardigan'
   },
@@ -377,26 +333,10 @@ function renderCollections() {
     article.className = 'collection-item reveal';
     article.style.animationDelay = `${index * 0.1}s`;
     
-    const postId = isInstagramPost(item.img);
-    
-    if (postId) {
-      // Create Instagram embed
-      const iframe = document.createElement('iframe');
-      iframe.src = getInstagramEmbedUrl(postId);
-      iframe.className = 'instagram-embed';
-      iframe.setAttribute('frameborder', '0');
-      iframe.setAttribute('scrolling', 'no');
-      iframe.setAttribute('allowtransparency', 'true');
-      iframe.setAttribute('loading', 'lazy');
-      article.appendChild(iframe);
-    } else {
-      // Create regular image
-      const img = document.createElement('img');
-      img.src = item.img;
-      img.alt = item.alt;
-      img.loading = 'lazy';
-      article.appendChild(img);
-    }
+    const img = document.createElement('img');
+    img.src = item.img;
+    img.alt = item.alt;
+    img.loading = 'lazy';
     
     const overlay = document.createElement('div');
     overlay.className = 'collection-overlay';
@@ -409,6 +349,7 @@ function renderCollections() {
     
     overlay.appendChild(title);
     overlay.appendChild(desc);
+    article.appendChild(img);
     article.appendChild(overlay);
     fragment.appendChild(article);
   });
@@ -436,27 +377,12 @@ function renderLookbook() {
     article.className = 'lookbook-item reveal';
     article.style.animationDelay = `${index * 0.15}s`;
     
-    const postId = isInstagramPost(item.src);
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.alt;
+    img.loading = 'lazy';
     
-    if (postId) {
-      // Create Instagram embed
-      const iframe = document.createElement('iframe');
-      iframe.src = getInstagramEmbedUrl(postId);
-      iframe.className = 'instagram-embed';
-      iframe.setAttribute('frameborder', '0');
-      iframe.setAttribute('scrolling', 'no');
-      iframe.setAttribute('allowtransparency', 'true');
-      iframe.setAttribute('loading', 'lazy');
-      article.appendChild(iframe);
-    } else {
-      // Create regular image
-      const img = document.createElement('img');
-      img.src = item.src;
-      img.alt = item.alt;
-      img.loading = 'lazy';
-      article.appendChild(img);
-    }
-    
+    article.appendChild(img);
     fragment.appendChild(article);
   });
   
