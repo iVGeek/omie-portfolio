@@ -322,6 +322,9 @@ function renderCollections() {
   const grid = document.getElementById('collections-grid');
   if (!grid) return;
   
+  // Clear existing content first
+  grid.innerHTML = '';
+  
   // Use DocumentFragment for efficient DOM manipulation
   const fragment = document.createDocumentFragment();
   
@@ -351,8 +354,7 @@ function renderCollections() {
     fragment.appendChild(article);
   });
   
-  // Single DOM update instead of multiple
-  grid.innerHTML = '';
+  // Single DOM update
   grid.appendChild(fragment);
 }
 
@@ -363,6 +365,9 @@ function renderCollections() {
 function renderLookbook() {
   const grid = document.getElementById('lookbook-grid');
   if (!grid) return;
+  
+  // Clear existing content first
+  grid.innerHTML = '';
   
   // Use DocumentFragment for efficient DOM manipulation
   const fragment = document.createDocumentFragment();
@@ -381,8 +386,7 @@ function renderLookbook() {
     fragment.appendChild(article);
   });
   
-  // Single DOM update instead of multiple
-  grid.innerHTML = '';
+  // Single DOM update
   grid.appendChild(fragment);
 }
 
