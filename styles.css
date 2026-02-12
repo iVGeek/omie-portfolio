@@ -13,12 +13,12 @@
   --orange-deep: #FF4500;       /* Deep orange-red */
   --orange-light: #FFA500;      /* Light orange */
   --orange-mid: #FF7F00;        /* Mid orange */
-  --text-dark: #2C3E50;
+  --text-dark: #4A1942;         /* Deep purple-pink for text */
   --text-muted: #7F8C8D;
   --bg-white: #FFFFFF;
   --bg-cream: #FFF0F5;          /* Lightest pink for background */
   --bg-light: #FFB6C1;          /* Light pink for alternate backgrounds */
-  --bg-dark: #2C3E50;
+  --bg-dark: linear-gradient(135deg, #FF1493 0%, #FF6600 100%); /* Pink to orange gradient */
   
   /* Typography */
   --font-serif: "Playfair Display", serif;
@@ -32,6 +32,9 @@
   /* Animations */
   --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: all 0.2s ease;
+  
+  /* Hue effect animation */
+  --gradient-angle: 135deg;
 }
 
 /* ================================
@@ -352,6 +355,8 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, var(--primary-coral) 0%, var(--warm-pink) 100%);
   color: white;
   box-shadow: 0 10px 30px rgba(230, 139, 190, 0.3);
+  animation: hueShift 10s ease-in-out infinite;
+  background-size: 200% 200%;
 }
 
 .btn-primary:hover {
@@ -379,8 +384,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-dark {
-  background: var(--bg-dark);
+  background: linear-gradient(135deg, #FF1493 0%, #FF6600 100%);
   color: white;
+  animation: hueShift 10s ease-in-out infinite;
+  background-size: 200% 200%;
 }
 
 .section-dark .section-title {
@@ -712,9 +719,11 @@ h1, h2, h3, h4, h5, h6 {
    ================================ */
 
 .site-footer {
-  background: var(--bg-dark);
+  background: linear-gradient(135deg, #FF1493 0%, #FF6600 100%);
   color: white;
   padding: 4rem 0 2rem;
+  animation: hueShift 10s ease-in-out infinite;
+  background-size: 200% 200%;
 }
 
 .footer-content {
@@ -781,6 +790,8 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   z-index: 999;
   transition: var(--transition-smooth);
+  animation: hueShift 10s ease-in-out infinite;
+  background-size: 200% 200%;
 }
 
 .md-fab.whatsapp-fab:hover {
@@ -804,6 +815,17 @@ h1, h2, h3, h4, h5, h6 {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes hueShift {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(20deg);
   }
 }
 
