@@ -42,13 +42,30 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Loading Animation -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <span class="loading-title">OMIE</span>
+      </div>
+      <div class="loading-spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+      </div>
+      <p class="loading-text">Loading your creative journey...</p>
+    </div>
+  </div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header id="header" class="site-header" role="banner" aria-label="Site header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="public/images/logo.svg" alt="OMIE Logo" class="site-logo">
-        <span class="site-title">OMIE</span>
+        <a href="#hero" class="brand-link" aria-label="Go to home">
+          <img src="public/images/logo.svg" alt="OMIE Logo" class="site-logo">
+          <span class="site-title">OMIE</span>
+        </a>
       </div>
 
       <nav class="nav" role="navigation" aria-label="Primary">

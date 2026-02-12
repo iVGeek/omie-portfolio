@@ -712,6 +712,22 @@ function setupSmoothScroll() {
 // Initialize Everything
 // ================================
 
+// Hide loading screen after page loads
+window.addEventListener('load', () => {
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) {
+    // Add a small delay to ensure smooth transition
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+      
+      // Remove from DOM after animation completes
+      setTimeout(() => {
+        loadingScreen.remove();
+      }, 500);
+    }, 500); // Show loading screen for at least 500ms
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   // Set current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
