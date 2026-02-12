@@ -4,22 +4,22 @@
    ================================ */
 
 :root {
-  /* Warm & Craft-Friendly Color Palette - Pink & Orange Mix */
-  --primary-coral: #e68bbe;     /* Deep pink */
-  --soft-peach: #ffa472;        /* Soft orange */
-  --warm-pink: #eea1cd;         /* Medium pink */
-  --accent-teal: #ff7e26;       /* Vibrant orange */
-  --accent-mint: #f9cee7;       /* Light pink */
-  --lightest-pink: #fde4f2;     /* Lightest pink */
-  --pink-medium: #f4b8da;       /* Medium-light pink */
-  --orange-deep: #ff580f;       /* Deep orange */
-  --orange-light: #ffc99d;      /* Light orange */
-  --orange-mid: #ff9c59;        /* Mid orange */
+  /* Warm & Craft-Friendly Color Palette - Deep Pink & Vibrant Orange */
+  --primary-coral: #FF1493;     /* Deep pink */
+  --soft-peach: #FF6600;        /* Vibrant orange */
+  --warm-pink: #FF69B4;         /* Hot pink */
+  --accent-teal: #FF6600;       /* Vibrant orange */
+  --accent-mint: #FFB6C1;       /* Light pink */
+  --lightest-pink: #FFF0F5;     /* Lightest pink */
+  --pink-medium: #FF69B4;       /* Medium pink */
+  --orange-deep: #FF4500;       /* Deep orange-red */
+  --orange-light: #FFA500;      /* Light orange */
+  --orange-mid: #FF7F00;        /* Mid orange */
   --text-dark: #2C3E50;
   --text-muted: #7F8C8D;
   --bg-white: #FFFFFF;
-  --bg-cream: #fde4f2;          /* Lightest pink for background */
-  --bg-light: #f9cee7;          /* Light pink for alternate backgrounds */
+  --bg-cream: #FFF0F5;          /* Lightest pink for background */
+  --bg-light: #FFB6C1;          /* Light pink for alternate backgrounds */
   --bg-dark: #2C3E50;
   
   /* Typography */
@@ -528,17 +528,20 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: repeat(12, 1fr);
   gap: 1.5rem;
   margin-top: 4rem;
+  grid-auto-rows: minmax(200px, auto);
 }
 
 .lookbook-item {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
+  min-height: 300px;
 }
 
 .lookbook-item img {
   width: 100%;
   height: 100%;
+  min-height: 300px;
   object-fit: cover;
   display: block;
   transition: transform 0.5s ease;
@@ -552,27 +555,33 @@ h1, h2, h3, h4, h5, h6 {
 .lookbook-item:nth-child(1) {
   grid-column: span 8;
   grid-row: span 2;
+  aspect-ratio: 4 / 3;
 }
 
 .lookbook-item:nth-child(2) {
   grid-column: span 4;
+  aspect-ratio: 1 / 1;
 }
 
 .lookbook-item:nth-child(3) {
   grid-column: span 4;
+  aspect-ratio: 1 / 1;
 }
 
 .lookbook-item:nth-child(4) {
   grid-column: span 5;
   grid-row: span 2;
+  aspect-ratio: 3 / 4;
 }
 
 .lookbook-item:nth-child(5) {
   grid-column: span 7;
+  aspect-ratio: 16 / 9;
 }
 
 .lookbook-item:nth-child(6) {
   grid-column: span 7;
+  aspect-ratio: 16 / 9;
 }
 
 /* ================================
@@ -916,6 +925,8 @@ h1, h2, h3, h4, h5, h6 {
   .lookbook-item {
     grid-column: span 12 !important;
     grid-row: span 1 !important;
+    aspect-ratio: 4 / 3;
+    min-height: 250px;
   }
   
   .footer-content {
