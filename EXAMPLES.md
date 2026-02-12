@@ -1,6 +1,69 @@
 # 📝 Code Examples: Before & After
 
-Quick reference showing exactly what code to change when adding your own media.
+Quick reference showing exactly what code to change when adding your own media or linking Instagram posts.
+
+## 🆕 NEW: Instagram Integration Examples
+
+### Example 1: Using Instagram in Pattern Collections
+
+```javascript
+const collections = [
+  {
+    title: 'Cozy Sweaters',
+    desc: 'Warm, comfortable sweater patterns for all seasons',
+    // Option 1: Full Instagram URL
+    img: 'https://www.instagram.com/p/ABC123xyz/',
+    alt: 'Crochet sweater pattern'
+  },
+  {
+    title: 'Stylish Cardigans',
+    desc: 'Versatile cardigan designs from casual to elegant',
+    // Option 2: Shorthand format
+    img: 'instagram:DEF456uvw',
+    alt: 'Crochet cardigan pattern'
+  },
+  {
+    title: 'Accessories',
+    desc: 'Scarves, hats, bags and more',
+    // Option 3: Mix with regular images
+    img: 'public/images/patterns/accessories.jpg',
+    alt: 'Crochet accessories'
+  }
+];
+```
+
+### Example 2: Using Instagram in Project Gallery
+
+```javascript
+const lookbook = [
+  {
+    // Full Instagram URL
+    src: 'https://www.instagram.com/p/ABC123xyz/',
+    alt: 'Beautiful crochet sweater project'
+  },
+  {
+    // Shorthand format
+    src: 'instagram:DEF456uvw',
+    alt: 'Stylish crochet cardigan'
+  },
+  {
+    // Regular image
+    src: 'public/images/gallery/project3.jpg',
+    alt: 'Crochet accessories collection'
+  }
+];
+```
+
+### How to Get Instagram Post URLs
+
+1. Open Instagram (app or web)
+2. Go to the post you want to use
+3. Tap/click the three dots menu (•••)
+4. Select "Copy Link"
+5. You'll get a URL like: `https://www.instagram.com/p/ABC123xyz/`
+6. Use it directly, or extract just the post ID: `ABC123xyz`
+
+---
 
 ## Example 1: Hero Slideshow (index.html)
 
@@ -67,6 +130,25 @@ const collections = [
     title: 'Stylish Cardigans',
     desc: 'Versatile cardigan designs from casual to elegant',
     img: 'public/images/patterns/cardigans.jpg',
+    alt: 'Crochet cardigan pattern'
+  }
+];
+```
+
+### After (Mixed: Images + Instagram)
+```javascript
+const collections = [
+  {
+    title: 'Cozy Sweaters',
+    desc: 'Warm, comfortable sweater patterns for all seasons',
+    img: 'public/images/patterns/sweaters.jpg',
+    alt: 'Crochet sweater pattern'
+  },
+  {
+    title: 'Stylish Cardigans',
+    desc: 'Versatile cardigan designs from casual to elegant',
+    // Using Instagram post!
+    img: 'https://www.instagram.com/p/YOUR_POST_ID/',
     alt: 'Crochet cardigan pattern'
   }
 ];

@@ -82,6 +82,8 @@ const collections = [
   {
     title: 'Stylish Cardigans',
     desc: 'Versatile cardigan designs from casual to elegant',
+    // Example: Instagram post - replace with your actual Instagram post URL
+    // img: 'https://www.instagram.com/p/YOUR_POST_ID/',
     img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
     alt: 'Crochet cardigan pattern'
   },
@@ -126,6 +128,8 @@ const lookbook = [
     alt: 'Beautiful crochet sweater project'
   },
   {
+    // Example: Instagram post - replace with your actual Instagram post URL
+    // src: 'instagram:YOUR_POST_ID',
     src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
     alt: 'Stylish crochet cardigan'
   },
