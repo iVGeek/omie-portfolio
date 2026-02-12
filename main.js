@@ -7,7 +7,7 @@
 // See MEDIA_GUIDE.md for complete instructions!
 //
 // Quick: Replace the Unsplash URLs below with paths to your own images
-// Example: 'public/images/patterns/sweaters.jpg'
+// Example: 'public/images/gallery/project1.jpg'
 // ================================
 
 const CONTACT_EMAIL = 'hello@omie.com';
@@ -34,76 +34,37 @@ function throttle(fn, delay) {
 }
 
 // ================================
-// Crochet Patterns Data
+// Performance Utilities
 // ================================
 
-const collections = [
-  {
-    title: 'Cozy Sweaters',
-    desc: 'Warm, comfortable sweater patterns for all seasons',
-    img: 'https://images.unsplash.com/photo-1614963326505-842876ff4238?w=800&q=80',
-    alt: 'Crochet sweater pattern'
-  },
-  {
-    title: 'Stylish Cardigans',
-    desc: 'Versatile cardigan designs from casual to elegant',
-    img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
-    alt: 'Crochet cardigan pattern'
-  },
-  {
-    title: 'Accessories',
-    desc: 'Scarves, hats, bags and more for every occasion',
-    img: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80',
-    alt: 'Crochet accessories'
-  },
-  {
-    title: 'Baby & Kids',
-    desc: 'Adorable patterns for little ones',
-    img: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
-    alt: 'Baby crochet patterns'
-  },
-  {
-    title: 'Home Decor',
-    desc: 'Beautiful blankets, pillows and decorative pieces',
-    img: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
-    alt: 'Crochet home decor'
-  },
-  {
-    title: 'Amigurumi',
-    desc: 'Cute stuffed animals and character designs',
-    img: 'https://images.unsplash.com/photo-1611849583569-7a1a8f4d0f7e?w=800&q=80',
-    alt: 'Amigurumi patterns'
-  }
-];
-
 // ================================
-// Project Gallery Data
+// Gallery Data
 // ================================
 
 const lookbook = [
   {
     src: 'https://images.unsplash.com/photo-1614963326505-842876ff4238?w=1200&q=80',
-    alt: 'Beautiful crochet sweater project'
+    alt: 'Beautiful handcrafted sweater project'
   },
   {
     src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
-    alt: 'Stylish crochet cardigan'
+    alt: 'Stylish handmade cardigan'
   },
   {
     src: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80',
-    alt: 'Crochet accessories collection'
+    alt: 'Handcrafted accessories collection'
   },
   {
     src: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
-    alt: 'Cozy crochet blanket'
+    alt: 'Cozy handmade blanket'
   },
   {
     src: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1000&q=80',
-    alt: 'Baby crochet items'
+    alt: 'Baby handcrafted items'
   },
   {
     src: 'https://images.unsplash.com/photo-1611849583569-7a1a8f4d0f7e?w=1000&q=80',
-    alt: 'Amigurumi creations'
+    alt: 'Artistic handmade creations'
   }
 ];
 
@@ -315,50 +276,6 @@ class MobileMenu {
 }
 
 // ================================
-// Render Collections
-// ================================
-
-function renderCollections() {
-  const grid = document.getElementById('collections-grid');
-  if (!grid) return;
-  
-  // Clear existing content first
-  grid.innerHTML = '';
-  
-  // Use DocumentFragment for efficient DOM manipulation
-  const fragment = document.createDocumentFragment();
-  
-  collections.forEach((item, index) => {
-    const article = document.createElement('article');
-    article.className = 'collection-item reveal';
-    article.style.animationDelay = `${index * 0.1}s`;
-    
-    const img = document.createElement('img');
-    img.src = item.img;
-    img.alt = item.alt;
-    img.loading = 'lazy';
-    
-    const overlay = document.createElement('div');
-    overlay.className = 'collection-overlay';
-    
-    const title = document.createElement('h3');
-    title.textContent = item.title;
-    
-    const desc = document.createElement('p');
-    desc.textContent = item.desc;
-    
-    overlay.appendChild(title);
-    overlay.appendChild(desc);
-    article.appendChild(img);
-    article.appendChild(overlay);
-    fragment.appendChild(article);
-  });
-  
-  // Single DOM update
-  grid.appendChild(fragment);
-}
-
-// ================================
 // Render Lookbook
 // ================================
 
@@ -461,7 +378,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('year').textContent = new Date().getFullYear();
   
   // Render content
-  renderCollections();
   renderLookbook();
   setupContactForm();
   setupSmoothScroll();
