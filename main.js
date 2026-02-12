@@ -1,5 +1,5 @@
 // ================================
-// Crochet Pattern Portfolio - YouSayICrochet
+// Crochet Pattern Portfolio - OMIE
 // Interactive Features & Animations
 // ================================
 //
@@ -10,7 +10,7 @@
 // Example: 'public/images/patterns/sweaters.jpg'
 // ================================
 
-const CONTACT_EMAIL = 'hello@yousayicrochet.com';
+const CONTACT_EMAIL = 'hello@omie.com';
 
 // ================================
 // Performance Utilities
