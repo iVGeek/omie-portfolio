@@ -714,6 +714,9 @@ function setupSmoothScroll() {
 
 // Hide loading screen after page loads
 window.addEventListener('load', () => {
+  const LOADING_SCREEN_MIN_DURATION = 500; // Minimum time to show loading screen (ms)
+  const LOADING_SCREEN_FADE_DURATION = 500; // Time for fade-out animation (ms)
+  
   const loadingScreen = document.getElementById('loading-screen');
   if (loadingScreen) {
     // Add a small delay to ensure smooth transition
@@ -723,8 +726,8 @@ window.addEventListener('load', () => {
       // Remove from DOM after animation completes
       setTimeout(() => {
         loadingScreen.remove();
-      }, 500);
-    }, 500); // Show loading screen for at least 500ms
+      }, LOADING_SCREEN_FADE_DURATION);
+    }, LOADING_SCREEN_MIN_DURATION);
   }
 });
 
