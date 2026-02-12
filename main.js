@@ -70,7 +70,7 @@ function throttle(fn, delay) {
 // Image URLs can be:
 // - Regular image URLs: 'https://...' or 'public/images/...'
 // - Instagram post URLs: Full Instagram URL like 'https://www.instagram.com/p/POST_ID/'
-// - Instagram shorthand: 'instagram:POST_ID' (will be converted to full URL)
+// - Instagram shorthand: 'instagram:POST_ID' (will be converted to embed URL)
 
 const collections = [
   {
@@ -120,7 +120,7 @@ const collections = [
 // Images can be:
 // - Regular image URLs: 'https://...' or 'public/images/...'
 // - Instagram post URLs: Full Instagram URL like 'https://www.instagram.com/p/POST_ID/'
-// - Instagram shorthand: 'instagram:POST_ID' (will be converted to full embed)
+// - Instagram shorthand: 'instagram:POST_ID' (will be converted to embed URL)
 
 const lookbook = [
   {
