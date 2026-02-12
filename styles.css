@@ -1,20 +1,20 @@
 /* ================================
-   Modern Fashion Portfolio - Omie
-   Bold, Vibrant & Confident Design
+   Crochet Pattern Portfolio - YouSayICrochet
+   Warm, Welcoming & Creative Design
    ================================ */
 
 :root {
-  /* Hot Pink & Vibrant Color Palette */
-  --hot-pink: #FF1493;
-  --vibrant-pink: #FF69B4;
-  --deep-pink: #C71585;
-  --accent-gold: #FFD700;
-  --accent-coral: #FF6B6B;
-  --text-dark: #1a1a1a;
-  --text-muted: #666;
+  /* Warm & Craft-Friendly Color Palette */
+  --primary-coral: #FF6B6B;
+  --soft-peach: #FFB4A2;
+  --warm-pink: #E27D60;
+  --accent-teal: #6FB3B8;
+  --accent-mint: #A3D9A5;
+  --text-dark: #2C3E50;
+  --text-muted: #7F8C8D;
   --bg-white: #FFFFFF;
-  --bg-light: #FAFAFA;
-  --bg-dark: #0a0a0a;
+  --bg-cream: #FFF8F3;
+  --bg-dark: #2C3E50;
   
   /* Typography */
   --font-serif: "Playfair Display", serif;
@@ -131,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.75rem;
   font-weight: 900;
   letter-spacing: 0.05em;
-  color: var(--hot-pink);
+  color: var(--primary-coral);
   text-decoration: none;
 }
 
@@ -164,12 +164,12 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--hot-pink);
+  background: var(--primary-coral);
   transition: width 0.3s ease;
 }
 
 .nav a:hover {
-  color: var(--hot-pink);
+  color: var(--primary-coral);
 }
 
 .nav a:hover::after {
@@ -293,8 +293,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .slide-btn:hover {
-  background: var(--hot-pink);
-  border-color: var(--hot-pink);
+  background: var(--primary-coral);
+  border-color: var(--primary-coral);
   transform: scale(1.1);
 }
 
@@ -319,8 +319,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .indicator.active {
-  background: var(--hot-pink);
-  border-color: var(--hot-pink);
+  background: var(--primary-coral);
+  border-color: var(--primary-coral);
   transform: scale(1.3);
 }
 
@@ -345,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--hot-pink) 0%, var(--deep-pink) 100%);
+  background: linear-gradient(135deg, var(--primary-coral) 0%, var(--warm-pink) 100%);
   color: white;
   box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
 }
@@ -440,7 +440,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .value-item h3 {
   font-size: 1.5rem;
-  color: var(--hot-pink);
+  color: var(--primary-coral);
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
@@ -602,7 +602,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact-item .material-icons {
-  color: var(--hot-pink);
+  color: var(--primary-coral);
   font-size: 2rem;
 }
 
@@ -621,7 +621,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact-item a:hover {
-  color: var(--hot-pink);
+  color: var(--primary-coral);
 }
 
 .social-links {
@@ -634,7 +634,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: var(--hot-pink);
+  background: var(--primary-coral);
   color: white;
   display: flex;
   align-items: center;
@@ -681,7 +681,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: var(--hot-pink);
+  border-color: var(--primary-coral);
 }
 
 .contact-form textarea {
@@ -716,7 +716,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-brand h3 {
   font-size: 1.75rem;
-  color: var(--hot-pink);
+  color: var(--primary-coral);
   margin-bottom: 0.5rem;
 }
 
@@ -740,7 +740,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-nav a:hover {
-  color: var(--hot-pink);
+  color: var(--primary-coral);
 }
 
 .footer-copy {
@@ -757,7 +757,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   right: 2rem;
   bottom: 2rem;
-  background: linear-gradient(135deg, var(--hot-pink) 0%, var(--deep-pink) 100%);
+  background: linear-gradient(135deg, var(--primary-coral) 0%, var(--warm-pink) 100%);
   color: white;
   width: 64px;
   height: 64px;
@@ -845,7 +845,7 @@ h1, h2, h3, h4, h5, h6 {
 .skip-link:focus {
   left: 1rem;
   top: 1rem;
-  background: var(--hot-pink);
+  background: var(--primary-coral);
   color: white;
   padding: 1rem 1.5rem;
   border-radius: 8px;

@@ -1,14 +1,14 @@
-# Omie Fashion Portfolio
+# YouSayICrochet Pattern Portfolio
 
-A modern, bold, and visually striking fashion designer portfolio website featuring hot pink accents, smooth animations, and a luxurious minimal design.
+A warm, welcoming, and visually appealing crochet pattern portfolio website featuring coral and peach accents, smooth animations, and a cozy design aesthetic.
 
 ## Features
 
-✨ **Full-Screen Hero Slideshow** - Captivating image slideshow with bold typography overlay  
-🎨 **Hot Pink & Vibrant Theme** - Contemporary color palette dominated by hot pink (#FF1493)  
+✨ **Full-Screen Hero Slideshow** - Beautiful image slideshow showcasing crochet projects  
+🎨 **Warm & Cozy Theme** - Craft-friendly color palette with coral (#FF6B6B) and peach tones  
 📐 **Responsive Design** - Fully responsive across all devices  
 🎭 **Interactive Elements** - Hover effects, parallax scrolling, and smooth animations  
-🖼️ **Magazine-Style Lookbook** - Asymmetric grid layout for editorial fashion moments  
+🖼️ **Project Gallery** - Asymmetric grid layout for showcasing finished crochet projects  
 📱 **Mobile-First** - Optimized for mobile with hamburger menu and touch-friendly interactions  
 ♿ **Accessible** - Semantic HTML5, ARIA labels, and keyboard navigation support  
 ⚡ **Fast Loading** - Optimized images and lazy loading for best performance
@@ -17,11 +17,11 @@ A modern, bold, and visually striking fashion designer portfolio website featuri
 
 ### Sections
 
-1. **Hero Section** - Full-screen slideshow with rotating fashion images and bold typography
-2. **About Section** - Storytelling layout with parallax image and brand values
-3. **Collections Gallery** - Interactive grid showcasing fashion collections with hover effects
-4. **Lookbook** - Magazine-style asymmetric grid for editorial moments
-5. **Contact Section** - Elegant form with contact details and social links
+1. **Hero Section** - Full-screen slideshow with crochet imagery and welcoming typography
+2. **About Section** - Story about the passion for crochet and community
+3. **Pattern Collection** - Interactive grid showcasing pattern categories
+4. **Project Gallery** - Beautiful finished projects from the patterns
+5. **Contact Section** - Form with contact details and social links
 6. **Footer** - Brand information and navigation links
 
 ## Customization
@@ -35,50 +35,49 @@ const CONTACT_EMAIL = 'your-email@example.com'; // Line 6
 ```
 
 Update contact details in `index.html`:
-- Email link (search for `hello@omie.example`)
-- Phone number (search for `+254 700 000 000`)
-- WhatsApp link (search for `wa.me/254700000000`)
-- Location (search for `Nairobi, Kenya`)
+- Email link (search for `hello@yousayicrochet.com`)
+- Phone number (search for `+1 (555) 123-4567`)
+- WhatsApp link (search for `wa.me/15551234567`)
 
 #### Add Your Images
 
-Replace the Unsplash URLs in `main.js` with your own images:
+Replace the Unsplash URLs in both `index.html` and `main.js` with your own crochet images:
 
-1. **Hero Slideshow** (in `index.html`, around lines 63-71):
-   - Add 3-5 high-resolution images (1920x1080px recommended)
+1. **Hero Slideshow** (in `index.html`):
+   - Add 3-5 high-resolution crochet project images (1920x1080px recommended)
    - Save to `public/images/` as `hero1.jpg`, `hero2.jpg`, etc.
 
-2. **Collections** (`collections` array in `main.js`):
-   - Add 6-9 collection images (800x1000px portrait recommended)
+2. **Pattern Categories** (`collections` array in `main.js`):
+   - Add 6-9 pattern category images (800x1000px recommended)
    - Update title, description, and image paths
 
-3. **Lookbook** (`lookbook` array in `main.js`):
-   - Add 6+ editorial images (various sizes for asymmetric layout)
-   - Mix of portrait and landscape orientations
+3. **Project Gallery** (`lookbook` array in `main.js`):
+   - Add 6+ project images (various sizes for asymmetric layout)
+   - Mix of different crochet items
 
-4. **About Section** (in `index.html`, around line 105):
-   - Add a compelling image of you or your workspace
+4. **About Section** (in `index.html`):
+   - Add an image of your workspace or crochet in progress
 
 ### Color Customization
 
-Edit CSS variables in `styles.css` (around lines 8-17):
+Edit CSS variables in `styles.css`:
 ```css
 :root {
-  --hot-pink: #FF1493;      /* Primary brand color */
-  --vibrant-pink: #FF69B4;  /* Lighter pink accent */
-  --deep-pink: #C71585;     /* Darker pink accent */
-  --accent-gold: #FFD700;   /* Optional gold accent */
-  --accent-coral: #FF6B6B;  /* Optional coral accent */
+  --primary-coral: #FF6B6B;    /* Primary brand color */
+  --soft-peach: #FFB4A2;       /* Lighter accent */
+  --warm-pink: #E27D60;        /* Warm accent */
+  --accent-teal: #6FB3B8;      /* Complementary color */
+  --accent-mint: #A3D9A5;      /* Fresh accent */
 }
 ```
 
 ### Typography
 
 The site uses:
-- **Headings**: Playfair Display (bold serif) - modern, editorial feel
+- **Headings**: Playfair Display (elegant serif) - warm, approachable feel
 - **Body Text**: Inter (clean sans-serif) - excellent readability
 
-To change fonts, update the Google Fonts link in `index.html` (line 12) and CSS variables (around lines 20-21).
+To change fonts, update the Google Fonts link in `index.html` and CSS variables.
 
 ## Development
 
@@ -153,7 +152,7 @@ This generates:
 
 - **Fonts**: Google Fonts (Playfair Display, Inter)
 - **Icons**: Material Icons
-- **Design**: Modern fashion portfolio aesthetic
+- **Design**: Warm, welcoming crochet portfolio aesthetic
 - **Placeholder Images**: Unsplash (replace with your own)
 
 ## License
@@ -166,4 +165,4 @@ For issues or questions, please open an issue on GitHub.
 
 ---
 
-**Made with ❤️ for fashion designers who want to make a bold statement online.**
+**Made with ❤️ for crochet designers who want to share their beautiful patterns online.**

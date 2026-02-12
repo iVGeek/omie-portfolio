@@ -1,81 +1,81 @@
 // ================================
-// Modern Fashion Portfolio - Omie
+// Crochet Pattern Portfolio - YouSayICrochet
 // Interactive Features & Animations
 // ================================
 
-const CONTACT_EMAIL = 'hello@omie.example';
+const CONTACT_EMAIL = 'hello@yousayicrochet.com';
 
 // ================================
-// Collections Data
+// Crochet Patterns Data
 // ================================
 
 const collections = [
   {
-    title: 'Urban Edge',
-    desc: 'Contemporary streetwear with bold silhouettes',
-    img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80',
-    alt: 'Urban fashion collection'
+    title: 'Cozy Sweaters',
+    desc: 'Warm, comfortable sweater patterns for all seasons',
+    img: 'https://images.unsplash.com/photo-1614963326505-842876ff4238?w=800&q=80',
+    alt: 'Crochet sweater pattern'
   },
   {
-    title: 'Neon Dreams',
-    desc: 'Vibrant colors meet modern minimalism',
-    img: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=800&q=80',
-    alt: 'Neon fashion collection'
+    title: 'Stylish Cardigans',
+    desc: 'Versatile cardigan designs from casual to elegant',
+    img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
+    alt: 'Crochet cardigan pattern'
   },
   {
-    title: 'Midnight Luxe',
-    desc: 'Elegant evening wear with dramatic flair',
-    img: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80',
-    alt: 'Luxury evening wear'
+    title: 'Accessories',
+    desc: 'Scarves, hats, bags and more for every occasion',
+    img: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80',
+    alt: 'Crochet accessories'
   },
   {
-    title: 'Summer Breeze',
-    desc: 'Light, flowing designs for warm days',
-    img: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80',
-    alt: 'Summer fashion collection'
+    title: 'Baby & Kids',
+    desc: 'Adorable patterns for little ones',
+    img: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
+    alt: 'Baby crochet patterns'
   },
   {
-    title: 'Bold Statement',
-    desc: 'Eye-catching pieces that demand attention',
-    img: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=800&q=80',
-    alt: 'Statement fashion pieces'
+    title: 'Home Decor',
+    desc: 'Beautiful blankets, pillows and decorative pieces',
+    img: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
+    alt: 'Crochet home decor'
   },
   {
-    title: 'Minimal Chic',
-    desc: 'Timeless elegance in every detail',
-    img: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80',
-    alt: 'Minimal chic collection'
+    title: 'Amigurumi',
+    desc: 'Cute stuffed animals and character designs',
+    img: 'https://images.unsplash.com/photo-1611849583569-7a1a8f4d0f7e?w=800&q=80',
+    alt: 'Amigurumi patterns'
   }
 ];
 
 // ================================
-// Lookbook Data
+// Project Gallery Data
 // ================================
 
 const lookbook = [
   {
-    src: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=80',
-    alt: 'Editorial fashion moment 1'
+    src: 'https://images.unsplash.com/photo-1614963326505-842876ff4238?w=1200&q=80',
+    alt: 'Beautiful crochet sweater project'
   },
   {
-    src: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80',
-    alt: 'Editorial fashion moment 2'
+    src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
+    alt: 'Stylish crochet cardigan'
   },
   {
-    src: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80',
-    alt: 'Editorial fashion moment 3'
+    src: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80',
+    alt: 'Crochet accessories collection'
   },
   {
-    src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80',
-    alt: 'Editorial fashion moment 4'
+    src: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
+    alt: 'Cozy crochet blanket'
   },
   {
-    src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&q=80',
-    alt: 'Editorial fashion moment 5'
+    src: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1000&q=80',
+    alt: 'Baby crochet items'
   },
   {
-    src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1000&q=80',
-    alt: 'Editorial fashion moment 6'
+    src: 'https://images.unsplash.com/photo-1611849583569-7a1a8f4d0f7e?w=1000&q=80',
+    alt: 'Amigurumi creations'
   }
 ];
 
