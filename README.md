@@ -66,7 +66,7 @@ In 5 minutes, you'll learn how to:
 #### Change Email and Contact Info
 Edit `main.js`:
 ```javascript
-const CONTACT_EMAIL = 'your-email@example.com'; // Line 14
+const CONTACT_EMAIL = 'your-email@example.com'; // Line 13
 ```
 
 Update contact details in `index.html`:

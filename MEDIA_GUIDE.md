@@ -1,91 +1,18 @@
 # 📸 Media Customization Guide
 
-This guide shows you exactly how to replace the placeholder images with your own media OR link Instagram posts to create your personalized crochet portfolio.
+This guide shows you exactly how to replace the placeholder images with your own media to create your personalized crochet portfolio.
 
 > 💡 **Want to see code examples side-by-side?** Check out [EXAMPLES.md](EXAMPLES.md) for quick before/after comparisons!
 
 ## Quick Start Checklist
 
 - [ ] Prepare your images (see [Image Requirements](#image-requirements))
-- [ ] OR get your Instagram post URLs (see [Instagram Integration](#instagram-integration))
-- [ ] Add images to `public/images/` folder (if using local images)
+- [ ] Add images to `public/images/` folder
 - [ ] Update hero slideshow in `index.html`
 - [ ] Update pattern collection images in `main.js`
 - [ ] Update project gallery in `main.js`
 - [ ] Update about section image in `index.html`
 - [ ] (Optional) Run image optimization script
-
-## Instagram Integration
-
-### Using Instagram Posts as Media
-
-You can now use Instagram posts directly in your portfolio! This is perfect for showcasing your work from your Instagram account.
-
-#### How to Get Instagram Post URLs
-
-1. Open Instagram on your phone or browser
-2. Navigate to the post you want to embed
-3. Tap/click the three dots (•••) menu
-4. Select "Copy Link"
-5. The URL will look like: `https://www.instagram.com/p/ABC123xyz/`
-
-#### Using Instagram in Pattern Collection
-
-In `main.js`, update the `collections` array with Instagram URLs:
-
-**Example:**
-```javascript
-const collections = [
-  {
-    title: 'Cozy Sweaters',
-    desc: 'Warm, comfortable sweater patterns for all seasons',
-    img: 'https://www.instagram.com/p/ABC123xyz/',  // Full Instagram URL
-    alt: 'Crochet sweater pattern'
-  },
-  {
-    title: 'Stylish Cardigans',
-    desc: 'Versatile cardigan designs from casual to elegant',
-    img: 'instagram:DEF456uvw',  // Shorthand format (just the post ID)
-    alt: 'Crochet cardigan pattern'
-  },
-  // Or mix with regular images:
-  {
-    title: 'Accessories',
-    desc: 'Scarves, hats, bags and more',
-    img: 'public/images/patterns/accessories.jpg',  // Regular image
-    alt: 'Crochet accessories'
-  }
-];
-```
-
-#### Using Instagram in Project Gallery
-
-In `main.js`, update the `lookbook` array with Instagram URLs:
-
-**Example:**
-```javascript
-const lookbook = [
-  {
-    src: 'https://www.instagram.com/p/ABC123xyz/',
-    alt: 'Beautiful crochet sweater project'
-  },
-  {
-    src: 'instagram:DEF456uvw',  // Shorthand format
-    alt: 'Stylish crochet cardigan'
-  },
-  {
-    src: 'public/images/gallery/project3.jpg',  // Mix with regular images
-    alt: 'Crochet accessories collection'
-  }
-];
-```
-
-#### Instagram URL Formats Supported
-
-1. **Full URL**: `https://www.instagram.com/p/POST_ID/`
-2. **Shorthand**: `instagram:POST_ID` (e.g., `instagram:ABC123xyz`)
-
-Both formats work identically. Use whichever you prefer!
 
 ## Image Requirements
 
