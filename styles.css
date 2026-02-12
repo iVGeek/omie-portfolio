@@ -1057,13 +1057,13 @@ h1, h2, h3, h4, h5, h6 {
 
 @keyframes wiggle {
   0%, 100% {
-    transform: rotate(0deg);
+    transform: translateX(0);
   }
   25% {
-    transform: rotate(-10deg);
+    transform: translateX(-2px);
   }
   75% {
-    transform: rotate(10deg);
+    transform: translateX(2px);
   }
 }
 
@@ -1537,21 +1537,25 @@ h1, h2, h3, h4, h5, h6 {
    ================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  /* Disable all infinite animations */
+  /* Disable all infinite animations for users with motion sensitivity */
+  
+  /* Chat FAB: disable both float and hueShift animations */
   .md-fab.chat-fab {
     animation: none;
   }
   
+  /* Chat icon: disable wiggle animation */
   .md-fab.chat-fab .material-icons {
     animation: none;
   }
   
+  /* Collection indicators: disable pulse animation */
   .collection-indicator .material-icons {
     animation: none;
     opacity: 1;
   }
   
-  /* Disable hueShift animations */
+  /* Disable hueShift animations on all elements */
   .loading-screen,
   .site-header,
   .section-dark,
@@ -1561,6 +1565,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   /* Reduce animation durations for essential transitions */
+  /* Using !important to ensure reduced motion takes precedence over all other styles */
   .fade-in,
   .reveal,
   .slide,
