@@ -7,7 +7,7 @@
 // See MEDIA_GUIDE.md for complete instructions!
 //
 // Quick: Replace the Unsplash URLs below with paths to your own images
-// Example: 'public/images/gallery/project1.jpg'
+// Example: 'public/images/gallery/project1.jpg' or keep using Unsplash URLs
 // ================================
 
 const CONTACT_EMAIL = 'hello@omie.com';
