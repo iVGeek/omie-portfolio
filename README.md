@@ -4,17 +4,26 @@ A warm, welcoming, and visually appealing crochet pattern portfolio website feat
 
 **✨ Showcasing beautiful handmade creations from [@_.jambi_](https://instagram.com/_.jambi_/)**
 
+## ✅ Instagram Images Ready!
+
+**The portfolio is now configured to use Instagram images from [@_.jambi_](https://instagram.com/_.jambi_/)!**
+
+📸 **[Setup Status & Next Steps →](INSTAGRAM_SETUP_STATUS.md)** - See what's been done and what you need to do
+
+All Unsplash placeholder URLs have been replaced with local image paths. Simply download your Instagram images and add them to the `images/gallery/` and `images/about/` folders to complete the setup.
+
 ## 🚀 Quick Start: Using Your Own Media
 
 **Want to replace the placeholder images with your own crochet photos?**
 
+👉 **[Instagram Setup Status →](INSTAGRAM_SETUP_STATUS.md)** ⭐ **Start here!**  
+👉 **[Using Instagram Images Guide →](INSTAGRAM_GUIDE.md)**  
 👉 **[Complete Media Customization Guide →](MEDIA_GUIDE.md)**  
-👉 **[Using Instagram Images from @_.jambi_/ →](INSTAGRAM_GUIDE.md)**  
 👉 **[Code Examples (Before/After) →](EXAMPLES.md)**
 
 In 5 minutes, you'll learn how to:
+- Download your Instagram images
 - Add your images to the right folders
-- Update the code with your image paths
 - Optimize images for web performance
 - Troubleshoot common issues
 
