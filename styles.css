@@ -851,7 +851,29 @@ h1, h2, h3, h4, h5, h6 {
    ================================ */
 
 .about-section {
-  background: var(--bg-light);
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #FFC1C1 0%, #FFA07A 100%);
+  color: #fff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-container h2 {
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.about-container p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
 }
 
 .about-layout {
