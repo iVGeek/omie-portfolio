@@ -471,12 +471,7 @@ class LightboxGallery {
   
   open(projectIndex, imageIndex = null) {
     this.currentProject = projectIndex;
-    // Only set currentImage if imageIndex is explicitly provided
-    if (imageIndex !== null) {
-      this.currentImage = imageIndex;
-    } else {
-      this.currentImage = 0;
-    }
+    this.currentImage = imageIndex ?? 0;
     
     // Prevent body scroll when modal is open
     document.body.style.overflow = 'hidden';
