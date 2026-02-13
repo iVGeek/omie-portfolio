@@ -34,10 +34,6 @@ function throttle(fn, delay) {
 }
 
 // ================================
-// Performance Utilities
-// ================================
-
-// ================================
 // Gallery Data
 // ================================
 
@@ -47,6 +43,8 @@ function throttle(fn, delay) {
 const galleryCategories = [
   {
     name: 'Pinkie Flamingo',
+    color: '#FF1493', // Deep pink
+    bgColor: 'linear-gradient(135deg, rgba(255, 20, 147, 0.1) 0%, rgba(255, 182, 193, 0.1) 100%)',
     images: [
       { src: 'images/gallery/Pinkie Flamingo/539967597_18081547793302431_3448890780171806210_n.jpg', alt: 'Pinkie Flamingo design' },
       { src: 'images/gallery/Pinkie Flamingo/540011953_18081547697302431_1005875501831294864_n.jpg', alt: 'Pinkie Flamingo design' },
@@ -61,6 +59,8 @@ const galleryCategories = [
   },
   {
     name: 'Red Ruby',
+    color: '#DC143C', // Crimson red
+    bgColor: 'linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(255, 99, 71, 0.1) 100%)',
     images: [
       { src: 'images/gallery/Red Ruby/558688219_18085136123302431_6779459226908578350_n.jpg', alt: 'Red Ruby design' },
       { src: 'images/gallery/Red Ruby/558845894_18085136171302431_5383694440068152323_n.jpg', alt: 'Red Ruby design' },
@@ -74,6 +74,8 @@ const galleryCategories = [
   },
   {
     name: 'Sunset Hues',
+    color: '#FF6600', // Vibrant orange
+    bgColor: 'linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%)',
     images: [
       { src: 'images/gallery/Sunset Hues/587524949_18092088908302431_8400526806509945507_n.jpg', alt: 'Sunset Hues design' },
       { src: 'images/gallery/Sunset Hues/587776088_18092088851302431_7481810639402148416_n.jpg', alt: 'Sunset Hues design' },
@@ -87,6 +89,8 @@ const galleryCategories = [
   },
   {
     name: 'Purple Elegance',
+    color: '#9370DB', // Medium purple
+    bgColor: 'linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(186, 85, 211, 0.1) 100%)',
     images: [
       { src: 'images/gallery/Purple Elegance/611630562_18096171164302431_7630117364178829182_n.jpg', alt: 'Purple Elegance design' },
       { src: 'images/gallery/Purple Elegance/611714281_18096171128302431_1163567786338715110_n.jpg', alt: 'Purple Elegance design' },
@@ -618,8 +622,12 @@ function renderGallery() {
   grid.innerHTML = '';
   
   if (currentView === 'categories') {
+    // Reset body background classes when viewing categories
+    document.body.className = document.body.className.replace(/category-\S+/g, '').trim();
+    grid.classList.add('category-view');
     renderCategories(grid);
   } else {
+    grid.classList.remove('category-view');
     renderCategoryImages(grid);
   }
 }
@@ -699,6 +707,11 @@ function renderCategoryImages(grid) {
   }
   
   const category = galleryCategories[currentCategory];
+  
+  // Apply category-specific background class to body
+  document.body.className = document.body.className.replace(/category-\S+/g, '').trim();
+  const categoryClass = 'category-' + category.name.toLowerCase().replace(/\s+/g, '-');
+  document.body.classList.add(categoryClass);
   
   // Create back button
   const backButton = document.createElement('button');
