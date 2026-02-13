@@ -49,56 +49,56 @@ function throttle(fn, delay) {
 // Note: 'images/' is a symlink to 'public/images/', both paths work
 const lookbook = [
   {
-    title: 'Beautiful handcrafted creation',
+    title: 'Handcrafted Project 1',
     images: [
       {
         src: 'images/gallery/project1.jpg',
-        alt: 'Beautiful handcrafted creation from @_.jambi_'
+        alt: 'Handcrafted creation from @_.jambi_'
       }
     ]
   },
   {
-    title: 'Stylish handmade piece',
+    title: 'Handcrafted Project 2',
     images: [
       {
         src: 'images/gallery/project2.jpg',
-        alt: 'Stylish handmade piece from @_.jambi_'
+        alt: 'Handcrafted creation from @_.jambi_'
       }
     ]
   },
   {
-    title: 'Handcrafted accessories collection',
+    title: 'Handcrafted Project 3',
     images: [
       {
         src: 'images/gallery/project3.jpg',
-        alt: 'Handcrafted accessories from @_.jambi_'
+        alt: 'Handcrafted creation from @_.jambi_'
       }
     ]
   },
   {
-    title: 'Cozy handmade creation',
+    title: 'Handcrafted Project 4',
     images: [
       {
         src: 'images/gallery/project4.jpg',
-        alt: 'Cozy handmade creation from @_.jambi_'
+        alt: 'Handcrafted creation from @_.jambi_'
       }
     ]
   },
   {
-    title: 'Creative handcrafted work',
+    title: 'Handcrafted Project 5',
     images: [
       {
         src: 'images/gallery/project5.jpg',
-        alt: 'Creative handcrafted work from @_.jambi_'
+        alt: 'Handcrafted creation from @_.jambi_'
       }
     ]
   },
   {
-    title: 'Artistic handmade design',
+    title: 'Handcrafted Project 6',
     images: [
       {
         src: 'images/gallery/project6.jpg',
-        alt: 'Artistic handmade design from @_.jambi_'
+        alt: 'Handcrafted creation from @_.jambi_'
       }
     ]
   }
