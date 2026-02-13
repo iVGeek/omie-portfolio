@@ -1,30 +1,54 @@
 <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background circle with gradient -->
   <defs>
-    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF1493;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FF6600;stop-opacity:1" />
+    <!-- Gradients for hibiscus petals -->
+    <radialGradient id="petalGradient1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FF69B4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF1493;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="petalGradient2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF69B4;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="petalGradient3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6347;stop-opacity:1" />
+    </radialGradient>
+    
+    <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
     </linearGradient>
   </defs>
   
-  <!-- Outer circle -->
-  <circle cx="60" cy="60" r="58" fill="url(#logoGradient)" opacity="0.1"/>
+  <!-- Hibiscus flower petals (5 petals arranged in a circle) -->
+  <!-- Top petal -->
+  <ellipse cx="60" cy="35" rx="18" ry="22" fill="url(#petalGradient1)" transform="rotate(-10 60 35)"/>
   
-  <!-- Main letter O with artistic flair -->
-  <path d="M 60 20 
-           A 35 35 0 1 1 60 100
-           A 35 35 0 1 1 60 20
-           M 60 35
-           A 20 20 0 1 0 60 85
-           A 20 20 0 1 0 60 35 Z" 
-        fill="url(#logoGradient)"/>
+  <!-- Top-right petal -->
+  <ellipse cx="82" cy="48" rx="18" ry="22" fill="url(#petalGradient2)" transform="rotate(60 82 48)"/>
   
-  <!-- Decorative elements - yarn/thread inspired -->
-  <circle cx="60" cy="30" r="3" fill="#FFB6C1"/>
-  <circle cx="75" cy="45" r="2.5" fill="#FFA500"/>
-  <circle cx="45" cy="75" r="2.5" fill="#FF69B4"/>
+  <!-- Bottom-right petal -->
+  <ellipse cx="75" cy="78" rx="18" ry="22" fill="url(#petalGradient3)" transform="rotate(130 75 78)"/>
   
-  <!-- Subtle sparkle -->
-  <path d="M 85 35 L 87 35 L 86 33 L 87 31 L 85 31 L 86 33 Z" fill="#FF6600" opacity="0.6"/>
-  <path d="M 35 85 L 37 85 L 36 83 L 37 81 L 35 81 L 36 83 Z" fill="#FF1493" opacity="0.6"/>
+  <!-- Bottom-left petal -->
+  <ellipse cx="45" cy="78" rx="18" ry="22" fill="url(#petalGradient1)" transform="rotate(-130 45 78)"/>
+  
+  <!-- Top-left petal -->
+  <ellipse cx="38" cy="48" rx="18" ry="22" fill="url(#petalGradient2)" transform="rotate(-60 38 48)"/>
+  
+  <!-- Center of the flower (pistil and stamen) -->
+  <circle cx="60" cy="60" r="12" fill="url(#centerGradient)"/>
+  
+  <!-- Stamen details -->
+  <circle cx="60" cy="60" r="8" fill="#FFA500" opacity="0.6"/>
+  <circle cx="60" cy="60" r="4" fill="#FF6347"/>
+  
+  <!-- Small decorative dots on petals for texture -->
+  <circle cx="60" cy="30" r="1.5" fill="#FF1493" opacity="0.5"/>
+  <circle cx="85" cy="48" r="1.5" fill="#FF6347" opacity="0.5"/>
+  <circle cx="78" cy="75" r="1.5" fill="#FFB6C1" opacity="0.5"/>
+  <circle cx="42" cy="75" r="1.5" fill="#FF69B4" opacity="0.5"/>
+  <circle cx="35" cy="48" r="1.5" fill="#FFA500" opacity="0.5"/>
 </svg>

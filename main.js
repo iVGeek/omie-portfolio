@@ -729,14 +729,15 @@ function renderCategoryImages(grid) {
   
   // Build category images array and update lookbook for lightbox compatibility
   // The lookbook array must be updated for the existing lightbox gallery to function
-  currentCategoryImages = category.images.map((image, imageIndex) => ({
-    title: `${category.name} - Image ${imageIndex + 1}`,
-    images: [image]
-  }));
+  // Create a single project with all images in the category
+  const categoryProject = {
+    title: category.name,
+    images: category.images
+  };
   
   // Update global lookbook array (required by LightboxGallery class)
   lookbook.length = 0;
-  lookbook.push(...currentCategoryImages);
+  lookbook.push(categoryProject);
   
   category.images.forEach((image, imageIndex) => {
     const article = document.createElement('article');
@@ -755,7 +756,10 @@ function renderCategoryImages(grid) {
     
     article.addEventListener('click', () => {
       if (window.lightboxGallery) {
-        window.lightboxGallery.open(imageIndex);
+        // Open the first (and only) project in lookbook, but start at the clicked image
+        window.lightboxGallery.currentProject = 0;
+        window.lightboxGallery.currentImage = imageIndex;
+        window.lightboxGallery.open(0);
       }
     });
     
@@ -764,7 +768,10 @@ function renderCategoryImages(grid) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         if (window.lightboxGallery) {
-          window.lightboxGallery.open(imageIndex);
+          // Open the first (and only) project in lookbook, but start at the clicked image
+          window.lightboxGallery.currentProject = 0;
+          window.lightboxGallery.currentImage = imageIndex;
+          window.lightboxGallery.open(0);
         }
       }
     });
