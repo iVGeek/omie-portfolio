@@ -38,4 +38,4 @@ Simply add your Instagram images with these names, or update the paths in `main.
 
 ## Need More Help?
 
-See the main [INSTAGRAM_GUIDE.md](../../INSTAGRAM_GUIDE.md) for detailed instructions.
+See the main [INSTAGRAM_GUIDE.md](../../../INSTAGRAM_GUIDE.md) for detailed instructions.

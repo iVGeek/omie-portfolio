@@ -46,6 +46,7 @@ function throttle(fn, delay) {
 // Images from Instagram: https://www.instagram.com/_.jambi_/
 // Download your Instagram images and place them in the images/gallery/ folder
 // Then update these paths to match your downloaded images
+// Note: 'images/' is a symlink to 'public/images/', both paths work
 const lookbook = [
   {
     title: 'Beautiful handcrafted creation',

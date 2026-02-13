@@ -25,4 +25,4 @@ The `index.html` file is configured to load:
 
 ## Need More Help?
 
-See the main [INSTAGRAM_GUIDE.md](../../INSTAGRAM_GUIDE.md) for detailed instructions.
+See the main [INSTAGRAM_GUIDE.md](../../../INSTAGRAM_GUIDE.md) for detailed instructions.
