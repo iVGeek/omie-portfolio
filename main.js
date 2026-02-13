@@ -53,7 +53,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project1.jpg',
-        alt: 'Handcrafted creation from @_.jambi_'
+        alt: 'Handcrafted creation 1 from @_.jambi_'
       }
     ]
   },
@@ -62,7 +62,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project2.jpg',
-        alt: 'Handcrafted creation from @_.jambi_'
+        alt: 'Handcrafted creation 2 from @_.jambi_'
       }
     ]
   },
@@ -71,7 +71,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project3.jpg',
-        alt: 'Handcrafted creation from @_.jambi_'
+        alt: 'Handcrafted creation 3 from @_.jambi_'
       }
     ]
   },
@@ -80,7 +80,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project4.jpg',
-        alt: 'Handcrafted creation from @_.jambi_'
+        alt: 'Handcrafted creation 4 from @_.jambi_'
       }
     ]
   },
@@ -89,7 +89,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project5.jpg',
-        alt: 'Handcrafted creation from @_.jambi_'
+        alt: 'Handcrafted creation 5 from @_.jambi_'
       }
     ]
   },
@@ -98,7 +98,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project6.jpg',
-        alt: 'Handcrafted creation from @_.jambi_'
+        alt: 'Handcrafted creation 6 from @_.jambi_'
       }
     ]
   }
