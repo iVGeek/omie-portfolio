@@ -48,7 +48,7 @@ Use Instagram download tools (ensure they're safe and reputable):
 Once you have your images, organize them by category:
 
 ```
-/home/runner/work/omie-portfolio/omie-portfolio/
+project-root/
 ├── images/
 │   ├── hero/
 │   │   ├── hero1.jpg          # Your best 3-5 images for slideshow
@@ -77,12 +77,12 @@ Once you have your images, organize them by category:
 
 Open `index.html` and find the hero section (around line 96-107):
 
-**Replace:**
+**Current code (with placeholder images):**
 ```html
 <div class="slide active" style="background-image: url('images/hero/hero1.jpg.jpeg')">
 ```
 
-**With:**
+**Update to (using your Instagram images):**
 ```html
 <div class="slide active" style="background-image: url('images/hero/hero1.jpg')">
 ```
