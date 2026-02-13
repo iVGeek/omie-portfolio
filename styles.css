@@ -993,14 +993,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .lookbook-section {
   background: var(--bg-white);
+  padding: var(--section-padding) 0;
 }
 
 .lookbook-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
   margin-top: 4rem;
   grid-auto-rows: minmax(200px, auto);
+  padding: 0 1rem;
 }
 
 /* When viewing categories, use asymmetric layout */
@@ -1011,11 +1013,12 @@ h1, h2, h3, h4, h5, h6 {
 .lookbook-item {
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 12px;
   min-height: 300px;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
+  background: #f5f5f5;
 }
 
 /* Add colored borders to category items */
@@ -1056,7 +1059,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255, 20, 147, 0.15) 0%, rgba(255, 102, 0, 0.15) 100%);
+  background: transparent;
   opacity: 0;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
@@ -1073,22 +1076,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lookbook-item:hover {
-  transform: translateY(-12px) scale(1.02) rotateZ(-1deg);
-  box-shadow: 0 20px 60px rgba(255, 20, 147, 0.35),
-              0 0 0 1px rgba(255, 20, 147, 0.1);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 25px 70px rgba(255, 20, 147, 0.25),
+              0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .lookbook-item:hover::before {
-  opacity: 1;
-  background: linear-gradient(135deg, 
-    rgba(255, 20, 147, 0.15) 0%, 
-    rgba(255, 102, 0, 0.15) 100%);
+  opacity: 0;
 }
 
 .lookbook-item:hover img {
-  transform: scale(1.15);
-  filter: brightness(1.05) saturate(1.1);
-  animation: subtleFloat 3s ease-in-out infinite;
+  transform: scale(1.08);
+  filter: brightness(1.03) saturate(1.05);
 }
 
 @keyframes subtleFloat {
@@ -1251,6 +1250,59 @@ h1, h2, h3, h4, h5, h6 {
 .category-detail-list strong {
   color: var(--accent);
   font-weight: 600;
+}
+
+/* Premium Image Overlay on Gallery Items */
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, 
+    rgba(0, 0, 0, 0.85) 0%, 
+    rgba(0, 0, 0, 0.4) 40%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.lookbook-item:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  width: 100%;
+  transform: translateY(10px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lookbook-item:hover .overlay-content {
+  transform: translateY(0);
+}
+
+.overlay-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.02em;
+}
+
+.overlay-number {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+  letter-spacing: 0.05em;
 }
 
 /* ================================
@@ -2068,10 +2120,23 @@ h1, h2, h3, h4, h5, h6 {
 .lightbox-caption {
   margin-top: 1.5rem;
   color: white;
-  font-size: 1.125rem;
-  font-weight: 500;
   text-align: center;
+  font-family: var(--font-sans);
+  max-width: 600px;
+}
+
+.caption-title {
   font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+
+.caption-meta {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
   letter-spacing: 0.02em;
 }
 

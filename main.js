@@ -527,7 +527,13 @@ class LightboxGallery {
     setTimeout(() => {
       imgElement.src = image.src;
       imgElement.alt = image.alt;
-      captionElement.textContent = project.title;
+      
+      // Enhanced caption with category and image number
+      const captionHTML = `
+        <div class="caption-title">${project.title}</div>
+        <div class="caption-meta">${image.alt} • Image ${this.currentImage + 1} of ${project.images.length}</div>
+      `;
+      captionElement.innerHTML = captionHTML;
       
       // Fade in
       imgElement.style.opacity = '1';
@@ -819,6 +825,25 @@ function renderCategoryImages(grid) {
     img.alt = image.alt;
     img.loading = 'lazy';
     
+    // Add premium image overlay with details
+    const overlay = document.createElement('div');
+    overlay.className = 'image-overlay';
+    
+    const overlayContent = document.createElement('div');
+    overlayContent.className = 'overlay-content';
+    
+    const imageTitle = document.createElement('h4');
+    imageTitle.className = 'overlay-title';
+    imageTitle.textContent = category.name;
+    
+    const imageNumber = document.createElement('p');
+    imageNumber.className = 'overlay-number';
+    imageNumber.textContent = `Image ${imageIndex + 1} of ${category.images.length}`;
+    
+    overlayContent.appendChild(imageTitle);
+    overlayContent.appendChild(imageNumber);
+    overlay.appendChild(overlayContent);
+    
     // Add click handler to open lightbox
     article.style.cursor = 'pointer';
     article.setAttribute('role', 'button');
@@ -844,6 +869,7 @@ function renderCategoryImages(grid) {
     });
     
     article.appendChild(img);
+    article.appendChild(overlay);
     fragment.appendChild(article);
   });
   
