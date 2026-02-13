@@ -854,7 +854,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 100px 20px;
   background: linear-gradient(135deg, #FFC1C1 0%, #FFA07A 100%);
   color: #fff;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 .about-container {
@@ -867,7 +866,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 2.8rem;
   margin-bottom: 40px;
   font-weight: 700;
-  color: #fff;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
