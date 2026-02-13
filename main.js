@@ -712,7 +712,8 @@ function renderMasonryGallery(filter = 'all') {
   
   grid.appendChild(fragment);
   
-  // Trigger scroll reveal animation
+  // Trigger scroll reveal animation after DOM update
+  // Delay allows browser to complete layout and paint
   setTimeout(() => {
     observeGalleryItemsForReveal();
   }, 100);
