@@ -408,6 +408,7 @@ class LightboxGallery {
         <div class="lightbox-image-container">
           <img class="lightbox-image" src="" alt="" />
           <div class="lightbox-caption"></div>
+          <div class="lightbox-counter"></div>
         </div>
         
         <button class="lightbox-nav lightbox-next" aria-label="Next image">
@@ -520,6 +521,7 @@ class LightboxGallery {
     
     const imgElement = this.modal.querySelector('.lightbox-image');
     const captionElement = this.modal.querySelector('.lightbox-caption');
+    const counterElement = this.modal.querySelector('.lightbox-counter');
     
     // Fade out
     imgElement.style.opacity = '0';
@@ -531,9 +533,12 @@ class LightboxGallery {
       // Enhanced caption with category and image number
       const captionHTML = `
         <div class="caption-title">${project.title}</div>
-        <div class="caption-meta">${image.alt} • Image ${this.currentImage + 1} of ${project.images.length}</div>
+        <div class="caption-meta">${image.alt}</div>
       `;
       captionElement.innerHTML = captionHTML;
+      
+      // Update counter
+      counterElement.textContent = `${this.currentImage + 1} / ${project.images.length}`;
       
       // Fade in
       imgElement.style.opacity = '1';
@@ -945,6 +950,41 @@ function setupSmoothScroll() {
 }
 
 // ================================
+// Back to Top Button
+// ================================
+
+function setupBackToTop() {
+  const backToTopBtn = document.getElementById('backToTop');
+  if (!backToTopBtn) return;
+  
+  // Show/hide button based on scroll position
+  const toggleButtonVisibility = throttle(() => {
+    const gallerySection = document.getElementById('gallery');
+    if (!gallerySection) return;
+    
+    const galleryTop = gallerySection.offsetTop;
+    const scrollPosition = window.scrollY;
+    
+    // Show button when user scrolls into gallery section
+    if (scrollPosition > galleryTop + 200) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+  }, 100);
+  
+  window.addEventListener('scroll', toggleButtonVisibility);
+  
+  // Scroll to top on click
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// ================================
 // Initialize Everything
 // ================================
 
@@ -975,6 +1015,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderLookbook();
   setupContactForm();
   setupSmoothScroll();
+  setupBackToTop();
   
   // Initialize features
   new Slideshow();
