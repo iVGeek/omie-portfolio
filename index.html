@@ -40,6 +40,16 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Fallback for users without JavaScript -->
+  <noscript>
+    <style>
+      .gallery-item {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    </style>
+  </noscript>
 </head>
 <body>
   <!-- Loading Animation -->
@@ -182,7 +192,16 @@
         <h2 id="gallery-title" class="section-title centered scroll-fade-up">Gallery</h2>
         <p class="section-subtitle centered scroll-fade-up">A showcase of handcrafted creations and artistic designs</p>
 
-        <div id="lookbook-grid" class="lookbook-grid" aria-live="polite">
+        <!-- Filter Buttons -->
+        <div class="filter-buttons" role="group" aria-label="Gallery filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="pinkie-flamingo">Pinkie Flamingo</button>
+          <button class="filter-btn" data-filter="red-ruby">Red Ruby</button>
+          <button class="filter-btn" data-filter="sunset-hues">Sunset Hues</button>
+          <button class="filter-btn" data-filter="purple-elegance">Purple Elegance</button>
+        </div>
+
+        <div id="lookbook-grid" class="lookbook-grid gallery-grid" aria-live="polite">
           <!-- Populated by JavaScript -->
         </div>
         
@@ -331,6 +350,26 @@
   <a class="md-fab chat-fab" href="https://ig.me/m/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Contact on Instagram">
     <span class="material-icons">chat</span>
   </a>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+    <button class="lightbox-close" aria-label="Close lightbox">
+      <span class="material-icons">close</span>
+    </button>
+    <button class="lightbox-prev" aria-label="Previous image">
+      <span class="material-icons">chevron_left</span>
+    </button>
+    <button class="lightbox-next" aria-label="Next image">
+      <span class="material-icons">chevron_right</span>
+    </button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-info">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-category"></p>
+      </div>
+    </div>
+  </div>
 
   <script src="main.js" defer></script>
 </body>

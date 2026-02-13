@@ -632,6 +632,200 @@ class LightboxGallery {
 let currentView = 'categories'; // 'categories' or 'images'
 let currentCategory = null;
 let currentCategoryImages = []; // Store current category images for lightbox
+let currentFilter = 'all'; // Current filter selection
+let allGalleryImages = []; // Store all images with category info for filtering
+
+// ================================
+// Modern Gallery with Filters & Masonry
+// ================================
+
+// Flatten all images from categories into a single array for masonry display
+function prepareGalleryImages() {
+  allGalleryImages = [];
+  galleryCategories.forEach((category) => {
+    const categorySlug = category.name.toLowerCase().replace(/\s+/g, '-');
+    category.images.forEach((image) => {
+      allGalleryImages.push({
+        ...image,
+        category: category.name,
+        categorySlug: categorySlug,
+        categoryColor: category.color
+      });
+    });
+  });
+}
+
+// Render masonry gallery with filters
+function renderMasonryGallery(filter = 'all') {
+  const grid = document.getElementById('lookbook-grid');
+  if (!grid) return;
+  
+  grid.innerHTML = '';
+  grid.classList.remove('category-view');
+  
+  // Prepare images if not already done
+  if (allGalleryImages.length === 0) {
+    prepareGalleryImages();
+  }
+  
+  // Filter images
+  const filteredImages = filter === 'all' 
+    ? allGalleryImages 
+    : allGalleryImages.filter(img => img.categorySlug === filter);
+  
+  // Create gallery items
+  const fragment = document.createDocumentFragment();
+  
+  filteredImages.forEach((image, index) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.dataset.category = image.categorySlug;
+    item.dataset.index = index;
+    
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt;
+    img.loading = 'lazy';
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    
+    const title = document.createElement('h3');
+    title.textContent = image.category;
+    
+    const category = document.createElement('p');
+    category.textContent = 'Handcrafted Design';
+    
+    overlay.appendChild(title);
+    overlay.appendChild(category);
+    
+    item.appendChild(img);
+    item.appendChild(overlay);
+    
+    // Add click handler for lightbox
+    item.addEventListener('click', () => {
+      openLightbox(index, filteredImages);
+    });
+    
+    fragment.appendChild(item);
+  });
+  
+  grid.appendChild(fragment);
+  
+  // Trigger scroll reveal animation after DOM update
+  // Delay allows browser to complete layout and paint
+  setTimeout(() => {
+    observeGalleryItemsForReveal();
+  }, 100);
+}
+
+// ================================
+// Scroll Reveal Animation
+// ================================
+
+function observeGalleryItemsForReveal() {
+  const items = document.querySelectorAll('.gallery-item');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  items.forEach(item => {
+    observer.observe(item);
+  });
+}
+
+// ================================
+// Lightbox Functionality
+// ================================
+
+let currentLightboxIndex = 0;
+let currentLightboxImages = [];
+
+function openLightbox(index, images) {
+  currentLightboxIndex = index;
+  currentLightboxImages = images;
+  
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxCategory = document.getElementById('lightbox-category');
+  
+  if (!lightbox || !lightboxImg) return;
+  
+  const image = images[index];
+  lightboxImg.src = image.src;
+  lightboxImg.alt = image.alt;
+  lightboxTitle.textContent = image.category;
+  lightboxCategory.textContent = `Image ${index + 1} of ${images.length}`;
+  
+  lightbox.classList.add('active');
+  lightbox.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+  
+  lightbox.classList.remove('active');
+  lightbox.setAttribute('hidden', '');
+  document.body.style.overflow = '';
+}
+
+function nextLightboxImage() {
+  if (currentLightboxImages.length === 0) return;
+  currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxImages.length;
+  updateLightboxImage();
+}
+
+function prevLightboxImage() {
+  if (currentLightboxImages.length === 0) return;
+  currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxImages.length) % currentLightboxImages.length;
+  updateLightboxImage();
+}
+
+function updateLightboxImage() {
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxCategory = document.getElementById('lightbox-category');
+  
+  if (!lightboxImg || currentLightboxImages.length === 0) return;
+  
+  const image = currentLightboxImages[currentLightboxIndex];
+  lightboxImg.src = image.src;
+  lightboxImg.alt = image.alt;
+  lightboxTitle.textContent = image.category;
+  lightboxCategory.textContent = `Image ${currentLightboxIndex + 1} of ${currentLightboxImages.length}`;
+}
+
+// ================================
+// Filter Button Functionality
+// ================================
+
+function setupFilterButtons() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      // Get filter value and render gallery
+      const filter = button.dataset.filter;
+      currentFilter = filter;
+      renderMasonryGallery(filter);
+    });
+  });
+}
 
 // ================================
 // Render Gallery
@@ -1007,8 +1201,49 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
   
-  // Render content
-  renderLookbook();
+  // Setup modern gallery with filters and masonry
+  setupFilterButtons();
+  renderMasonryGallery('all');
+  
+  // Setup lightbox controls
+  const lightbox = document.getElementById('lightbox');
+  const lightboxClose = document.querySelector('.lightbox-close');
+  const lightboxPrev = document.querySelector('.lightbox-prev');
+  const lightboxNext = document.querySelector('.lightbox-next');
+  
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
+  
+  if (lightboxPrev) {
+    lightboxPrev.addEventListener('click', prevLightboxImage);
+  }
+  
+  if (lightboxNext) {
+    lightboxNext.addEventListener('click', nextLightboxImage);
+  }
+  
+  if (lightbox) {
+    // Close on background click
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) {
+        prevLightboxImage();
+      } else if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) {
+        nextLightboxImage();
+      }
+    });
+  }
+  
+  // Legacy render and setup
   setupContactForm();
   setupSmoothScroll();
   setupBackToTop();
