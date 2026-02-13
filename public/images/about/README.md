@@ -1,11 +1,11 @@
 # About Section Image from Instagram
 
-This folder should contain your about/workspace image from Instagram (@_.jambi_/).
+This folder should contain your about/workspace image from Instagram.
 
 ## How to Add Your Image
 
 1. **Download an image** showing your workspace, creative process, or yourself:
-   - Visit https://www.instagram.com/_.jambi_/
+   - Visit your Instagram profile
    - Choose a photo that represents you or your workspace
    - Download using Instagram's Data Download or save directly
 

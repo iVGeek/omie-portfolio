@@ -2,18 +2,16 @@
 
 ## ✅ What Has Been Completed
 
-The portfolio has been successfully configured to use Instagram images from [@_.jambi_](https://www.instagram.com/_.jambi_/):
+The portfolio has been successfully configured to use Instagram images:
 
 ### Changes Made:
 
 1. **Gallery Images Updated** (`main.js`):
    - Replaced all 6 Unsplash URLs with local image paths
    - All images now reference: `images/gallery/project1.jpg` through `project6.jpg`
-   - Updated alt text to credit @_.jambi_
 
 2. **About Section Image Updated** (`index.html`):
    - Replaced Unsplash URL with: `images/about/workspace.jpg`
-   - Updated alt text to credit @_.jambi_
 
 3. **Directory Structure Created**:
    - ✅ `images/gallery/` - Ready for your Instagram gallery photos
@@ -29,7 +27,7 @@ Your portfolio is now ready to receive Instagram images. Follow these steps:
 
 ### Step 1: Download Images from Instagram
 
-Visit https://www.instagram.com/_.jambi_/ and download:
+Visit your Instagram profile and download:
 - **6+ images** for your gallery (best/most representative posts)
 - **1 image** for the about section (workspace or creative process)
 
@@ -111,7 +109,7 @@ You can add as many Instagram images as you want! Just:
   images: [
     {
       src: 'images/gallery/project7.jpg',
-      alt: 'Description from @_.jambi_'
+      alt: 'Description of your creation'
     }
   ]
 }
@@ -153,7 +151,7 @@ If you want to use different filenames:
 
 ## ✨ You're Almost There!
 
-Your portfolio is **ready** for your Instagram images. Once you add the images following the steps above, your beautiful handcrafted creations from [@_.jambi_](https://www.instagram.com/_.jambi_/) will be showcased in your portfolio! 🎉
+Your portfolio is **ready** for your Instagram images. Once you add the images following the steps above, your beautiful handcrafted creations will be showcased in your portfolio! 🎉
 
 ---
 
