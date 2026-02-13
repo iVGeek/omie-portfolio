@@ -727,13 +727,14 @@ function renderCategoryImages(grid) {
   // Use DocumentFragment for efficient DOM manipulation
   const fragment = document.createDocumentFragment();
   
-  // Prepare images for lightbox (without mutating global lookbook)
+  // Build category images array and update lookbook for lightbox compatibility
+  // The lookbook array must be updated for the existing lightbox gallery to function
   currentCategoryImages = category.images.map((image, imageIndex) => ({
     title: `${category.name} - Image ${imageIndex + 1}`,
     images: [image]
   }));
   
-  // Update global lookbook for lightbox compatibility
+  // Update global lookbook array (required by LightboxGallery class)
   lookbook.length = 0;
   lookbook.push(...currentCategoryImages);
   
