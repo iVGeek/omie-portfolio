@@ -1,10 +1,10 @@
 # 📸 Using Instagram Images for Your Portfolio
 
-This guide shows you how to use images from your Instagram account (@_.jambi_/) in your portfolio website.
+This guide shows you how to use images from your Instagram account in your portfolio website.
 
 ## Quick Overview
 
-Since this portfolio showcases your business and you're the owner of the Instagram account @_.jambi_/, you can legally use your own Instagram images on your website. This guide walks you through:
+Since this portfolio showcases your business and you're the owner of the Instagram account, you can legally use your own Instagram images on your website. This guide walks you through:
 
 1. Downloading images from your Instagram account
 2. Organizing them in your portfolio
@@ -21,7 +21,7 @@ Since this portfolio showcases your business and you're the owner of the Instagr
    - You'll receive a link to download all your photos in their original quality
 
 2. **Or Download Individual Posts:**
-   - Visit your Instagram profile: https://instagram.com/_.jambi_/
+   - Visit your Instagram profile
    - Open each post you want to use
    - Take a screenshot or use browser dev tools to download the image
    - **Right-click on the image** → "Save image as..."
@@ -201,7 +201,7 @@ This will create optimized versions of all your images.
 
 ## 📋 Quick Checklist
 
-- [ ] Download 3-5 best images from @_.jambi_/ for hero slideshow
+- [ ] Download 3-5 best images for hero slideshow
 - [ ] Download 6+ images for your gallery
 - [ ] Download 1 workspace/profile image for about section
 - [ ] Rename files with simple, descriptive names
@@ -262,7 +262,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/pink-bag.jpg',
-        alt: 'Beautiful pink handmade crochet bag from @_.jambi_'
+        alt: 'Beautiful pink handmade crochet bag'
       }
     ]
   }
@@ -310,7 +310,7 @@ const lookbook = [
 
 ## 🎉 You're All Set!
 
-Once you've updated your images, your portfolio will showcase your beautiful Instagram creations from @_.jambi_/! 
+Once you've updated your images, your portfolio will showcase your beautiful Instagram creations! 
 
 **Don't forget to:**
 - Test the website locally before deploying
@@ -319,4 +319,4 @@ Once you've updated your images, your portfolio will showcase your beautiful Ins
 
 ---
 
-**Made for @_.jambi_/ - Showcasing beautiful handmade creations** ❤️
+**Made for showcasing beautiful handmade creations** ❤️

@@ -43,7 +43,6 @@ function throttle(fn, delay) {
 
 // Updated lookbook structure to support collections with multiple images
 // Each project can have a single image or an array of images for book view
-// Images from Instagram: https://www.instagram.com/_.jambi_/
 // Download your Instagram images and place them in the images/gallery/ folder
 // Then update these paths to match your downloaded images
 // Note: 'images/' is a symlink to 'public/images/', both paths work
@@ -53,7 +52,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project1.jpg',
-        alt: 'Handcrafted creation 1 from @_.jambi_'
+        alt: 'Handcrafted creation 1'
       }
     ]
   },
@@ -62,7 +61,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project2.jpg',
-        alt: 'Handcrafted creation 2 from @_.jambi_'
+        alt: 'Handcrafted creation 2'
       }
     ]
   },
@@ -71,7 +70,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project3.jpg',
-        alt: 'Handcrafted creation 3 from @_.jambi_'
+        alt: 'Handcrafted creation 3'
       }
     ]
   },
@@ -80,7 +79,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project4.jpg',
-        alt: 'Handcrafted creation 4 from @_.jambi_'
+        alt: 'Handcrafted creation 4'
       }
     ]
   },
@@ -89,7 +88,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project5.jpg',
-        alt: 'Handcrafted creation 5 from @_.jambi_'
+        alt: 'Handcrafted creation 5'
       }
     ]
   },
@@ -98,7 +97,7 @@ const lookbook = [
     images: [
       {
         src: 'images/gallery/project6.jpg',
-        alt: 'Handcrafted creation 6 from @_.jambi_'
+        alt: 'Handcrafted creation 6'
       }
     ]
   }

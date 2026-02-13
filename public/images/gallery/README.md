@@ -1,11 +1,11 @@
 # Gallery Images from Instagram
 
-This folder should contain your gallery images from Instagram (@_.jambi_/).
+This folder should contain your gallery images from Instagram.
 
 ## How to Add Your Instagram Images
 
 1. **Download images from your Instagram account**:
-   - Visit https://www.instagram.com/_.jambi_/
+   - Visit your Instagram profile
    - For each post you want to use, click the three dots (...) → select "Embed" or save the image
    - Alternatively, use Instagram's Data Download feature (Settings → Privacy → Data Download)
    - Or use browser dev tools to save images directly

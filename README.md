@@ -2,11 +2,9 @@
 
 A warm, welcoming, and visually appealing crochet pattern portfolio website featuring coral and peach accents, smooth animations, and a cozy design aesthetic.
 
-**✨ Showcasing beautiful handmade creations from [@_.jambi_](https://instagram.com/_.jambi_/)**
-
 ## ✅ Instagram Images Ready!
 
-**The portfolio is now configured to use Instagram images from [@_.jambi_](https://instagram.com/_.jambi_/)!**
+**The portfolio is now configured to use Instagram images!**
 
 📸 **[Setup Status & Next Steps →](INSTAGRAM_SETUP_STATUS.md)** - See what's been done and what you need to do
 
@@ -85,7 +83,7 @@ Update contact details in `index.html`:
 - Email link (search for `hello@omie.com`)
 - Phone number (search for `+1 (555) 123-4567`)
 - WhatsApp link (search for `wa.me/15551234567`)
-- Instagram handle in floating button (search for `ig.me/m/_.jambi_`)
+- Instagram handle in floating button (search for `ig.me/m/yourusername`)
 
 ### Color Customization
 

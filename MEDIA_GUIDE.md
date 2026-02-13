@@ -2,7 +2,7 @@
 
 This guide shows you exactly how to replace the placeholder images with your own media to create your personalized crochet portfolio.
 
-> 💡 **Using Instagram images from @_.jambi_/?** Check out the **[Instagram Images Guide →](INSTAGRAM_GUIDE.md)** for step-by-step instructions on downloading and using your Instagram photos!
+> 💡 **Using Instagram images?** Check out the **[Instagram Images Guide →](INSTAGRAM_GUIDE.md)** for step-by-step instructions on downloading and using your Instagram photos!
 
 > 💡 **Want to see code examples side-by-side?** Check out [EXAMPLES.md](EXAMPLES.md) for quick before/after comparisons!
 
