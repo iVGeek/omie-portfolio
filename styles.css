@@ -182,8 +182,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  /* Custom cursor */
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23FF1493" opacity="0.6"/><circle cx="12" cy="12" r="4" fill="%23FF6600"/></svg>') 12 12, auto;
+  /* Hide default cursor for custom cursor */
+  cursor: none;
   transition: background 0.6s ease;
 }
 
@@ -204,10 +204,173 @@ body.category-purple-elegance {
   background: linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(186, 85, 211, 0.1) 100%);
 }
 
-/* Custom pink-orange cursor for interactive elements */
-a, button, [role="button"], .lookbook-item, .category-item {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="10" fill="%23FF1493" opacity="0.7"/><circle cx="14" cy="14" r="5" fill="%23FF6600"/></svg>') 14 14, pointer;
+/* Custom cursor styling */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF1493 0%, #FF6600 100%);
+  pointer-events: none;
+  z-index: 10001;
+  transition: transform 0.15s ease-out, opacity 0.3s ease;
+  opacity: 0.8;
+  mix-blend-mode: difference;
+  will-change: transform;
 }
+
+.custom-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #FF1493;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.custom-cursor.hover {
+  transform: scale(1.5);
+  opacity: 1;
+}
+
+.custom-cursor-follower.hover {
+  width: 60px;
+  height: 60px;
+  opacity: 0.8;
+  border-color: #FF6600;
+}
+
+/* Fallback for devices without custom cursor support */
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none;
+  }
+}
+
+/* ================================
+   Enhanced Animations (Graffico.it style)
+   ================================ */
+
+/* Smooth gradient animation for backgrounds */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Floating animation for interactive elements */
+@keyframes floatAnimation {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pulse glow effect */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.3),
+                0 0 40px rgba(255, 102, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 20, 147, 0.5),
+                0 0 60px rgba(255, 102, 0, 0.3);
+  }
+}
+
+/* Shimmer effect for images */
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+/* Enhanced button ripple effect */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.6s ease, height 0.6s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.btn-primary:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+  transition: width 0s, height 0s, opacity 0.3s ease;
+}
+
+/* Enhanced image loading effect */
+.lookbook-item img,
+.about-image img {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 182, 193, 0.1) 0%,
+    rgba(255, 20, 147, 0.15) 50%,
+    rgba(255, 182, 193, 0.1) 100%
+  );
+  background-size: 200% 100%;
+}
+
+.lookbook-item img[src],
+.about-image img[src] {
+  animation: shimmer 1.5s ease-in-out;
+}
+
+/* Smooth section reveal */
+.section {
+  opacity: 0;
+  animation: fadeInSection 0.8s ease-out forwards;
+}
+
+@keyframes fadeInSection {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger delay for sections */
+.section:nth-child(1) { animation-delay: 0s; }
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.2s; }
+.section:nth-child(4) { animation-delay: 0.3s; }
 
 /* Custom scrollbar styling - pink-orange gradient */
 ::-webkit-scrollbar {
@@ -716,15 +879,36 @@ h1, h2, h3, h4, h5, h6 {
 .value-item {
   padding: 1.5rem;
   border-radius: 12px;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.value-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 20, 147, 0.1), 
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.value-item:hover::before {
+  left: 100%;
 }
 
 .value-item:hover {
-  transform: translateX(10px);
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: -5px 0 15px rgba(255, 20, 147, 0.2);
+  transform: translateX(10px) translateY(-5px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: -5px 5px 25px rgba(255, 20, 147, 0.25),
+              0 0 0 1px rgba(255, 20, 147, 0.1);
 }
 
 .value-item h3 {
@@ -889,17 +1073,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lookbook-item:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(255, 20, 147, 0.25);
+  transform: translateY(-12px) scale(1.02) rotateZ(-1deg);
+  box-shadow: 0 20px 60px rgba(255, 20, 147, 0.35),
+              0 0 0 1px rgba(255, 20, 147, 0.1);
 }
 
 .lookbook-item:hover::before {
   opacity: 1;
+  background: linear-gradient(135deg, 
+    rgba(255, 20, 147, 0.15) 0%, 
+    rgba(255, 102, 0, 0.15) 100%);
 }
 
 .lookbook-item:hover img {
   transform: scale(1.15);
-  filter: brightness(1.05);
+  filter: brightness(1.05) saturate(1.1);
+  animation: subtleFloat 3s ease-in-out infinite;
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: scale(1.15) translateY(0px);
+  }
+  50% {
+    transform: scale(1.17) translateY(-5px);
+  }
 }
 
 /* Magazine-style asymmetric layout */
@@ -1647,7 +1845,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.95);
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
 }
 
 .lightbox-content {
@@ -1658,7 +1857,18 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   padding: 60px 20px 100px;
-  animation: fadeIn 0.3s ease;
+  animation: zoomIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .lightbox-close {
@@ -1704,8 +1914,21 @@ h1, h2, h3, h4, h5, h6 {
   max-height: calc(100vh - 200px);
   object-fit: contain;
   border-radius: 8px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  transition: opacity 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: imageReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes imageReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .lightbox-caption {

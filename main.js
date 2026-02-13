@@ -903,11 +903,155 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize lightbox gallery (stored globally for access from renderLookbook)
   window.lightboxGallery = new LightboxGallery();
   
+  // Initialize Graffico.it-style enhancements
+  new CustomCursor();
+  new StaggerAnimation();
+  
   // Add loading complete class
   setTimeout(() => {
     document.body.classList.add('loaded');
   }, 100);
 });
+
+// ================================
+// Custom Cursor (Graffico.it style)
+// ================================
+
+class CustomCursor {
+  constructor() {
+    // Only initialize on non-touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      return;
+    }
+
+    this.cursor = null;
+    this.follower = null;
+    this.cursorPos = { x: 0, y: 0 };
+    this.followerPos = { x: 0, y: 0 };
+    this.isHovering = false;
+    
+    this.init();
+  }
+
+  init() {
+    // Create cursor elements
+    this.cursor = document.createElement('div');
+    this.cursor.className = 'custom-cursor';
+    
+    this.follower = document.createElement('div');
+    this.follower.className = 'custom-cursor-follower';
+    
+    document.body.appendChild(this.cursor);
+    document.body.appendChild(this.follower);
+
+    // Track mouse movement
+    document.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+    
+    // Track hoverable elements
+    this.setupHoverEffects();
+    
+    // Start animation loop
+    this.animate();
+  }
+
+  handleMouseMove(e) {
+    this.cursorPos.x = e.clientX;
+    this.cursorPos.y = e.clientY;
+  }
+
+  setupHoverEffects() {
+    const hoverElements = 'a, button, [role="button"], .lookbook-item, .category-item, .slide-btn, .indicator, .btn, input, textarea';
+    
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest(hoverElements)) {
+        this.isHovering = true;
+        this.cursor.classList.add('hover');
+        this.follower.classList.add('hover');
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest(hoverElements)) {
+        this.isHovering = false;
+        this.cursor.classList.remove('hover');
+        this.follower.classList.remove('hover');
+      }
+    });
+  }
+
+  animate() {
+    // Smooth cursor movement with easing
+    const lerp = (start, end, factor) => start + (end - start) * factor;
+    
+    // Main cursor follows immediately
+    this.cursor.style.transform = `translate3d(${this.cursorPos.x - 10}px, ${this.cursorPos.y - 10}px, 0)`;
+    
+    // Follower has delay for smooth trail effect
+    this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.15);
+    this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.15);
+    
+    this.follower.style.transform = `translate3d(${this.followerPos.x - 20}px, ${this.followerPos.y - 20}px, 0)`;
+    
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+// ================================
+// Enhanced Gallery Stagger Animation
+// ================================
+
+class StaggerAnimation {
+  constructor() {
+    this.observer = null;
+    this.mutationObserver = null;
+    this.STAGGER_DELAY = 0.05; // seconds
+    this.itemIndexMap = new WeakMap(); // Track global index for each item
+    this.init();
+  }
+
+  init() {
+    // Observe gallery items as they load
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const itemIndex = this.itemIndexMap.get(entry.target) || 0;
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, itemIndex * this.STAGGER_DELAY * 1000); // Convert to milliseconds
+          this.observer.unobserve(entry.target); // Only observe once
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observe all lookbook items
+    const observeGalleryItems = () => {
+      // Disconnect all previous observations
+      this.observer.disconnect();
+      
+      // Set up new observations with global index
+      document.querySelectorAll('.lookbook-item').forEach((item, index) => {
+        this.itemIndexMap.set(item, index);
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = `opacity 0.6s ease ${index * this.STAGGER_DELAY}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * this.STAGGER_DELAY}s`;
+        this.observer.observe(item);
+      });
+    };
+
+    // Initial observation
+    observeGalleryItems();
+    
+    // Re-observe when gallery updates (for category changes)
+    const galleryGrid = document.getElementById('lookbook-grid');
+    if (galleryGrid) {
+      this.mutationObserver = new MutationObserver(() => {
+        observeGalleryItems();
+      });
+      this.mutationObserver.observe(galleryGrid, { childList: true });
+    }
+  }
+}
 
 // ================================
 // Performance: Lazy load images
