@@ -43,30 +43,25 @@ function throttle(fn, delay) {
 
 // Updated lookbook structure to support collections with multiple images
 // Each project can have a single image or an array of images for book view
+// Images from Instagram: https://www.instagram.com/_.jambi_/
+// Download your Instagram images and place them in the images/gallery/ folder
+// Then update these paths to match your downloaded images
 const lookbook = [
   {
-    title: 'Beautiful handcrafted sweater project',
+    title: 'Beautiful handcrafted creation',
     images: [
       {
-        src: 'https://images.unsplash.com/photo-1614963326505-842876ff4238?w=1200&q=80',
-        alt: 'Beautiful handcrafted sweater - main view'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
-        alt: 'Beautiful handcrafted sweater - detail view'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
-        alt: 'Beautiful handcrafted sweater - lifestyle shot'
+        src: 'images/gallery/project1.jpg',
+        alt: 'Beautiful handcrafted creation from @_.jambi_'
       }
     ]
   },
   {
-    title: 'Stylish handmade cardigan',
+    title: 'Stylish handmade piece',
     images: [
       {
-        src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
-        alt: 'Stylish handmade cardigan'
+        src: 'images/gallery/project2.jpg',
+        alt: 'Stylish handmade piece from @_.jambi_'
       }
     ]
   },
@@ -74,39 +69,35 @@ const lookbook = [
     title: 'Handcrafted accessories collection',
     images: [
       {
-        src: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80',
-        alt: 'Handcrafted accessories collection'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1000&q=80',
-        alt: 'Handcrafted accessories - alternate view'
+        src: 'images/gallery/project3.jpg',
+        alt: 'Handcrafted accessories from @_.jambi_'
       }
     ]
   },
   {
-    title: 'Cozy handmade blanket',
+    title: 'Cozy handmade creation',
     images: [
       {
-        src: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
-        alt: 'Cozy handmade blanket'
+        src: 'images/gallery/project4.jpg',
+        alt: 'Cozy handmade creation from @_.jambi_'
       }
     ]
   },
   {
-    title: 'Baby handcrafted items',
+    title: 'Creative handcrafted work',
     images: [
       {
-        src: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1000&q=80',
-        alt: 'Baby handcrafted items'
+        src: 'images/gallery/project5.jpg',
+        alt: 'Creative handcrafted work from @_.jambi_'
       }
     ]
   },
   {
-    title: 'Artistic handmade creations',
+    title: 'Artistic handmade design',
     images: [
       {
-        src: 'https://images.unsplash.com/photo-1611849583569-7a1a8f4d0f7e?w=1000&q=80',
-        alt: 'Artistic handmade creations'
+        src: 'images/gallery/project6.jpg',
+        alt: 'Artistic handmade design from @_.jambi_'
       }
     ]
   }
