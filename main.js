@@ -473,9 +473,9 @@ class LightboxGallery {
     }, { passive: true });
   }
   
-  open(projectIndex) {
+  open(projectIndex, imageIndex = null) {
     this.currentProject = projectIndex;
-    this.currentImage = 0;
+    this.currentImage = imageIndex ?? 0;
     
     // Prevent body scroll when modal is open
     document.body.style.overflow = 'hidden';
@@ -770,9 +770,7 @@ function renderCategoryImages(grid) {
     article.addEventListener('click', () => {
       if (window.lightboxGallery) {
         // Open the first (and only) project in lookbook, but start at the clicked image
-        window.lightboxGallery.currentProject = 0;
-        window.lightboxGallery.currentImage = imageIndex;
-        window.lightboxGallery.open(0);
+        window.lightboxGallery.open(0, imageIndex);
       }
     });
     
@@ -782,9 +780,7 @@ function renderCategoryImages(grid) {
         e.preventDefault();
         if (window.lightboxGallery) {
           // Open the first (and only) project in lookbook, but start at the clicked image
-          window.lightboxGallery.currentProject = 0;
-          window.lightboxGallery.currentImage = imageIndex;
-          window.lightboxGallery.open(0);
+          window.lightboxGallery.open(0, imageIndex);
         }
       }
     });
