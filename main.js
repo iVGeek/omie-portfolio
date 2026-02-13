@@ -770,15 +770,24 @@ function renderCategoryImages(grid) {
   detailsList.className = 'category-detail-list';
   
   const materialsDetail = document.createElement('p');
-  materialsDetail.innerHTML = '<strong>Materials:</strong> ' + category.materials;
+  const materialsLabel = document.createElement('strong');
+  materialsLabel.textContent = 'Materials:';
+  materialsDetail.appendChild(materialsLabel);
+  materialsDetail.appendChild(document.createTextNode(' ' + category.materials));
   detailsList.appendChild(materialsDetail);
   
   const techniquesDetail = document.createElement('p');
-  techniquesDetail.innerHTML = '<strong>Techniques:</strong> ' + category.techniques;
+  const techniquesLabel = document.createElement('strong');
+  techniquesLabel.textContent = 'Techniques:';
+  techniquesDetail.appendChild(techniquesLabel);
+  techniquesDetail.appendChild(document.createTextNode(' ' + category.techniques));
   detailsList.appendChild(techniquesDetail);
   
   const inspirationDetail = document.createElement('p');
-  inspirationDetail.innerHTML = '<strong>Inspiration:</strong> ' + category.inspiration;
+  const inspirationLabel = document.createElement('strong');
+  inspirationLabel.textContent = 'Inspiration:';
+  inspirationDetail.appendChild(inspirationLabel);
+  inspirationDetail.appendChild(document.createTextNode(' ' + category.inspiration));
   detailsList.appendChild(inspirationDetail);
   
   detailsContainer.appendChild(detailsList);
