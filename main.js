@@ -86,20 +86,20 @@ const galleryCategories = [
     ]
   },
   {
-    name: 'PurpleElegance',
+    name: 'Purple Elegance',
     images: [
-      { src: 'images/gallery/PurpleElegance/611630562_18096171164302431_7630117364178829182_n.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/611714281_18096171128302431_1163567786338715110_n.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/612074427_18096171137302431_3163465707956930400_n.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/612105075_18096171119302431_3615833347089412139_n.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/612129224_18096171191302431_1984634528210182916_n.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/612238180_18096171146302431_6260479965133691207_n.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/project1.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/project2.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/project3.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/project4.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/project5.jpg', alt: 'PurpleElegance design' },
-      { src: 'images/gallery/PurpleElegance/project6.jpg', alt: 'PurpleElegance design' }
+      { src: 'images/gallery/Purple Elegance/611630562_18096171164302431_7630117364178829182_n.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/611714281_18096171128302431_1163567786338715110_n.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/612074427_18096171137302431_3163465707956930400_n.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/612105075_18096171119302431_3615833347089412139_n.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/612129224_18096171191302431_1984634528210182916_n.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/612238180_18096171146302431_6260479965133691207_n.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/project1.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/project2.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/project3.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/project4.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/project5.jpg', alt: 'Purple Elegance design' },
+      { src: 'images/gallery/Purple Elegance/project6.jpg', alt: 'Purple Elegance design' }
     ]
   }
 ];
@@ -604,6 +604,7 @@ class LightboxGallery {
 
 let currentView = 'categories'; // 'categories' or 'images'
 let currentCategory = null;
+let currentCategoryImages = []; // Store current category images for lightbox
 
 // ================================
 // Render Gallery
@@ -726,14 +727,17 @@ function renderCategoryImages(grid) {
   // Use DocumentFragment for efficient DOM manipulation
   const fragment = document.createDocumentFragment();
   
-  // Convert category images to lookbook format for lightbox
-  lookbook.length = 0; // Clear existing
+  // Prepare images for lightbox (without mutating global lookbook)
+  currentCategoryImages = category.images.map((image, imageIndex) => ({
+    title: `${category.name} - Image ${imageIndex + 1}`,
+    images: [image]
+  }));
+  
+  // Update global lookbook for lightbox compatibility
+  lookbook.length = 0;
+  lookbook.push(...currentCategoryImages);
+  
   category.images.forEach((image, imageIndex) => {
-    lookbook.push({
-      title: `${category.name} - Image ${imageIndex + 1}`,
-      images: [image]
-    });
-    
     const article = document.createElement('article');
     article.className = 'lookbook-item stagger-item';
     
