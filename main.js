@@ -1002,29 +1002,40 @@ class CustomCursor {
 
 class StaggerAnimation {
   constructor() {
+    this.observer = null;
+    this.mutationObserver = null;
+    this.STAGGER_DELAY = 0.05; // seconds
+    this.itemIndexMap = new WeakMap(); // Track global index for each item
     this.init();
   }
 
   init() {
     // Observe gallery items as they load
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          const itemIndex = this.itemIndexMap.get(entry.target) || 0;
           setTimeout(() => {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
-          }, index * 50); // Stagger delay
+          }, itemIndex * this.STAGGER_DELAY * 1000); // Convert to milliseconds
+          this.observer.unobserve(entry.target); // Only observe once
         }
       });
     }, { threshold: 0.1 });
 
     // Observe all lookbook items
     const observeGalleryItems = () => {
+      // Disconnect all previous observations
+      this.observer.disconnect();
+      
+      // Set up new observations with global index
       document.querySelectorAll('.lookbook-item').forEach((item, index) => {
+        this.itemIndexMap.set(item, index);
         item.style.opacity = '0';
         item.style.transform = 'translateY(30px)';
-        item.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.05}s`;
-        observer.observe(item);
+        item.style.transition = `opacity 0.6s ease ${index * this.STAGGER_DELAY}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * this.STAGGER_DELAY}s`;
+        this.observer.observe(item);
       });
     };
 
@@ -1034,10 +1045,10 @@ class StaggerAnimation {
     // Re-observe when gallery updates (for category changes)
     const galleryGrid = document.getElementById('lookbook-grid');
     if (galleryGrid) {
-      const mutationObserver = new MutationObserver(() => {
+      this.mutationObserver = new MutationObserver(() => {
         observeGalleryItems();
       });
-      mutationObserver.observe(galleryGrid, { childList: true });
+      this.mutationObserver.observe(galleryGrid, { childList: true });
     }
   }
 }
