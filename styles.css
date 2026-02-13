@@ -2197,7 +2197,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px 100px;
+  padding: 60px 20px 80px; /* Reduced bottom padding from 100px to 80px */
   animation: zoomIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -2252,7 +2252,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .lightbox-image {
   max-width: 100%;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 140px); /* Increased from 200px to take more space */
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
@@ -2273,26 +2273,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lightbox-caption {
-  margin-top: 1.5rem;
-  color: white;
-  text-align: center;
-  font-family: var(--font-sans);
-  max-width: 600px;
-}
-
-.caption-title {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.03em;
-}
-
-.caption-meta {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  display: none; /* Hide caption to show only images */
 }
 
 .lightbox-counter {

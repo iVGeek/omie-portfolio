@@ -530,12 +530,8 @@ class LightboxGallery {
       imgElement.src = image.src;
       imgElement.alt = image.alt;
       
-      // Enhanced caption with category and image number
-      const captionHTML = `
-        <div class="caption-title">${project.title}</div>
-        <div class="caption-meta">${image.alt}</div>
-      `;
-      captionElement.innerHTML = captionHTML;
+      // Hide caption - users want just images, nothing else
+      captionElement.innerHTML = '';
       
       // Update counter
       counterElement.textContent = `${this.currentImage + 1} / ${project.images.length}`;
