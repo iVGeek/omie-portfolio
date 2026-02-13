@@ -41,67 +41,71 @@ function throttle(fn, delay) {
 // Gallery Data
 // ================================
 
-// Updated lookbook structure to support collections with multiple images
-// Each project can have a single image or an array of images for book view
-// Download your Instagram images and place them in the images/gallery/ folder
-// Then update these paths to match your downloaded images
+// Gallery organized by categories
+// Each category contains multiple images
 // Note: 'images/' is a symlink to 'public/images/', both paths work
-const lookbook = [
+const galleryCategories = [
   {
-    title: 'Handcrafted Project 1',
+    name: 'Pinkie Flamingo',
     images: [
-      {
-        src: 'images/gallery/project1.jpg',
-        alt: 'Handcrafted creation 1'
-      }
+      { src: 'images/gallery/Pinkie Flamingo/539967597_18081547793302431_3448890780171806210_n.jpg', alt: 'Pinkie Flamingo design' },
+      { src: 'images/gallery/Pinkie Flamingo/540011953_18081547697302431_1005875501831294864_n.jpg', alt: 'Pinkie Flamingo design' },
+      { src: 'images/gallery/Pinkie Flamingo/540036594_18081547706302431_7862490469488856780_n.jpg', alt: 'Pinkie Flamingo design' },
+      { src: 'images/gallery/Pinkie Flamingo/540046590_18081547715302431_7480653551078539801_n.jpg', alt: 'Pinkie Flamingo design' },
+      { src: 'images/gallery/Pinkie Flamingo/540109803_18081547742302431_312412726075327105_n.jpg', alt: 'Pinkie Flamingo design' },
+      { src: 'images/gallery/Pinkie Flamingo/557345373_18085136189302431_4090076875377072997_n.jpg', alt: 'Pinkie Flamingo design' },
+      { src: 'images/gallery/Pinkie Flamingo/557413552_18085136102302431_8716580283757432743_n.jpg', alt: 'Pinkie Flamingo design' },
+      { src: 'images/gallery/Pinkie Flamingo/557413555_18085136114302431_8515872593961169212_n.jpg', alt: 'Pinkie Flamingo design' },
+      { src: 'images/gallery/Pinkie Flamingo/557438844_18085136153302431_7665076335401273258_n.jpg', alt: 'Pinkie Flamingo design' }
     ]
   },
   {
-    title: 'Handcrafted Project 2',
+    name: 'Red Ruby',
     images: [
-      {
-        src: 'images/gallery/project2.jpg',
-        alt: 'Handcrafted creation 2'
-      }
+      { src: 'images/gallery/Red Ruby/558688219_18085136123302431_6779459226908578350_n.jpg', alt: 'Red Ruby design' },
+      { src: 'images/gallery/Red Ruby/558845894_18085136171302431_5383694440068152323_n.jpg', alt: 'Red Ruby design' },
+      { src: 'images/gallery/Red Ruby/558943227_18085136162302431_817826934527130040_n.jpg', alt: 'Red Ruby design' },
+      { src: 'images/gallery/Red Ruby/559299844_18085136132302431_164314802719577659_n.jpg', alt: 'Red Ruby design' },
+      { src: 'images/gallery/Red Ruby/568117746_18088496120302431_916359807911567279_n.jpg', alt: 'Red Ruby design' },
+      { src: 'images/gallery/Red Ruby/568256074_18088496129302431_614153971394619769_n.jpg', alt: 'Red Ruby design' },
+      { src: 'images/gallery/Red Ruby/569011936_18088496138302431_2913682672152415748_n.jpg', alt: 'Red Ruby design' },
+      { src: 'images/gallery/Red Ruby/569762971_18088496174302431_7102191316536323537_n.jpg', alt: 'Red Ruby design' }
     ]
   },
   {
-    title: 'Handcrafted Project 3',
+    name: 'Sunset Hues',
     images: [
-      {
-        src: 'images/gallery/project3.jpg',
-        alt: 'Handcrafted creation 3'
-      }
+      { src: 'images/gallery/Sunset Hues/587524949_18092088908302431_8400526806509945507_n.jpg', alt: 'Sunset Hues design' },
+      { src: 'images/gallery/Sunset Hues/587776088_18092088851302431_7481810639402148416_n.jpg', alt: 'Sunset Hues design' },
+      { src: 'images/gallery/Sunset Hues/587819190_18092088881302431_8808916453267266553_n.jpg', alt: 'Sunset Hues design' },
+      { src: 'images/gallery/Sunset Hues/588222810_18092088869302431_3178962861210220183_n.jpg', alt: 'Sunset Hues design' },
+      { src: 'images/gallery/Sunset Hues/589121556_18092088899302431_7696768615798332121_n.jpg', alt: 'Sunset Hues design' },
+      { src: 'images/gallery/Sunset Hues/589135600_18092088824302431_4450958026945299115_n.jpg', alt: 'Sunset Hues design' },
+      { src: 'images/gallery/Sunset Hues/589197219_18092088833302431_7027825451325369358_n.jpg', alt: 'Sunset Hues design' },
+      { src: 'images/gallery/Sunset Hues/611266862_18096171110302431_1325073686730851317_n.jpg', alt: 'Sunset Hues design' }
     ]
   },
   {
-    title: 'Handcrafted Project 4',
+    name: 'PurpleElegance',
     images: [
-      {
-        src: 'images/gallery/project4.jpg',
-        alt: 'Handcrafted creation 4'
-      }
-    ]
-  },
-  {
-    title: 'Handcrafted Project 5',
-    images: [
-      {
-        src: 'images/gallery/project5.jpg',
-        alt: 'Handcrafted creation 5'
-      }
-    ]
-  },
-  {
-    title: 'Handcrafted Project 6',
-    images: [
-      {
-        src: 'images/gallery/project6.jpg',
-        alt: 'Handcrafted creation 6'
-      }
+      { src: 'images/gallery/PurpleElegance/611630562_18096171164302431_7630117364178829182_n.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/611714281_18096171128302431_1163567786338715110_n.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/612074427_18096171137302431_3163465707956930400_n.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/612105075_18096171119302431_3615833347089412139_n.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/612129224_18096171191302431_1984634528210182916_n.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/612238180_18096171146302431_6260479965133691207_n.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/project1.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/project2.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/project3.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/project4.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/project5.jpg', alt: 'PurpleElegance design' },
+      { src: 'images/gallery/PurpleElegance/project6.jpg', alt: 'PurpleElegance design' }
     ]
   }
 ];
+
+// Legacy support - convert categories to old lookbook format for lightbox
+const lookbook = [];
 
 // ================================
 // Hero Slideshow
@@ -595,39 +599,158 @@ class LightboxGallery {
 }
 
 // ================================
-// Render Lookbook
+// Gallery State Management
 // ================================
 
-function renderLookbook() {
+let currentView = 'categories'; // 'categories' or 'images'
+let currentCategory = null;
+
+// ================================
+// Render Gallery
+// ================================
+
+function renderGallery() {
   const grid = document.getElementById('lookbook-grid');
   if (!grid) return;
   
   // Clear existing content first
   grid.innerHTML = '';
   
+  if (currentView === 'categories') {
+    renderCategories(grid);
+  } else {
+    renderCategoryImages(grid);
+  }
+}
+
+function renderCategories(grid) {
   // Use DocumentFragment for efficient DOM manipulation
   const fragment = document.createDocumentFragment();
   
-  lookbook.forEach((project, projectIndex) => {
+  galleryCategories.forEach((category, categoryIndex) => {
+    const article = document.createElement('article');
+    article.className = 'lookbook-item category-item stagger-item';
+    
+    // Use first image from the category as thumbnail
+    const firstImage = category.images[0];
+    const img = document.createElement('img');
+    img.src = firstImage.src;
+    img.alt = `${category.name} category`;
+    img.loading = 'lazy';
+    
+    // Add category name overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'category-overlay';
+    
+    const categoryName = document.createElement('h3');
+    categoryName.className = 'category-name';
+    categoryName.textContent = category.name;
+    
+    const imageCount = document.createElement('p');
+    imageCount.className = 'category-count';
+    imageCount.textContent = `${category.images.length} ${category.images.length === 1 ? 'image' : 'images'}`;
+    
+    overlay.appendChild(categoryName);
+    overlay.appendChild(imageCount);
+    
+    // Add click handler to show category images
+    article.style.cursor = 'pointer';
+    article.setAttribute('role', 'button');
+    article.setAttribute('tabindex', '0');
+    article.setAttribute('aria-label', `View ${category.name} category`);
+    
+    article.addEventListener('click', () => {
+      currentView = 'images';
+      currentCategory = categoryIndex;
+      renderGallery();
+      
+      // Scroll to gallery section
+      document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    // Add keyboard support for accessibility
+    article.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        currentView = 'images';
+        currentCategory = categoryIndex;
+        renderGallery();
+        
+        // Scroll to gallery section
+        document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+    
+    article.appendChild(img);
+    article.appendChild(overlay);
+    fragment.appendChild(article);
+  });
+  
+  // Single DOM update
+  grid.appendChild(fragment);
+}
+
+function renderCategoryImages(grid) {
+  if (currentCategory === null) {
+    currentView = 'categories';
+    renderCategories(grid);
+    return;
+  }
+  
+  const category = galleryCategories[currentCategory];
+  
+  // Create back button
+  const backButton = document.createElement('button');
+  backButton.className = 'back-to-categories btn btn-secondary';
+  backButton.innerHTML = '<span class="material-icons">arrow_back</span> Back to Categories';
+  backButton.addEventListener('click', () => {
+    currentView = 'categories';
+    currentCategory = null;
+    renderGallery();
+  });
+  
+  const backContainer = document.createElement('div');
+  backContainer.className = 'back-button-container';
+  backContainer.appendChild(backButton);
+  grid.appendChild(backContainer);
+  
+  // Create category title
+  const titleContainer = document.createElement('div');
+  titleContainer.className = 'category-title-container';
+  const title = document.createElement('h3');
+  title.className = 'current-category-title';
+  title.textContent = category.name;
+  titleContainer.appendChild(title);
+  grid.appendChild(titleContainer);
+  
+  // Use DocumentFragment for efficient DOM manipulation
+  const fragment = document.createDocumentFragment();
+  
+  // Convert category images to lookbook format for lightbox
+  lookbook.length = 0; // Clear existing
+  category.images.forEach((image, imageIndex) => {
+    lookbook.push({
+      title: `${category.name} - Image ${imageIndex + 1}`,
+      images: [image]
+    });
+    
     const article = document.createElement('article');
     article.className = 'lookbook-item stagger-item';
     
-    // Use first image from the collection as thumbnail
-    const firstImage = project.images[0];
     const img = document.createElement('img');
-    img.src = firstImage.src;
-    img.alt = firstImage.alt;
+    img.src = image.src;
+    img.alt = image.alt;
     img.loading = 'lazy';
     
     // Add click handler to open lightbox
     article.style.cursor = 'pointer';
     article.setAttribute('role', 'button');
     article.setAttribute('tabindex', '0');
-    article.setAttribute('aria-label', `View ${project.title}`);
+    article.setAttribute('aria-label', `View ${category.name} image ${imageIndex + 1}`);
     
     article.addEventListener('click', () => {
       if (window.lightboxGallery) {
-        window.lightboxGallery.open(projectIndex);
+        window.lightboxGallery.open(imageIndex);
       }
     });
     
@@ -636,29 +759,10 @@ function renderLookbook() {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         if (window.lightboxGallery) {
-          window.lightboxGallery.open(projectIndex);
+          window.lightboxGallery.open(imageIndex);
         }
       }
     });
-    
-    // Add collection indicator if project has multiple images
-    if (project.images.length > 1) {
-      const indicator = document.createElement('div');
-      indicator.className = 'collection-indicator';
-      indicator.setAttribute('aria-label', `${project.images.length} images in collection`);
-      
-      const icon = document.createElement('span');
-      icon.className = 'material-icons';
-      icon.textContent = 'collections';
-      
-      const count = document.createElement('span');
-      count.className = 'count';
-      count.textContent = project.images.length;
-      
-      indicator.appendChild(icon);
-      indicator.appendChild(count);
-      article.appendChild(indicator);
-    }
     
     article.appendChild(img);
     fragment.appendChild(article);
@@ -666,6 +770,11 @@ function renderLookbook() {
   
   // Single DOM update
   grid.appendChild(fragment);
+}
+
+// Legacy function name support
+function renderLookbook() {
+  renderGallery();
 }
 
 // ================================
