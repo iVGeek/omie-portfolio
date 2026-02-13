@@ -184,6 +184,24 @@ body {
   overflow-x: hidden;
   /* Custom cursor */
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23FF1493" opacity="0.6"/><circle cx="12" cy="12" r="4" fill="%23FF6600"/></svg>') 12 12, auto;
+  transition: background 0.6s ease;
+}
+
+/* Category-specific backgrounds */
+body.category-pinkie-flamingo {
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.1) 0%, rgba(255, 182, 193, 0.1) 100%);
+}
+
+body.category-red-ruby {
+  background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(255, 99, 71, 0.1) 100%);
+}
+
+body.category-sunset-hues {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%);
+}
+
+body.category-purple-elegance {
+  background: linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(186, 85, 211, 0.1) 100%);
 }
 
 /* Custom pink-orange cursor for interactive elements */
@@ -802,7 +820,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* When viewing categories, use asymmetric layout */
-.lookbook-grid:has(.category-item) {
+.lookbook-grid.category-view {
   grid-template-columns: repeat(12, 1fr);
 }
 

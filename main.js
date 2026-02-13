@@ -622,11 +622,12 @@ function renderGallery() {
   grid.innerHTML = '';
   
   if (currentView === 'categories') {
-    // Reset body background when viewing categories
-    document.body.style.background = 'var(--bg-white)';
-    document.body.style.transition = 'background 0.6s ease';
+    // Reset body background classes when viewing categories
+    document.body.className = document.body.className.replace(/category-\S+/g, '').trim();
+    grid.classList.add('category-view');
     renderCategories(grid);
   } else {
+    grid.classList.remove('category-view');
     renderCategoryImages(grid);
   }
 }
@@ -707,11 +708,10 @@ function renderCategoryImages(grid) {
   
   const category = galleryCategories[currentCategory];
   
-  // Apply category-specific background color to body
-  if (category.bgColor) {
-    document.body.style.background = category.bgColor;
-    document.body.style.transition = 'background 0.6s ease';
-  }
+  // Apply category-specific background class to body
+  document.body.className = document.body.className.replace(/category-\S+/g, '').trim();
+  const categoryClass = 'category-' + category.name.toLowerCase().replace(/\s+/g, '-');
+  document.body.classList.add(categoryClass);
   
   // Create back button
   const backButton = document.createElement('button');
