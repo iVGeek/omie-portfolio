@@ -1285,6 +1285,7 @@ class CustomCursor {
     this.cursorPos = { x: 0, y: 0 };
     this.followerPos = { x: 0, y: 0 };
     this.isHovering = false;
+    this.rafId = null;
     
     this.init();
   }
@@ -1300,8 +1301,8 @@ class CustomCursor {
     document.body.appendChild(this.cursor);
     document.body.appendChild(this.follower);
 
-    // Track mouse movement
-    document.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+    // Track mouse movement with passive listener for better performance
+    document.addEventListener('mousemove', (e) => this.handleMouseMove(e), { passive: true });
     
     // Track hoverable elements
     this.setupHoverEffects();
@@ -1324,7 +1325,7 @@ class CustomCursor {
         this.cursor.classList.add('hover');
         this.follower.classList.add('hover');
       }
-    });
+    }, { passive: true });
 
     document.addEventListener('mouseout', (e) => {
       if (e.target.closest(hoverElements)) {
@@ -1332,23 +1333,25 @@ class CustomCursor {
         this.cursor.classList.remove('hover');
         this.follower.classList.remove('hover');
       }
-    });
+    }, { passive: true });
   }
 
   animate() {
     // Smooth cursor movement with easing
     const lerp = (start, end, factor) => start + (end - start) * factor;
     
-    // Main cursor follows immediately
-    this.cursor.style.transform = `translate3d(${this.cursorPos.x - 10}px, ${this.cursorPos.y - 10}px, 0)`;
+    // Main cursor follows with slight smoothing for better feel
+    const cursorX = lerp(parseFloat(this.cursor.style.left || 0), this.cursorPos.x - 10, 0.3);
+    const cursorY = lerp(parseFloat(this.cursor.style.top || 0), this.cursorPos.y - 10, 0.3);
+    this.cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
     
-    // Follower has delay for smooth trail effect
-    this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.15);
-    this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.15);
+    // Follower has more delay for smooth trail effect
+    this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.2);
+    this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.2);
     
     this.follower.style.transform = `translate3d(${this.followerPos.x - 20}px, ${this.followerPos.y - 20}px, 0)`;
     
-    requestAnimationFrame(() => this.animate());
+    this.rafId = requestAnimationFrame(() => this.animate());
   }
 }
 
