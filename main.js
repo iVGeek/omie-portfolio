@@ -1440,20 +1440,23 @@ if ('IntersectionObserver' in window) {
 function animateCounter(element) {
   const target = parseInt(element.dataset.target);
   const duration = 2000; // 2 seconds
-  const increment = target / (duration / 16); // 60fps
-  let current = 0;
+  const startTime = performance.now();
   
-  const updateCounter = () => {
-    current += increment;
-    if (current < target) {
-      element.textContent = Math.floor(current);
+  const updateCounter = (currentTime) => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const current = Math.floor(progress * target);
+    
+    element.textContent = current;
+    
+    if (progress < 1) {
       requestAnimationFrame(updateCounter);
     } else {
       element.textContent = target;
     }
   };
   
-  updateCounter();
+  requestAnimationFrame(updateCounter);
 }
 
 // Observe stat numbers for animation
