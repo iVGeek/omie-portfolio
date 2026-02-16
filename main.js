@@ -1432,3 +1432,51 @@ if ('IntersectionObserver' in window) {
     imageObserver.observe(img);
   });
 }
+
+// ================================
+// Animated Counters for Stats
+// ================================
+
+function animateCounter(element) {
+  const target = parseInt(element.dataset.target);
+  const duration = 2000; // 2 seconds
+  const increment = target / (duration / 16); // 60fps
+  let current = 0;
+  
+  const updateCounter = () => {
+    current += increment;
+    if (current < target) {
+      element.textContent = Math.floor(current);
+      requestAnimationFrame(updateCounter);
+    } else {
+      element.textContent = target;
+    }
+  };
+  
+  updateCounter();
+}
+
+// Observe stat numbers for animation
+function observeStatNumbers() {
+  const statNumbers = document.querySelectorAll('.stat-number');
+  
+  if (statNumbers.length === 0) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  statNumbers.forEach(stat => {
+    observer.observe(stat);
+  });
+}
+
+// Initialize stat counter animation
+document.addEventListener('DOMContentLoaded', () => {
+  observeStatNumbers();
+});
