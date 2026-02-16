@@ -857,12 +857,29 @@ h1, h2, h3, h4, h5, h6 {
    ================================ */
 
 .about-section {
-  position: relative;
-  background: linear-gradient(135deg, 
-    var(--bg-light) 0%, 
-    var(--lightest-pink) 50%, 
-    var(--bg-light) 100%);
-  overflow: hidden;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #FFC1C1 0%, #FFA07A 100%);
+  color: #fff;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-container h2 {
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.about-container p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 /* Decorative Background Elements */
@@ -2903,6 +2920,18 @@ h1, h2, h3, h4, h5, h6 {
   .testimonials-grid {
     gap: 1rem;
     margin: 1.5rem 0;
+  }
+  
+  .about-section {
+    padding: 60px 20px;
+  }
+  
+  .about-container h2 {
+    font-size: 2rem;
+  }
+  
+  .about-container p {
+    font-size: 1rem;
   }
   
   .about-layout {
