@@ -1340,12 +1340,10 @@ class CustomCursor {
     // Smooth cursor movement with easing
     const lerp = (start, end, factor) => start + (end - start) * factor;
     
-    // Main cursor follows with slight smoothing for better feel
-    const cursorX = lerp(parseFloat(this.cursor.style.left || 0), this.cursorPos.x - 10, 0.3);
-    const cursorY = lerp(parseFloat(this.cursor.style.top || 0), this.cursorPos.y - 10, 0.3);
-    this.cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+    // Main cursor follows immediately for responsive feel
+    this.cursor.style.transform = `translate3d(${this.cursorPos.x - 10}px, ${this.cursorPos.y - 10}px, 0)`;
     
-    // Follower has more delay for smooth trail effect
+    // Follower has delay for smooth trail effect
     this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.2);
     this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.2);
     
