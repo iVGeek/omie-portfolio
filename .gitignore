@@ -7,3 +7,8 @@ dist/
 # Generated files (run npm run color-sort to regenerate)
 gallery-config.json
 gallery-config.js
+
+# Optimized images (run npm run optimize:advanced to regenerate)
+public/images/**/*-*w.jpg
+public/images/**/*-*w.webp
+public/images/**/*.webp

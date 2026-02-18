@@ -22,10 +22,10 @@
   <!-- Fonts: Playfair Display (bold serif) for headings, Inter (clean sans-serif) for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="print" onload="this.media='all'">
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="public/images/favicon.svg">
@@ -39,7 +39,14 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="stylesheet" href="styles.css?v=2.0">
+  <!-- Critical CSS inlined for faster FCP -->
+  <style>
+    :root{--primary-coral:#FF1493;--vibrant-orange:#FF6600;--warm-pink:#FF69B4;--text-dark:#4A1942;--text-muted:#5A6C6D;--bg-white:#FFF;--bg-cream:#FFF0F5;--font-serif:"Playfair Display",serif;--font-sans:"Inter",system-ui,-apple-system,sans-serif;--max-width:1400px;--section-padding:40px;--container-padding:24px;--transition-smooth:all .5s cubic-bezier(.23,1,.32,1);--transition-fast:all .2s ease}*,::after,::before{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}body{font-family:var(--font-sans);font-weight:400;line-height:1.7;color:var(--text-dark);background-color:var(--bg-white);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.loading-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#FF1493 0%,#FF6600 50%,#FF1493 100%);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .5s ease,visibility .5s ease}.loading-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}.loading-content{text-align:center;color:#fff}.loading-title{font-family:var(--font-serif);font-size:6rem;font-weight:900;letter-spacing:.15em;color:#fff;text-shadow:0 8px 30px rgba(0,0,0,.4)}.site-header{position:fixed;top:0;left:0;width:100%;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);z-index:1000;padding:1rem 0;transition:all .3s ease}.container{max-width:var(--max-width);margin:0 auto;padding:0 var(--container-padding)}.hero-slideshow{position:relative;height:100vh;overflow:hidden}.slideshow-container{position:absolute;top:0;left:0;width:100%;height:100%}.slide{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}.slide.active{opacity:1}.hero-content{position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:center;text-align:center}.hero-title{font-family:var(--font-serif);font-size:clamp(3rem,8vw,6rem);font-weight:900;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.5);line-height:1.1;margin-bottom:1.5rem}.skip-link{position:absolute;left:-9999px;z-index:999;padding:1em;background:#000;color:#fff;text-decoration:none}.skip-link:focus{left:50%;transform:translateX(-50%);top:1em}
+  </style>
+
+  <!-- Load full stylesheet async -->
+  <link rel="preload" href="styles.min.css?v=2.1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.min.css?v=2.1"></noscript>
   
   <!-- Fallback for users without JavaScript -->
   <noscript>
@@ -76,7 +83,7 @@
     <div class="container header-inner">
       <div class="brand">
         <a href="#hero" class="brand-link" aria-label="Go to home">
-          <img src="public/images/logo.svg" alt="OMIE Logo" class="site-logo">
+          <img src="public/images/logo.svg" alt="OMIE Logo" class="site-logo" width="40" height="40">
           <span class="site-title">OMIE</span>
         </a>
       </div>
@@ -151,7 +158,7 @@
           <!-- Left side: Image showcase -->
           <div class="about-image-wrapper">
             <div class="about-image-main">
-              <img src="images/about/crochet-work.jpg" alt="Handcrafted crochet work in progress" loading="lazy">
+              <img src="images/about/crochet-work.jpg" alt="Handcrafted crochet work in progress" loading="lazy" width="640" height="851">
               <div class="image-decoration"></div>
             </div>
             <div class="about-badge">
@@ -361,7 +368,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <img src="public/images/logo.svg" alt="OMIE Logo" class="footer-logo">
+          <img src="public/images/logo.svg" alt="OMIE Logo" class="footer-logo" width="40" height="40">
           <h3>OMIE</h3>
           <p>Create. Craft. Connect.</p>
         </div>
@@ -401,6 +408,6 @@
     </div>
   </div>
 
-  <script src="main.js?v=2.0" defer></script>
+  <script src="main.min.js?v=2.1" defer></script>
 </body>
 </html>

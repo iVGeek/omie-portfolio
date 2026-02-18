@@ -13,6 +13,75 @@
 const CONTACT_EMAIL = 'hello@omie.com';
 
 // ================================
+// WebP Support Detection & Image Optimization
+// ================================
+
+/**
+ * Detect WebP support
+ */
+function supportsWebP() {
+  const elem = document.createElement('canvas');
+  if (elem.getContext && elem.getContext('2d')) {
+    return elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+  }
+  return false;
+}
+
+/**
+ * Set optimized background image with WebP support
+ */
+function setOptimizedBackground(element, imagePath, sizes = [768, 480]) {
+  const ext = supportsWebP() ? 'webp' : 'jpg';
+  const baseNameMatch = imagePath.match(/([^/]+)\.(jpg|jpeg|png)$/i);
+  
+  if (!baseNameMatch) {
+    element.style.backgroundImage = `url('${imagePath}')`;
+    return;
+  }
+  
+  const baseName = baseNameMatch[1];
+  const dirPath = imagePath.substring(0, imagePath.lastIndexOf('/'));
+  
+  // Use appropriate size based on viewport
+  const viewportWidth = window.innerWidth;
+  let selectedSize = sizes[0];
+  
+  for (const size of sizes.reverse()) {
+    if (viewportWidth >= size) {
+      selectedSize = size;
+      break;
+    }
+  }
+  
+  const optimizedPath = `${dirPath}/${baseName}-${selectedSize}w.${ext}`;
+  element.style.backgroundImage = `url('${optimizedPath}')`;
+  
+  // Fallback to original if optimized doesn't exist
+  const img = new Image();
+  img.onerror = () => {
+    element.style.backgroundImage = `url('${imagePath}')`;
+  };
+  img.src = optimizedPath;
+}
+
+/**
+ * Get optimized image source with WebP support
+ */
+function getOptimizedImageSrc(imagePath, size = 800) {
+  const ext = supportsWebP() ? 'webp' : 'jpg';
+  const baseNameMatch = imagePath.match(/([^/]+)\.(jpg|jpeg|png)$/i);
+  
+  if (!baseNameMatch) {
+    return imagePath;
+  }
+  
+  const baseName = baseNameMatch[1];
+  const dirPath = imagePath.substring(0, imagePath.lastIndexOf('/'));
+  
+  return `${dirPath}/${baseName}-${size}w.${ext}`;
+}
+
+// ================================
 // Performance Utilities
 // ================================
 
@@ -157,6 +226,15 @@ class Slideshow {
   
   init() {
     if (this.slides.length === 0) return;
+    
+    // Set optimized backgrounds for hero slides
+    this.slides.forEach((slide, index) => {
+      const bgImage = slide.style.backgroundImage;
+      const match = bgImage.match(/url\(['"]?([^'"]+)['"]?\)/);
+      if (match && match[1]) {
+        setOptimizedBackground(slide, match[1], [1024, 768, 480]);
+      }
+    });
     
     // Start autoplay
     this.startAutoplay();
@@ -695,9 +773,14 @@ function renderMasonryGallery(filter = 'all') {
     item.dataset.index = index;
     
     const img = document.createElement('img');
-    img.src = image.src;
+    const optimizedSrc = getOptimizedImageSrc(image.src, 600);
+    img.src = optimizedSrc;
     img.alt = image.alt;
     img.loading = 'lazy';
+    img.width = 600;
+    img.height = 800;
+    // Fallback to original if optimized doesn't load
+    img.onerror = function() { this.src = image.src; };
     
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
@@ -872,9 +955,13 @@ function renderCategories(grid) {
     // Use first image from the category as thumbnail
     const firstImage = category.images[0];
     const img = document.createElement('img');
-    img.src = firstImage.src;
+    const optimizedSrc = getOptimizedImageSrc(firstImage.src, 600);
+    img.src = optimizedSrc;
     img.alt = `${category.name} category`;
     img.loading = 'lazy';
+    img.width = 600;
+    img.height = 800;
+    img.onerror = function() { this.src = firstImage.src; };
     
     // Add category name overlay with description
     const overlay = document.createElement('div');
@@ -1028,9 +1115,13 @@ function renderCategoryImages(grid) {
     article.className = 'lookbook-item stagger-item';
     
     const img = document.createElement('img');
-    img.src = image.src;
+    const optimizedSrc = getOptimizedImageSrc(image.src, 800);
+    img.src = optimizedSrc;
     img.alt = image.alt;
     img.loading = 'lazy';
+    img.width = 600;
+    img.height = 800;
+    img.onerror = function() { this.src = image.src; };
     
     // Add premium image overlay with details
     const overlay = document.createElement('div');

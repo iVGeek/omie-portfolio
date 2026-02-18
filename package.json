@@ -8,6 +8,11 @@
     "color-sort:preview": "node color-sort.js --dry-run",
     "test": "node test-color-sort.js",
     "optimize": "node optimize-images.js",
+    "optimize:advanced": "node optimize-images-advanced.js",
+    "minify:js": "terser main.js -c -m -o main.min.js",
+    "minify:css": "cleancss styles.css -o styles.min.css",
+    "minify": "npm run minify:js && npm run minify:css",
+    "build": "npm run minify",
     "start": "npx serve .",
     "dev": "npx serve . --listen 8000"
   },
@@ -20,9 +25,10 @@
   "author": "OMIE",
   "license": "MIT",
   "devDependencies": {
-    "sharp": "^0.33.0"
+    "clean-css-cli": "^5.6.3",
+    "sharp": "^0.33.0",
+    "terser": "^5.46.0"
   },
-  "dependencies": {},
   "engines": {
     "node": ">=14.0.0"
   }
