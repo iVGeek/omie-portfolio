@@ -3,3 +3,7 @@ dist/
 .DS_Store
 *.log
 *.backup
+
+# Generated files (run npm run color-sort to regenerate)
+gallery-config.json
+gallery-config.js
