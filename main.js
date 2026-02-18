@@ -57,6 +57,12 @@ const galleryCategories = [
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-05.jpg', alt: 'Pinkie Flamingo craftsmanship showcase' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-06.jpg', alt: 'Pinkie Flamingo vibrant colors' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-07.jpg', alt: 'Pinkie Flamingo elegant design' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-08.jpg', alt: 'Pinkie Flamingo bold statement' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-09.jpg', alt: 'Pinkie Flamingo creative piece' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-10.jpg', alt: 'Pinkie Flamingo playful design' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-11.jpg', alt: 'Pinkie Flamingo cheerful creation' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-12.jpg', alt: 'Pinkie Flamingo vibrant artwork' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-13.jpg', alt: 'Pinkie Flamingo beautiful masterpiece' },
     ]
   },
   {
@@ -104,18 +110,28 @@ const galleryCategories = [
     color: '#9370DB', // Medium purple
     bgColor: 'linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(186, 85, 211, 0.1) 100%)',
     images: [
-      { src: 'images/gallery/Purple Elegance/purple-elegance-01.jpg', alt: 'Purple Elegance sophisticated design' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-02.jpg', alt: 'Purple Elegance graceful creation' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-03.jpg', alt: 'Purple Elegance refined artwork' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-04.jpg', alt: 'Purple Elegance delicate beauty' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-05.jpg', alt: 'Purple Elegance elegant masterpiece' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-06.jpg', alt: 'Purple Elegance royal design' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-07.jpg', alt: 'Purple Elegance handcrafted piece' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-08.jpg', alt: 'Purple Elegance artistic creation' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-09.jpg', alt: 'Purple Elegance detailed work' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-10.jpg', alt: 'Purple Elegance fine craftsmanship' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-11.jpg', alt: 'Purple Elegance beautiful design' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-12.jpg', alt: 'Purple Elegance finished piece' },
+    ]
+  },
+  {
+    name: 'Blue Serenity',
+    description: 'Calming blue designs that bring tranquility and peaceful elegance',
+    materials: 'Soft cotton-blend yarn, gentle textures',
+    techniques: 'Smooth stitch patterns with serene color blending',
+    inspiration: 'Inspired by clear skies, ocean waves, and peaceful waters',
+    color: '#4169E1', // Royal blue
+    bgColor: 'linear-gradient(135deg, rgba(65, 105, 225, 0.1) 0%, rgba(135, 206, 250, 0.1) 100%)',
+    images: [
+      { src: 'images/gallery/Blue Serenity/blue-serenity-01.jpg', alt: 'Blue Serenity tranquil design' },
+      { src: 'images/gallery/Blue Serenity/blue-serenity-02.jpg', alt: 'Blue Serenity peaceful creation' },
+      { src: 'images/gallery/Blue Serenity/blue-serenity-03.jpg', alt: 'Blue Serenity calming artwork' },
+      { src: 'images/gallery/Blue Serenity/blue-serenity-04.jpg', alt: 'Blue Serenity serene beauty' },
+      { src: 'images/gallery/Blue Serenity/blue-serenity-05.jpg', alt: 'Blue Serenity elegant masterpiece' },
     ]
   }
 ];
