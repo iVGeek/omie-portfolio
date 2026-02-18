@@ -1276,26 +1276,34 @@ function setupBackToTop() {
 // Initialize Everything
 // ================================
 
-// Hide loading screen after page loads
-window.addEventListener('load', () => {
-  const LOADING_SCREEN_MIN_DURATION = 500; // Minimum time to show loading screen (ms)
-  const LOADING_SCREEN_FADE_DURATION = 500; // Time for fade-out animation (ms)
-  
+// Loading screen configuration constants
+const LOADING_SCREEN_MIN_DURATION = 500; // Minimum time to show loading screen (ms)
+const LOADING_SCREEN_FADE_DURATION = 500; // Time for fade-out animation (ms)
+const LOADING_SCREEN_MAX_TIMEOUT = 3000; // Maximum time before forcing loading screen removal (ms)
+
+// Function to hide the loading screen
+function hideLoadingScreen() {
   const loadingScreen = document.getElementById('loading-screen');
-  if (loadingScreen) {
-    // Add a small delay to ensure smooth transition
+  if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
+    loadingScreen.classList.add('hidden');
+    
+    // Remove from DOM after animation completes
     setTimeout(() => {
-      loadingScreen.classList.add('hidden');
-      
-      // Remove from DOM after animation completes
-      setTimeout(() => {
-        loadingScreen.remove();
-      }, LOADING_SCREEN_FADE_DURATION);
-    }, LOADING_SCREEN_MIN_DURATION);
+      loadingScreen.remove();
+    }, LOADING_SCREEN_FADE_DURATION);
   }
-});
+}
+
+// Fallback: Ensure loading screen is hidden after max timeout, even if resources fail to load
+setTimeout(() => {
+  hideLoadingScreen();
+}, LOADING_SCREEN_MAX_TIMEOUT);
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Hide loading screen when DOM is ready (doesn't wait for external resources)
+  setTimeout(() => {
+    hideLoadingScreen();
+  }, LOADING_SCREEN_MIN_DURATION);
   // Set current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
   
