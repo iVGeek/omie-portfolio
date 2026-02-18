@@ -1,0 +1,23 @@
+{
+  "name": "OMIE — Creative Portfolio & Handcrafted Crochet Gallery",
+  "short_name": "OMIE Portfolio",
+  "description": "Discover OMIE's stunning portfolio of handcrafted crochet designs. Explore unique, sustainable creations featuring vibrant colors and timeless elegance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF0F5",
+  "theme_color": "#FF1493",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/public/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "art", "shopping"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}
