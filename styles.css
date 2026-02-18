@@ -1045,7 +1045,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 60px 20px;
   background: linear-gradient(135deg, #FFC1C1 0%, #FF6B9D 25%, #FFA07A 50%, #FF8C66 75%, #FFC1C1 100%);
   background-size: 400% 400%;
-  color: #fff;
+  color: #2c2c2c;
   box-shadow: 0 15px 50px rgba(255, 160, 122, 0.25);
   animation: gradientRotate 15s ease-in-out infinite;
   position: relative;
@@ -1101,6 +1101,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 2.8rem;
   margin-bottom: 40px;
   font-weight: 700;
+  color: #2c2c2c;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
