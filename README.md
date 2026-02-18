@@ -2,6 +2,24 @@
 
 A warm, welcoming, and visually appealing crochet pattern portfolio website featuring coral and peach accents, smooth animations, and a cozy design aesthetic.
 
+## 🎨 NEW: Automated Color Sorting!
+
+**Automatically organize your gallery images by color!**
+
+The portfolio now includes an intelligent color sorting program that:
+- 🔍 Analyzes images to detect dominant colors
+- 🎯 Automatically categorizes images by color family
+- 💡 Suggests creative category names
+- ✨ Generates ready-to-use gallery configuration
+
+👉 **[Color Sorting Guide →](COLOR_SORTING_GUIDE.md)** - Learn how to use the color sorter!
+
+Quick start:
+```bash
+npm install              # Install dependencies
+npm run color-sort      # Analyze and sort your images
+```
+
 ## ✅ Instagram Images Ready!
 
 **The portfolio is now configured to use Instagram images!**
@@ -15,6 +33,7 @@ All Unsplash placeholder URLs have been replaced with local image paths. Simply 
 **Want to replace the placeholder images with your own crochet photos?**
 
 👉 **[Instagram Setup Status →](INSTAGRAM_SETUP_STATUS.md)** ⭐ **Start here!**  
+👉 **[Color Sorting Guide →](COLOR_SORTING_GUIDE.md)** 🎨 **Auto-organize by color!**  
 👉 **[Using Instagram Images Guide →](INSTAGRAM_GUIDE.md)**  
 👉 **[Complete Media Customization Guide →](MEDIA_GUIDE.md)**  
 👉 **[Code Examples (Before/After) →](EXAMPLES.md)**
@@ -22,6 +41,7 @@ All Unsplash placeholder URLs have been replaced with local image paths. Simply 
 In 5 minutes, you'll learn how to:
 - Download your Instagram images
 - Add your images to the right folders
+- **Automatically sort images by color** (NEW!)
 - Optimize images for web performance
 - Troubleshoot common issues
 
@@ -29,6 +49,7 @@ In 5 minutes, you'll learn how to:
 
 ✨ **Full-Screen Hero Slideshow** - Beautiful image slideshow showcasing crochet projects  
 🎨 **Warm & Cozy Theme** - Craft-friendly color palette with pink and orange tones  
+🤖 **Automated Color Sorting** - Intelligent image analysis and categorization by color (NEW!)  
 📐 **Responsive Design** - Fully responsive across all devices  
 🎭 **Interactive Elements** - Hover effects, parallax scrolling, and smooth animations  
 🖼️ **Project Gallery** - Asymmetric grid layout for showcasing finished crochet projects  
