@@ -698,6 +698,8 @@ function renderMasonryGallery(filter = 'all') {
     img.src = image.src;
     img.alt = image.alt;
     img.loading = 'lazy';
+    img.width = 600;
+    img.height = 800;
     
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
@@ -875,6 +877,8 @@ function renderCategories(grid) {
     img.src = firstImage.src;
     img.alt = `${category.name} category`;
     img.loading = 'lazy';
+    img.width = 600;
+    img.height = 800;
     
     // Add category name overlay with description
     const overlay = document.createElement('div');
@@ -1031,6 +1035,8 @@ function renderCategoryImages(grid) {
     img.src = image.src;
     img.alt = image.alt;
     img.loading = 'lazy';
+    img.width = 600;
+    img.height = 800;
     
     // Add premium image overlay with details
     const overlay = document.createElement('div');
