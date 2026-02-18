@@ -6,6 +6,7 @@
   "scripts": {
     "color-sort": "node color-sort.js",
     "color-sort:preview": "node color-sort.js --dry-run",
+    "test": "node test-color-sort.js",
     "optimize": "node optimize-images.js",
     "start": "npx serve .",
     "dev": "npx serve . --listen 8000"
