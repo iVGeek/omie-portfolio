@@ -15,9 +15,18 @@
 -->
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="OMIE — A stunning portfolio showcasing creative work and beautiful projects. Explore my gallery of handcrafted designs." />
-  <title>OMIE — Creative Portfolio & Gallery</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  
+  <!-- Primary Meta Tags -->
+  <title>OMIE — Creative Portfolio & Handcrafted Crochet Gallery</title>
+  <meta name="title" content="OMIE — Creative Portfolio & Handcrafted Crochet Gallery" />
+  <meta name="description" content="Discover OMIE's stunning portfolio of handcrafted crochet designs. Explore unique, sustainable creations featuring vibrant colors and timeless elegance. Each piece is made with love in Nairobi, Kenya." />
+  <meta name="keywords" content="crochet portfolio, handmade crafts, OMIE portfolio, handcrafted designs, sustainable crochet, Nairobi artisan, custom crochet, unique designs, crochet gallery" />
+  <meta name="author" content="OMIE" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#FF1493" />
+  <link rel="canonical" href="https://omie-portfolio.netlify.app/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
   <!-- Fonts: Playfair Display (bold serif) for headings, Inter (clean sans-serif) for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,21 +34,60 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="public/images/favicon.svg">
+  <link rel="apple-touch-icon" href="public/images/favicon.svg">
 
   <!-- Preload hero image for faster LCP -->
-  <link rel="preload" as="image" href="images/hero/hero1.jpg.jpeg">
+  <link rel="preload" as="image" href="images/hero/hero1.jpg.jpeg" fetchpriority="high">
 
-  <!-- Open Graph & Twitter metadata -->
-  <meta property="og:title" content="OMIE — Creative Portfolio & Gallery">
-  <meta property="og:description" content="A stunning portfolio showcasing creative work and beautiful handcrafted projects.">
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://omie-portfolio.netlify.app/">
+  <meta property="og:title" content="OMIE — Creative Portfolio & Handcrafted Crochet Gallery">
+  <meta property="og:description" content="Discover OMIE's stunning portfolio of handcrafted crochet designs. Explore unique, sustainable creations featuring vibrant colors and timeless elegance.">
+  <meta property="og:image" content="https://omie-portfolio.netlify.app/images/hero/hero1.jpg.jpeg">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="OMIE Portfolio" />
 
-  <link rel="stylesheet" href="styles.css?v=2.0">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://omie-portfolio.netlify.app/">
+  <meta name="twitter:title" content="OMIE — Creative Portfolio & Handcrafted Crochet Gallery">
+  <meta name="twitter:description" content="Discover OMIE's stunning portfolio of handcrafted crochet designs. Explore unique, sustainable creations.">
+  <meta name="twitter:image" content="https://omie-portfolio.netlify.app/images/hero/hero1.jpg.jpeg">
+
+  <!-- Structured Data / Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "OMIE",
+    "url": "https://omie-portfolio.netlify.app/",
+    "image": "https://omie-portfolio.netlify.app/images/hero/hero1.jpg.jpeg",
+    "sameAs": [
+      "https://instagram.com/yourusername/",
+      "https://pinterest.com/yourusername/"
+    ],
+    "jobTitle": "Crochet Artist & Designer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "OMIE"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressCountry": "Kenya"
+    },
+    "email": "hello@omie.com",
+    "description": "Handcrafted crochet artist creating unique, sustainable designs with love and care."
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css?v=2.1">
   
   <!-- Fallback for users without JavaScript -->
   <noscript>
@@ -401,6 +449,6 @@
     </div>
   </div>
 
-  <script src="main.js?v=2.0" defer></script>
+  <script src="main.js?v=2.1" defer></script>
 </body>
 </html>
