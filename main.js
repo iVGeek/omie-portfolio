@@ -50,15 +50,15 @@ const galleryCategories = [
     color: '#FF1493', // Deep pink
     bgColor: 'linear-gradient(135deg, rgba(255, 20, 147, 0.1) 0%, rgba(255, 182, 193, 0.1) 100%)',
     images: [
-      { src: 'images/gallery/Pinkie Flamingo/539967597_18081547793302431_3448890780171806210_n.jpg', alt: 'Pinkie Flamingo handcrafted design' },
-      { src: 'images/gallery/Pinkie Flamingo/540011953_18081547697302431_1005875501831294864_n.jpg', alt: 'Pinkie Flamingo detailed view' },
-      { src: 'images/gallery/Pinkie Flamingo/540036594_18081547706302431_7862490469488856780_n.jpg', alt: 'Pinkie Flamingo artistic arrangement' },
-      { src: 'images/gallery/Pinkie Flamingo/540046590_18081547715302431_7480653551078539801_n.jpg', alt: 'Pinkie Flamingo close-up detail' },
-      { src: 'images/gallery/Pinkie Flamingo/540109803_18081547742302431_312412726075327105_n.jpg', alt: 'Pinkie Flamingo craftsmanship showcase' },
-      { src: 'images/gallery/Pinkie Flamingo/557345373_18085136189302431_4090076875377072997_n.jpg', alt: 'Pinkie Flamingo vibrant colors' },
-      { src: 'images/gallery/Pinkie Flamingo/557413552_18085136102302431_8716580283757432743_n.jpg', alt: 'Pinkie Flamingo elegant design' },
-      { src: 'images/gallery/Pinkie Flamingo/557413555_18085136114302431_8515872593961169212_n.jpg', alt: 'Pinkie Flamingo unique creation' },
-      { src: 'images/gallery/Pinkie Flamingo/557438844_18085136153302431_7665076335401273258_n.jpg', alt: 'Pinkie Flamingo final masterpiece' }
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-01.jpg', alt: 'Pinkie Flamingo handcrafted design' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-02.jpg', alt: 'Pinkie Flamingo detailed view' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-03.jpg', alt: 'Pinkie Flamingo artistic arrangement' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-04.jpg', alt: 'Pinkie Flamingo close-up detail' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-05.jpg', alt: 'Pinkie Flamingo craftsmanship showcase' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-06.jpg', alt: 'Pinkie Flamingo vibrant colors' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-07.jpg', alt: 'Pinkie Flamingo elegant design' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-08.jpg', alt: 'Pinkie Flamingo unique creation' },
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-09.jpg', alt: 'Pinkie Flamingo final masterpiece' }
     ]
   },
   {
@@ -70,14 +70,14 @@ const galleryCategories = [
     color: '#DC143C', // Crimson red
     bgColor: 'linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(255, 99, 71, 0.1) 100%)',
     images: [
-      { src: 'images/gallery/Red Ruby/558688219_18085136123302431_6779459226908578350_n.jpg', alt: 'Red Ruby elegant design' },
-      { src: 'images/gallery/Red Ruby/558845894_18085136171302431_5383694440068152323_n.jpg', alt: 'Red Ruby luxurious creation' },
-      { src: 'images/gallery/Red Ruby/558943227_18085136162302431_817826934527130040_n.jpg', alt: 'Red Ruby detailed craftsmanship' },
-      { src: 'images/gallery/Red Ruby/559299844_18085136132302431_164314802719577659_n.jpg', alt: 'Red Ruby bold statement piece' },
-      { src: 'images/gallery/Red Ruby/568117746_18088496120302431_916359807911567279_n.jpg', alt: 'Red Ruby rich textures' },
-      { src: 'images/gallery/Red Ruby/568256074_18088496129302431_614153971394619769_n.jpg', alt: 'Red Ruby vibrant artwork' },
-      { src: 'images/gallery/Red Ruby/569011936_18088496138302431_2913682672152415748_n.jpg', alt: 'Red Ruby handcrafted beauty' },
-      { src: 'images/gallery/Red Ruby/569762971_18088496174302431_7102191316536323537_n.jpg', alt: 'Red Ruby finished masterpiece' }
+      { src: 'images/gallery/Red Ruby/red-ruby-01.jpg', alt: 'Red Ruby elegant design' },
+      { src: 'images/gallery/Red Ruby/red-ruby-02.jpg', alt: 'Red Ruby luxurious creation' },
+      { src: 'images/gallery/Red Ruby/red-ruby-03.jpg', alt: 'Red Ruby detailed craftsmanship' },
+      { src: 'images/gallery/Red Ruby/red-ruby-04.jpg', alt: 'Red Ruby bold statement piece' },
+      { src: 'images/gallery/Red Ruby/red-ruby-05.jpg', alt: 'Red Ruby rich textures' },
+      { src: 'images/gallery/Red Ruby/red-ruby-06.jpg', alt: 'Red Ruby vibrant artwork' },
+      { src: 'images/gallery/Red Ruby/red-ruby-07.jpg', alt: 'Red Ruby handcrafted beauty' },
+      { src: 'images/gallery/Red Ruby/red-ruby-08.jpg', alt: 'Red Ruby finished masterpiece' }
     ]
   },
   {
@@ -89,14 +89,14 @@ const galleryCategories = [
     color: '#FF6600', // Vibrant orange
     bgColor: 'linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%)',
     images: [
-      { src: 'images/gallery/Sunset Hues/587524949_18092088908302431_8400526806509945507_n.jpg', alt: 'Sunset Hues warm design' },
-      { src: 'images/gallery/Sunset Hues/587776088_18092088851302431_7481810639402148416_n.jpg', alt: 'Sunset Hues golden creation' },
-      { src: 'images/gallery/Sunset Hues/587819190_18092088881302431_8808916453267266553_n.jpg', alt: 'Sunset Hues artistic blend' },
-      { src: 'images/gallery/Sunset Hues/588222810_18092088869302431_3178962861210220183_n.jpg', alt: 'Sunset Hues cozy masterpiece' },
-      { src: 'images/gallery/Sunset Hues/589121556_18092088899302431_7696768615798332121_n.jpg', alt: 'Sunset Hues vibrant artwork' },
-      { src: 'images/gallery/Sunset Hues/589135600_18092088824302431_4450958026945299115_n.jpg', alt: 'Sunset Hues autumn beauty' },
-      { src: 'images/gallery/Sunset Hues/589197219_18092088833302431_7027825451325369358_n.jpg', alt: 'Sunset Hues handcrafted design' },
-      { src: 'images/gallery/Sunset Hues/611266862_18096171110302431_1325073686730851317_n.jpg', alt: 'Sunset Hues final creation' }
+      { src: 'images/gallery/Sunset Hues/sunset-hues-01.jpg', alt: 'Sunset Hues warm design' },
+      { src: 'images/gallery/Sunset Hues/sunset-hues-02.jpg', alt: 'Sunset Hues golden creation' },
+      { src: 'images/gallery/Sunset Hues/sunset-hues-03.jpg', alt: 'Sunset Hues artistic blend' },
+      { src: 'images/gallery/Sunset Hues/sunset-hues-04.jpg', alt: 'Sunset Hues cozy masterpiece' },
+      { src: 'images/gallery/Sunset Hues/sunset-hues-05.jpg', alt: 'Sunset Hues vibrant artwork' },
+      { src: 'images/gallery/Sunset Hues/sunset-hues-06.jpg', alt: 'Sunset Hues autumn beauty' },
+      { src: 'images/gallery/Sunset Hues/sunset-hues-07.jpg', alt: 'Sunset Hues handcrafted design' },
+      { src: 'images/gallery/Sunset Hues/sunset-hues-08.jpg', alt: 'Sunset Hues final creation' }
     ]
   },
   {
@@ -108,18 +108,18 @@ const galleryCategories = [
     color: '#9370DB', // Medium purple
     bgColor: 'linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(186, 85, 211, 0.1) 100%)',
     images: [
-      { src: 'images/gallery/Purple Elegance/611630562_18096171164302431_7630117364178829182_n.jpg', alt: 'Purple Elegance sophisticated design' },
-      { src: 'images/gallery/Purple Elegance/611714281_18096171128302431_1163567786338715110_n.jpg', alt: 'Purple Elegance graceful creation' },
-      { src: 'images/gallery/Purple Elegance/612074427_18096171137302431_3163465707956930400_n.jpg', alt: 'Purple Elegance refined artwork' },
-      { src: 'images/gallery/Purple Elegance/612105075_18096171119302431_3615833347089412139_n.jpg', alt: 'Purple Elegance delicate beauty' },
-      { src: 'images/gallery/Purple Elegance/612129224_18096171191302431_1984634528210182916_n.jpg', alt: 'Purple Elegance elegant masterpiece' },
-      { src: 'images/gallery/Purple Elegance/612238180_18096171146302431_6260479965133691207_n.jpg', alt: 'Purple Elegance royal design' },
-      { src: 'images/gallery/Purple Elegance/project1.jpg', alt: 'Purple Elegance handcrafted piece' },
-      { src: 'images/gallery/Purple Elegance/project2.jpg', alt: 'Purple Elegance artistic creation' },
-      { src: 'images/gallery/Purple Elegance/project3.jpg', alt: 'Purple Elegance detailed work' },
-      { src: 'images/gallery/Purple Elegance/project4.jpg', alt: 'Purple Elegance fine craftsmanship' },
-      { src: 'images/gallery/Purple Elegance/project5.jpg', alt: 'Purple Elegance beautiful design' },
-      { src: 'images/gallery/Purple Elegance/project6.jpg', alt: 'Purple Elegance finished piece' }
+      { src: 'images/gallery/Purple Elegance/purple-elegance-01.jpg', alt: 'Purple Elegance sophisticated design' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-02.jpg', alt: 'Purple Elegance graceful creation' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-03.jpg', alt: 'Purple Elegance refined artwork' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-04.jpg', alt: 'Purple Elegance delicate beauty' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-05.jpg', alt: 'Purple Elegance elegant masterpiece' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-06.jpg', alt: 'Purple Elegance royal design' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-07.jpg', alt: 'Purple Elegance handcrafted piece' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-08.jpg', alt: 'Purple Elegance artistic creation' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-09.jpg', alt: 'Purple Elegance detailed work' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-10.jpg', alt: 'Purple Elegance fine craftsmanship' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-11.jpg', alt: 'Purple Elegance beautiful design' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-12.jpg', alt: 'Purple Elegance finished piece' }
     ]
   }
 ];
