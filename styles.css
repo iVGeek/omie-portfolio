@@ -542,19 +542,6 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.section-title::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  background: linear-gradient(135deg, rgba(255, 20, 147, 0.2) 0%, rgba(255, 102, 0, 0.2) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: blur(20px);
-}
-
 .section-title.centered {
   text-align: center;
 }
@@ -945,16 +932,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary {
   background: linear-gradient(135deg, #FF1493 0%, #FF6600 50%, #FF69B4 100%);
-  background-size: 200% 200%;
+  background-size: 300% 300%;
   color: white;
   box-shadow: 0 12px 35px rgba(255, 20, 147, 0.4),
               0 8px 20px rgba(255, 102, 0, 0.3);
   animation: gradientShift 8s ease-in-out infinite;
-  background-size: 300% 300%;
-  position: relative;
-  overflow: hidden;
-}
-  background-size: 200% 200%;
   position: relative;
   overflow: hidden;
   font-weight: 700;
