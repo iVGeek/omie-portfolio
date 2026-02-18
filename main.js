@@ -820,16 +820,102 @@ function updateLightboxImage() {
 // Filter Button Functionality
 // ================================
 
+/**
+ * Dynamically apply colors to filter buttons based on gallery categories
+ * This ensures button colors automatically match category colors
+ */
+function applyFilterButtonColors() {
+  // Create a map of category slug to category data
+  const categoryMap = {};
+  galleryCategories.forEach(category => {
+    const slug = category.name.toLowerCase().replace(/\s+/g, '-');
+    categoryMap[slug] = category;
+  });
+  
+  // Apply colors to each filter button (except "all")
+  const filterButtons = document.querySelectorAll('.filter-btn[data-filter]:not([data-filter="all"])');
+  filterButtons.forEach(button => {
+    const filter = button.dataset.filter;
+    const category = categoryMap[filter];
+    
+    if (category && category.color) {
+      const color = category.color;
+      
+      // Parse the hex color to RGB for transparency effects
+      const r = parseInt(color.slice(1, 3), 16);
+      const g = parseInt(color.slice(3, 5), 16);
+      const b = parseInt(color.slice(5, 7), 16);
+      
+      // Calculate a lighter shade for gradients
+      const lighterColor = `rgb(${Math.min(r + 40, 255)}, ${Math.min(g + 40, 255)}, ${Math.min(b + 40, 255)})`;
+      
+      // Apply base styles
+      button.style.borderColor = color;
+      button.style.color = color;
+      button.style.boxShadow = `0 3px 10px rgba(${r}, ${g}, ${b}, 0.15)`;
+      
+      // Store original styles and color for hover/active states
+      button.dataset.categoryColor = color;
+      button.dataset.categoryRgb = `${r}, ${g}, ${b}`;
+      button.dataset.lighterColor = lighterColor;
+    }
+  });
+}
+
+/**
+ * Setup filter button interactions with dynamic color support
+ */
 function setupFilterButtons() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   
+  // First, apply colors to buttons
+  applyFilterButtonColors();
+  
   filterButtons.forEach(button => {
+    // Add hover effects for buttons with dynamic colors
+    const categoryColor = button.dataset.categoryColor;
+    const categoryRgb = button.dataset.categoryRgb;
+    const lighterColor = button.dataset.lighterColor;
+    
+    if (categoryColor && categoryRgb) {
+      button.addEventListener('mouseenter', () => {
+        if (!button.classList.contains('active')) {
+          button.style.background = `linear-gradient(135deg, rgba(${categoryRgb}, 0.15) 0%, rgba(${categoryRgb}, 0.05) 100%)`;
+          button.style.boxShadow = `0 6px 18px rgba(${categoryRgb}, 0.3), 0 0 20px rgba(${categoryRgb}, 0.2)`;
+        }
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        if (!button.classList.contains('active')) {
+          button.style.background = 'white';
+          button.style.boxShadow = `0 3px 10px rgba(${categoryRgb}, 0.15)`;
+        }
+      });
+    }
+    
     button.addEventListener('click', () => {
-      // Remove active class from all buttons
-      filterButtons.forEach(btn => btn.classList.remove('active'));
+      // Remove active class and reset styles from all buttons
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        const rgb = btn.dataset.categoryRgb;
+        if (rgb && !btn.dataset.filter === 'all') {
+          btn.style.background = 'white';
+          btn.style.borderColor = btn.dataset.categoryColor;
+          btn.style.color = btn.dataset.categoryColor;
+          btn.style.boxShadow = `0 3px 10px rgba(${rgb}, 0.15)`;
+        }
+      });
       
       // Add active class to clicked button
       button.classList.add('active');
+      
+      // Apply active styles for buttons with dynamic colors
+      if (categoryColor && categoryRgb && lighterColor) {
+        button.style.background = `linear-gradient(135deg, ${categoryColor} 0%, ${lighterColor} 100%)`;
+        button.style.color = 'white';
+        button.style.borderColor = 'transparent';
+        button.style.boxShadow = `0 6px 20px rgba(${categoryRgb}, 0.5), 0 0 30px rgba(${categoryRgb}, 0.3)`;
+      }
       
       // Get filter value and render gallery
       const filter = button.dataset.filter;
