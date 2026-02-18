@@ -14,7 +14,7 @@
   --orange-light: #FFA500;      /* Light orange */
   --orange-mid: #FF7F00;        /* Mid orange */
   --text-dark: #4A1942;         /* Deep purple-pink for text */
-  --text-muted: #7F8C8D;
+  --text-muted: #5A6C6D;        /* Darker gray for better contrast (5.53:1 ratio) */
   --bg-white: #FFFFFF;
   --bg-cream: #FFF0F5;          /* Lightest pink for background */
   --bg-light: #FFB6C1;          /* Light pink for alternate backgrounds */
