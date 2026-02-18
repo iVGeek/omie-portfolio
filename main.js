@@ -56,7 +56,7 @@ const galleryCategories = [
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-04.jpg', alt: 'Pinkie Flamingo close-up detail' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-05.jpg', alt: 'Pinkie Flamingo craftsmanship showcase' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-06.jpg', alt: 'Pinkie Flamingo vibrant colors' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-07.jpg', alt: 'Pinkie Flamingo elegant design' }
+      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-07.jpg', alt: 'Pinkie Flamingo elegant design' },
     ]
   },
   {
@@ -74,7 +74,7 @@ const galleryCategories = [
       { src: 'images/gallery/Red Ruby/red-ruby-04.jpg', alt: 'Red Ruby bold statement piece' },
       { src: 'images/gallery/Red Ruby/red-ruby-05.jpg', alt: 'Red Ruby rich textures' },
       { src: 'images/gallery/Red Ruby/red-ruby-06.jpg', alt: 'Red Ruby vibrant artwork' },
-      { src: 'images/gallery/Red Ruby/red-ruby-07.jpg', alt: 'Red Ruby handcrafted beauty' }
+      { src: 'images/gallery/Red Ruby/red-ruby-07.jpg', alt: 'Red Ruby handcrafted beauty' },
     ]
   },
   {
@@ -92,7 +92,7 @@ const galleryCategories = [
       { src: 'images/gallery/Sunset Hues/sunset-hues-04.jpg', alt: 'Sunset Hues cozy masterpiece' },
       { src: 'images/gallery/Sunset Hues/sunset-hues-05.jpg', alt: 'Sunset Hues vibrant artwork' },
       { src: 'images/gallery/Sunset Hues/sunset-hues-06.jpg', alt: 'Sunset Hues autumn beauty' },
-      { src: 'images/gallery/Sunset Hues/sunset-hues-07.jpg', alt: 'Sunset Hues handcrafted design' }
+      { src: 'images/gallery/Sunset Hues/sunset-hues-07.jpg', alt: 'Sunset Hues handcrafted design' },
     ]
   },
   {
@@ -115,7 +115,7 @@ const galleryCategories = [
       { src: 'images/gallery/Purple Elegance/purple-elegance-09.jpg', alt: 'Purple Elegance detailed work' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-10.jpg', alt: 'Purple Elegance fine craftsmanship' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-11.jpg', alt: 'Purple Elegance beautiful design' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-12.jpg', alt: 'Purple Elegance finished piece' }
+      { src: 'images/gallery/Purple Elegance/purple-elegance-12.jpg', alt: 'Purple Elegance finished piece' },
     ]
   }
 ];
