@@ -8,6 +8,7 @@
     "color-sort:preview": "node color-sort.js --dry-run",
     "test": "node test-color-sort.js",
     "optimize": "node optimize-images.js",
+    "optimize:advanced": "node optimize-images-advanced.js",
     "minify:js": "terser main.js -c -m -o main.min.js",
     "minify:css": "cleancss styles.css -o styles.min.css",
     "minify": "npm run minify:js && npm run minify:css",
