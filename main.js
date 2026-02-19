@@ -1772,10 +1772,20 @@ class CrochetBot {
 }
 
 // Initialize Crochet Bot after page loads
+let crochetBotInstance = null;
+
 window.addEventListener('load', () => {
-  // Create bot with a delay to let the page settle (using class-defined delay)
+  // Create bot with a delay to let the page settle
+  const INIT_DELAY_MS = 1000; // Matches CrochetBot.initDelay
+  
   setTimeout(() => {
-    const bot = new CrochetBot();
-    // Delay value matches bot.initDelay (1000ms)
-  }, 1000);
+    crochetBotInstance = new CrochetBot();
+  }, INIT_DELAY_MS);
+});
+
+// Optional: Cleanup on page unload (useful for SPAs)
+window.addEventListener('beforeunload', () => {
+  if (crochetBotInstance) {
+    crochetBotInstance.destroy();
+  }
 });
