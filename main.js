@@ -1446,8 +1446,8 @@ class CustomCursor {
     // Smooth cursor movement with easing
     const lerp = (start, end, factor) => start + (end - start) * factor;
     
-    // Main cursor (yarn ball) follows immediately for responsive feel
-    this.cursor.style.transform = `translate3d(${this.cursorPos.x - 12}px, ${this.cursorPos.y - 12}px, 0)`;
+    // Main cursor (crochet hook) follows immediately for responsive feel
+    this.cursor.style.transform = `translate3d(${this.cursorPos.x - 3}px, ${this.cursorPos.y - 32}px, 0)`;
     
     // Follower (yarn thread) has delay for smooth trail effect
     this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.15);
