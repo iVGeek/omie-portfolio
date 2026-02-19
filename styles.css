@@ -647,8 +647,6 @@ body.category-purple-elegance {
 /* Mobile adjustments for bot */
 @media (max-width: 768px) {
   .crochet-bot {
-    left: 50%;
-    transform: translateX(-50%);
     width: 80px;
     height: 80px;
   }
