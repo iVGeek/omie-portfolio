@@ -1446,14 +1446,19 @@ class CustomCursor {
     // Smooth cursor movement with easing
     const lerp = (start, end, factor) => start + (end - start) * factor;
     
-    // Main cursor follows immediately for responsive feel
-    this.cursor.style.transform = `translate3d(${this.cursorPos.x - 10}px, ${this.cursorPos.y - 10}px, 0)`;
+    // Main cursor (yarn ball) follows immediately for responsive feel
+    this.cursor.style.transform = `translate3d(${this.cursorPos.x - 12}px, ${this.cursorPos.y - 12}px, 0)`;
     
-    // Follower has delay for smooth trail effect
-    this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.2);
-    this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.2);
+    // Follower (yarn thread) has delay for smooth trail effect
+    this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.15);
+    this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.15);
     
-    this.follower.style.transform = `translate3d(${this.followerPos.x - 20}px, ${this.followerPos.y - 20}px, 0)`;
+    // Calculate angle between cursor and follower for yarn thread rotation
+    const dx = this.cursorPos.x - this.followerPos.x;
+    const dy = this.cursorPos.y - this.followerPos.y;
+    const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+    
+    this.follower.style.transform = `translate3d(${this.followerPos.x - 1.5}px, ${this.followerPos.y - 30}px, 0) rotate(${angle}deg)`;
     
     this.rafId = requestAnimationFrame(() => this.animate());
   }
@@ -1589,4 +1594,151 @@ function observeStatNumbers() {
 // Initialize stat counter animation
 document.addEventListener('DOMContentLoaded', () => {
   observeStatNumbers();
+});
+
+// ================================
+// Crochet Bot - Cute Assistant
+// ================================
+
+class CrochetBot {
+  constructor() {
+    this.bot = null;
+    this.isVisible = false;
+    this.messages = [
+      "✨ Love your crochet journey!",
+      "🧶 Keep stitching magic!",
+      "💖 Beautiful work ahead!",
+      "🎨 Colors are looking fab!",
+      "🌟 You're doing amazing!",
+      "🧵 One stitch at a time!",
+      "💕 Handmade with love!",
+      "🎀 Stay creative!",
+      "🌈 Bright ideas coming!",
+      "✨ Craft on, friend!",
+      "🧶 Yarn-tastic vibes!",
+      "💫 Making magic happen!",
+      "🎨 Your creativity shines!",
+      "🌸 Soft & cozy vibes!",
+      "💝 Made with heart!"
+    ];
+    
+    this.appearances = [
+      { minTime: 8000, maxTime: 15000 },   // First appearance: 8-15 seconds
+      { minTime: 20000, maxTime: 35000 },  // Subsequent: 20-35 seconds
+      { minTime: 30000, maxTime: 50000 }   // Later: 30-50 seconds
+    ];
+    
+    this.appearanceCount = 0;
+    this.maxAppearances = 4; // Limit to 4 appearances per session
+    
+    this.init();
+  }
+  
+  init() {
+    this.createBot();
+    this.scheduleAppearance();
+  }
+  
+  createBot() {
+    // Create bot container
+    this.bot = document.createElement('div');
+    this.bot.className = 'crochet-bot';
+    
+    // Create character (cute emoji)
+    const character = document.createElement('div');
+    character.className = 'crochet-bot-character';
+    character.innerHTML = '🧶'; // Yarn emoji as the bot character
+    
+    // Create message bubble
+    const message = document.createElement('div');
+    message.className = 'crochet-bot-message';
+    
+    // Create close button
+    const closeBtn = document.createElement('div');
+    closeBtn.className = 'crochet-bot-close';
+    closeBtn.innerHTML = '×';
+    closeBtn.addEventListener('click', () => this.hide());
+    
+    this.bot.appendChild(character);
+    this.bot.appendChild(message);
+    this.bot.appendChild(closeBtn);
+    
+    document.body.appendChild(this.bot);
+  }
+  
+  scheduleAppearance() {
+    if (this.appearanceCount >= this.maxAppearances) {
+      return; // Don't schedule more appearances
+    }
+    
+    // Get appearance timing based on count
+    const timingIndex = Math.min(this.appearanceCount, this.appearances.length - 1);
+    const { minTime, maxTime } = this.appearances[timingIndex];
+    const delay = minTime + Math.random() * (maxTime - minTime);
+    
+    setTimeout(() => {
+      if (!this.isVisible) {
+        this.show();
+      }
+    }, delay);
+  }
+  
+  show() {
+    this.isVisible = true;
+    this.appearanceCount++;
+    
+    // Add visible class to slide up
+    this.bot.classList.add('visible');
+    
+    // Start waving animation
+    const character = this.bot.querySelector('.crochet-bot-character');
+    character.classList.add('waving');
+    
+    // Show random message after a short delay
+    setTimeout(() => {
+      this.showMessage();
+    }, 800);
+    
+    // Auto-hide after 6 seconds
+    setTimeout(() => {
+      if (this.isVisible) {
+        this.hide();
+      }
+    }, 6000);
+  }
+  
+  showMessage() {
+    const messageEl = this.bot.querySelector('.crochet-bot-message');
+    const randomMessage = this.messages[Math.floor(Math.random() * this.messages.length)];
+    messageEl.textContent = randomMessage;
+    messageEl.classList.add('visible');
+  }
+  
+  hide() {
+    this.isVisible = false;
+    
+    // Remove visible class to slide down
+    this.bot.classList.remove('visible');
+    
+    // Remove waving animation
+    const character = this.bot.querySelector('.crochet-bot-character');
+    character.classList.remove('waving');
+    
+    // Hide message
+    const messageEl = this.bot.querySelector('.crochet-bot-message');
+    messageEl.classList.remove('visible');
+    
+    // Schedule next appearance if under limit
+    if (this.appearanceCount < this.maxAppearances) {
+      this.scheduleAppearance();
+    }
+  }
+}
+
+// Initialize Crochet Bot after page loads
+window.addEventListener('load', () => {
+  // Small delay to let the page settle
+  setTimeout(() => {
+    new CrochetBot();
+  }, 1000);
 });
