@@ -307,6 +307,12 @@ body {
   /* Hide default cursor for custom cursor */
   cursor: none;
   transition: background 0.6s ease;
+  
+  /* Custom cursor variables */
+  --cursor-size: 12px;
+  --cursor-ring-size: 20px;
+  --cursor-follower-size: 40px;
+  --cursor-follower-hover-size: 60px;
 }
 
 /* Category-specific backgrounds */
@@ -331,8 +337,8 @@ body.category-purple-elegance {
   position: fixed;
   top: 0;
   left: 0;
-  width: 12px;
-  height: 12px;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
   pointer-events: none;
   z-index: 10001;
   transition: transform 0.05s ease-out, opacity 0.3s ease;
@@ -348,8 +354,8 @@ body.category-purple-elegance {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
   background: radial-gradient(circle at 30% 30%, #FF6B9D, #C44569);
   border-radius: 50%;
   box-shadow: 
@@ -365,8 +371,8 @@ body.category-purple-elegance {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
+  width: var(--cursor-ring-size);
+  height: var(--cursor-ring-size);
   border: 2px solid rgba(255, 20, 147, 0.3);
   border-radius: 50%;
   animation: cursorPulse 2s ease-in-out infinite;
@@ -377,8 +383,8 @@ body.category-purple-elegance {
   position: fixed;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
+  width: var(--cursor-follower-size);
+  height: var(--cursor-follower-size);
   pointer-events: none;
   z-index: 10000;
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -410,8 +416,8 @@ body.category-purple-elegance {
 
 .custom-cursor-follower.hover {
   opacity: 0.25;
-  width: 60px;
-  height: 60px;
+  width: var(--cursor-follower-hover-size);
+  height: var(--cursor-follower-hover-size);
   background: radial-gradient(circle, rgba(255, 20, 147, 0.5) 0%, rgba(255, 107, 157, 0.3) 40%, transparent 70%);
 }
 
@@ -443,7 +449,7 @@ body.category-purple-elegance {
 
 .crochet-bot {
   position: fixed;
-  bottom: -150px;
+  bottom: -130px;
   right: 30px;
   width: 120px;
   height: 120px;

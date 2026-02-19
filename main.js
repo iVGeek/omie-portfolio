@@ -1446,14 +1446,18 @@ class CustomCursor {
     // Smooth cursor movement with easing
     const lerp = (start, end, factor) => start + (end - start) * factor;
     
+    // Get cursor size from CSS variable (default to 12 if not set)
+    const cursorSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-size')) || 12;
+    const followerSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-follower-size')) || 40;
+    
     // Main cursor (modern orb) follows immediately for responsive feel
-    this.cursor.style.transform = `translate3d(${this.cursorPos.x - 6}px, ${this.cursorPos.y - 6}px, 0)`;
+    this.cursor.style.transform = `translate3d(${this.cursorPos.x - cursorSize / 2}px, ${this.cursorPos.y - cursorSize / 2}px, 0)`;
     
     // Follower (glowing trail) has delay for smooth trail effect
     this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.12);
     this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.12);
     
-    this.follower.style.transform = `translate3d(${this.followerPos.x - 20}px, ${this.followerPos.y - 20}px, 0)`;
+    this.follower.style.transform = `translate3d(${this.followerPos.x - followerSize / 2}px, ${this.followerPos.y - followerSize / 2}px, 0)`;
     
     this.rafId = requestAnimationFrame(() => this.animate());
   }
