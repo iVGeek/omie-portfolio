@@ -386,10 +386,7 @@ body.category-purple-elegance {
 }
 
 .crochet-bot-character.waving {
-  animation-name: botFloat, botWave;
-  animation-duration: 3s, 0.6s;
-  animation-timing-function: ease-in-out, ease-in-out;
-  animation-iteration-count: infinite, 3;
+  animation: botFloatAndWave 0.6s ease-in-out 3;
 }
 
 .crochet-bot-message {
@@ -465,15 +462,21 @@ body.category-purple-elegance {
   }
 }
 
-@keyframes botWave {
+@keyframes botFloatAndWave {
   0%, 100% {
-    transform: rotate(0deg);
+    transform: translateY(0) rotate(0deg);
   }
-  25% {
-    transform: rotate(-15deg);
+  12.5% {
+    transform: translateY(-3px) rotate(-15deg);
   }
-  75% {
-    transform: rotate(15deg);
+  37.5% {
+    transform: translateY(-7px) rotate(15deg);
+  }
+  62.5% {
+    transform: translateY(-3px) rotate(-15deg);
+  }
+  87.5% {
+    transform: translateY(-7px) rotate(15deg);
   }
 }
 

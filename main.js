@@ -1634,6 +1634,7 @@ class CrochetBot {
     this.autoHideTimeout = null;
     this.autoHideDuration = 6000; // 6 seconds before auto-hide
     this.nextAppearanceTimeout = null;
+    this.waveAnimationDuration = 1800; // 0.6s * 3 iterations = 1.8s
     
     this.init();
   }
@@ -1704,10 +1705,10 @@ class CrochetBot {
     const character = this.bot.querySelector('.crochet-bot-character');
     character.classList.add('waving');
     
-    // Remove waving class after animation completes (1.8s = 0.6s * 3 iterations)
+    // Remove waving class after animation completes
     setTimeout(() => {
       character.classList.remove('waving');
-    }, 1800);
+    }, this.waveAnimationDuration);
     
     // Show random message after a short delay
     setTimeout(() => {
