@@ -305,7 +305,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   /* Hide default cursor for custom cursor */
-  cursor: none;
+  cursor: none !important;
   transition: background 0.6s ease;
   
   /* Custom cursor variables */
@@ -598,7 +598,6 @@ body.category-purple-elegance {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   pointer-events: auto;
   font-size: 18px;
   color: #FF1493;
@@ -1018,7 +1017,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.08em;
   color: white;
   text-decoration: none;
-  cursor: pointer;
   transition: var(--transition-fast);
   text-shadow: 0 3px 12px rgba(0, 0, 0, 0.4), 
                0 6px 24px rgba(0, 0, 0, 0.3),
@@ -1075,7 +1073,6 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
   background: transparent;
   border: none;
-  cursor: pointer;
   color: white;
   padding: 0.5rem;
 }
@@ -1213,7 +1210,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1244,7 +1240,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   border: 2px solid white;
-  cursor: pointer;
   transition: var(--transition-fast);
 }
 
@@ -1273,7 +1268,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   text-decoration: none;
   border: 2px solid transparent;
-  cursor: pointer;
   transition: var(--transition-smooth);
   font-size: 1.05rem;
   letter-spacing: 0.05em;
@@ -2217,7 +2211,6 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   border-radius: 15px;
-  cursor: pointer;
   aspect-ratio: 3 / 4;
 }
 
@@ -2321,7 +2314,6 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
-  cursor: pointer;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2363,7 +2355,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 600;
-  cursor: pointer;
   transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   text-transform: capitalize;
   box-shadow: 0 3px 10px rgba(255, 20, 147, 0.1);
@@ -2518,7 +2509,6 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
               box-shadow 0.4s ease;
   /* Scroll reveal animation initial state */
@@ -2637,7 +2627,6 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.2);
   border: none;
   color: white;
-  cursor: pointer;
   padding: 1rem;
   border-radius: 50%;
   transition: all 0.3s ease;
@@ -2764,7 +2753,6 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 300px;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
   background: #f5f5f5;
 }
 
@@ -2956,7 +2944,6 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  cursor: pointer;
   border: none;
   background: var(--accent);
   color: white;
@@ -3442,10 +3429,10 @@ h1, h2, h3, h4, h5, h6 {
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateX(-50%) translateY(-10px);
   }
 }
 
@@ -4161,7 +4148,6 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.1);
   color: white;
   border-radius: 50%;
-  cursor: pointer;
   z-index: 10002;
   display: flex;
   align-items: center;
@@ -4241,7 +4227,6 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.1);
   color: white;
   border-radius: 50%;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4283,7 +4268,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.5);
   background: transparent;
-  cursor: pointer;
   transition: var(--transition-fast);
   padding: 0;
 }
