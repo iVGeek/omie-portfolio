@@ -264,48 +264,84 @@ body.category-purple-elegance {
   background: linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(186, 85, 211, 0.1) 100%);
 }
 
-/* Custom cursor styling - optimized for smooth movement */
+/* Custom cursor styling - Crochet-themed (yarn ball) */
 .custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #FF1493 0%, #FF6600 100%);
+  background: linear-gradient(135deg, #FF1493 0%, #FF6600 50%, #FFA500 100%);
   pointer-events: none;
   z-index: 10001;
   transition: transform 0.1s ease-out, opacity 0.2s ease;
-  opacity: 0.9;
-  mix-blend-mode: difference;
+  opacity: 0.95;
   will-change: transform;
+  box-shadow: 
+    0 0 8px rgba(255, 20, 147, 0.4),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.1),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.3);
 }
 
+/* Yarn ball texture effect */
+.custom-cursor::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.custom-cursor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Yarn thread trail (follower) */
 .custom-cursor-follower {
   position: fixed;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
-  border: 2px solid #FF1493;
-  border-radius: 50%;
+  width: 3px;
+  height: 60px;
   pointer-events: none;
   z-index: 10000;
-  transition: transform 0.15s ease-out, width 0.25s ease, height 0.25s ease, opacity 0.2s ease;
-  opacity: 0.6;
+  transition: transform 0.15s ease-out, opacity 0.2s ease;
+  opacity: 0.5;
   will-change: transform;
+  background: linear-gradient(180deg, 
+    rgba(255, 20, 147, 0.6) 0%, 
+    rgba(255, 102, 0, 0.4) 50%,
+    rgba(255, 165, 0, 0.2) 100%);
+  border-radius: 2px;
+  transform-origin: top center;
 }
 
 .custom-cursor.hover {
-  transform: scale(1.4);
+  transform: scale(1.3) rotate(15deg);
   opacity: 1;
+  box-shadow: 
+    0 0 12px rgba(255, 20, 147, 0.6),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.15),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.4);
 }
 
 .custom-cursor-follower.hover {
-  width: 60px;
-  height: 60px;
-  opacity: 0.8;
-  border-color: #FF6600;
+  opacity: 0.7;
+  width: 4px;
+  height: 80px;
 }
 
 /* Fallback for devices without custom cursor support */
@@ -316,6 +352,160 @@ body.category-purple-elegance {
   .custom-cursor,
   .custom-cursor-follower {
     display: none;
+  }
+}
+
+/* ================================
+   Crochet Bot Character
+   ================================ */
+
+.crochet-bot {
+  position: fixed;
+  bottom: -120px;
+  right: 40px;
+  width: 100px;
+  height: 100px;
+  z-index: 9999;
+  pointer-events: none;
+  transition: bottom 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.crochet-bot.visible {
+  bottom: 100px;
+}
+
+.crochet-bot-character {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  animation: botFloat 3s ease-in-out infinite;
+}
+
+.crochet-bot-character.waving {
+  animation: botFloatAndWave 0.6s ease-in-out 3;
+}
+
+.crochet-bot-message {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  background: linear-gradient(135deg, #FF1493 0%, #FF6600 100%);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(255, 20, 147, 0.3);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.crochet-bot-message::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #FF6600;
+}
+
+.crochet-bot-message.visible {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+.crochet-bot-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 28px;
+  height: 28px;
+  background: white;
+  border: 2px solid #FF1493;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  font-size: 18px;
+  color: #FF1493;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.crochet-bot-close:hover {
+  background: #FF1493;
+  color: white;
+  transform: rotate(90deg);
+}
+
+@keyframes botFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes botFloatAndWave {
+  /* Waving animation - 2 complete wave cycles per keyframe iteration
+     When run 3 times (as specified in .crochet-bot-character.waving),
+     this creates 6 total waves over 1.8 seconds (0.6s × 3)
+     Pattern per cycle: Start → Right tilt → Left tilt → Right tilt → Left tilt → Return */
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  12.5% {  /* 1/8: Wave 1 - tilt right */
+    transform: translateY(-3px) rotate(-15deg);
+  }
+  37.5% {  /* 3/8: Wave 1 - tilt left */
+    transform: translateY(-7px) rotate(15deg);
+  }
+  62.5% {  /* 5/8: Wave 2 - tilt right */
+    transform: translateY(-3px) rotate(-15deg);
+  }
+  87.5% {  /* 7/8: Wave 2 - tilt left */
+    transform: translateY(-7px) rotate(15deg);
+  }
+}
+
+/* Mobile adjustments for bot */
+@media (max-width: 768px) {
+  .crochet-bot {
+    right: 20px;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .crochet-bot.visible {
+    bottom: 80px;
+  }
+  
+  .crochet-bot-character {
+    font-size: 60px;
+  }
+  
+  .crochet-bot-message {
+    font-size: 12px;
+    padding: 10px 14px;
+    max-width: 200px;
+    white-space: normal;
+    text-align: center;
   }
 }
 
