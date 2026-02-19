@@ -464,8 +464,9 @@ body.category-purple-elegance {
 
 @keyframes botFloatAndWave {
   /* Combined floating and waving animation for 3 wave cycles
+     Duration: 0.6s × 3 iterations = 1.8s total
      Structure: 0% → 12.5% (1st peak) → 37.5% (1st valley) → 
-                62.5% (2nd peak) → 87.5% (2nd valley) → 100% (3rd peak) */
+                62.5% (2nd peak) → 87.5% (2nd valley) → 100% (return to neutral) */
   0%, 100% {
     transform: translateY(0) rotate(0deg);
   }
