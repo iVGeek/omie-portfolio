@@ -1633,6 +1633,7 @@ class CrochetBot {
     this.maxAppearances = 4; // Limit to 4 appearances per session
     this.autoHideTimeout = null;
     this.autoHideDuration = 6000; // 6 seconds before auto-hide
+    this.nextAppearanceTimeout = null;
     
     this.init();
   }
@@ -1679,7 +1680,7 @@ class CrochetBot {
     const { minTime, maxTime } = this.appearances[timingIndex];
     const delay = minTime + Math.random() * (maxTime - minTime);
     
-    setTimeout(() => {
+    this.nextAppearanceTimeout = setTimeout(() => {
       if (!this.isVisible) {
         this.show();
       }
@@ -1687,6 +1688,12 @@ class CrochetBot {
   }
   
   show() {
+    // Clear any existing auto-hide timeout from previous appearance
+    if (this.autoHideTimeout) {
+      clearTimeout(this.autoHideTimeout);
+      this.autoHideTimeout = null;
+    }
+    
     this.isVisible = true;
     this.appearanceCount++;
     
@@ -1696,6 +1703,11 @@ class CrochetBot {
     // Start waving animation
     const character = this.bot.querySelector('.crochet-bot-character');
     character.classList.add('waving');
+    
+    // Remove waving class after animation completes (1.8s = 0.6s * 3 iterations)
+    setTimeout(() => {
+      character.classList.remove('waving');
+    }, 1800);
     
     // Show random message after a short delay
     setTimeout(() => {
@@ -1740,6 +1752,16 @@ class CrochetBot {
     // Schedule next appearance if under limit
     if (this.appearanceCount < this.maxAppearances) {
       this.scheduleAppearance();
+    }
+  }
+  
+  // Cleanup method to clear all timeouts
+  destroy() {
+    if (this.autoHideTimeout) {
+      clearTimeout(this.autoHideTimeout);
+    }
+    if (this.nextAppearanceTimeout) {
+      clearTimeout(this.nextAppearanceTimeout);
     }
   }
 }
