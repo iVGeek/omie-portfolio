@@ -463,24 +463,23 @@ body.category-purple-elegance {
 }
 
 @keyframes botFloatAndWave {
-  /* Combined floating and waving animation - 2.5 wave cycles
-     Duration: 0.6s × 3 iterations = 1.8s total
-     Pattern: Start (0%) → Right tilt (12.5%) → Left tilt (37.5%) → 
-              Right tilt (62.5%) → Left tilt (87.5%) → Return to neutral (100%)
-     This creates 2 complete wave cycles + return to start position */
+  /* Waving animation - 2 complete wave cycles per keyframe iteration
+     When run 3 times (as specified in .crochet-bot-character.waving),
+     this creates 6 total waves over 1.8 seconds (0.6s × 3)
+     Pattern per cycle: Start → Right tilt → Left tilt → Right tilt → Left tilt → Return */
   0%, 100% {
     transform: translateY(0) rotate(0deg);
   }
-  12.5% {  /* 1/8: First wave - tilt right */
+  12.5% {  /* 1/8: Wave 1 - tilt right */
     transform: translateY(-3px) rotate(-15deg);
   }
-  37.5% {  /* 3/8: First wave - tilt left */
+  37.5% {  /* 3/8: Wave 1 - tilt left */
     transform: translateY(-7px) rotate(15deg);
   }
-  62.5% {  /* 5/8: Second wave - tilt right */
+  62.5% {  /* 5/8: Wave 2 - tilt right */
     transform: translateY(-3px) rotate(-15deg);
   }
-  87.5% {  /* 7/8: Second wave - tilt left */
+  87.5% {  /* 7/8: Wave 2 - tilt left */
     transform: translateY(-7px) rotate(15deg);
   }
 }

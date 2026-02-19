@@ -1636,7 +1636,8 @@ class CrochetBot {
     this.nextAppearanceTimeout = null;
     // Animation durations - MUST match CSS values in styles.css
     // CSS: .crochet-bot-character.waving { animation: botFloatAndWave 0.6s ease-in-out 3; }
-    this.waveAnimationDuration = 1800; // 0.6s per iteration × 3 iterations = 1.8s
+    // The keyframe does 2 waves per cycle, × 3 iterations = 6 total waves in 1.8s
+    this.waveAnimationDuration = 1800; // 0.6s per iteration × 3 iterations = 1.8s total
     this.initDelay = 1000; // 1 second delay for page to settle before first appearance
     
     this.init();
@@ -1772,9 +1773,9 @@ class CrochetBot {
 
 // Initialize Crochet Bot after page loads
 window.addEventListener('load', () => {
-  // Create bot with a small delay to let the page settle
-  const INIT_DELAY_MS = 1000;
+  // Create bot with a delay to let the page settle (using class-defined delay)
   setTimeout(() => {
-    new CrochetBot();
-  }, INIT_DELAY_MS);
+    const bot = new CrochetBot();
+    // Delay value matches bot.initDelay (1000ms)
+  }, 1000);
 });
