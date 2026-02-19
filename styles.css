@@ -307,6 +307,12 @@ body {
   /* Hide default cursor for custom cursor */
   cursor: none;
   transition: background 0.6s ease;
+  
+  /* Custom cursor variables */
+  --cursor-size: 12px;
+  --cursor-ring-size: 20px;
+  --cursor-follower-size: 40px;
+  --cursor-follower-hover-size: 60px;
 }
 
 /* Category-specific backgrounds */
@@ -326,80 +332,104 @@ body.category-purple-elegance {
   background: linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(186, 85, 211, 0.1) 100%);
 }
 
-/* Custom cursor styling - Crochet-themed (crochet hook) */
+/* Custom cursor styling - Modern minimalist design */
 .custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 6px;
-  height: 32px;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
   pointer-events: none;
   z-index: 10001;
-  transition: transform 0.1s ease-out, opacity 0.2s ease;
-  opacity: 0.95;
+  transition: transform 0.05s ease-out, opacity 0.3s ease;
+  opacity: 1;
   will-change: transform;
-  transform-origin: center bottom;
+  transform-origin: center center;
 }
 
-/* Crochet hook handle */
+/* Main cursor dot - modern gradient orb */
 .custom-cursor::before {
   content: '';
   position: absolute;
-  bottom: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 22px;
-  background: linear-gradient(180deg, #FF1493 0%, #FF6600 100%);
-  border-radius: 3px;
-  box-shadow: 0 0 6px rgba(255, 20, 147, 0.4);
+  transform: translate(-50%, -50%);
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  background: radial-gradient(circle at 30% 30%, #FF6B9D, #C44569);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 12px rgba(255, 20, 147, 0.6),
+    0 0 20px rgba(255, 107, 157, 0.4),
+    inset 0 0 6px rgba(255, 255, 255, 0.4);
 }
 
-/* Crochet hook curved tip */
+/* Outer glow ring */
 .custom-cursor::after {
   content: '';
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 12px;
-  background: transparent;
-  border: 3px solid #FFA500;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 -2px 4px rgba(255, 165, 0, 0.3);
+  transform: translate(-50%, -50%);
+  width: var(--cursor-ring-size);
+  height: var(--cursor-ring-size);
+  border: 2px solid rgba(255, 20, 147, 0.3);
+  border-radius: 50%;
+  animation: cursorPulse 2s ease-in-out infinite;
 }
 
-/* Yarn thread trail (follower) */
+/* Smooth glowing trail follower */
 .custom-cursor-follower {
   position: fixed;
   top: 0;
   left: 0;
-  width: 3px;
-  height: 60px;
+  width: var(--cursor-follower-size);
+  height: var(--cursor-follower-size);
   pointer-events: none;
   z-index: 10000;
-  transition: transform 0.15s ease-out, opacity 0.2s ease;
-  opacity: 0.5;
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
-  background: linear-gradient(180deg, 
-    rgba(255, 20, 147, 0.6) 0%, 
-    rgba(255, 102, 0, 0.4) 50%,
-    rgba(255, 165, 0, 0.2) 100%);
-  border-radius: 2px;
-  transform-origin: top center;
+  opacity: 0.15;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 20, 147, 0.4) 0%, rgba(255, 107, 157, 0.2) 40%, transparent 70%);
+  filter: blur(8px);
 }
 
 .custom-cursor.hover {
-  transform: scale(1.2) rotate(25deg);
-  opacity: 1;
+  transform: scale(1.5);
+}
+
+.custom-cursor.hover::before {
+  background: radial-gradient(circle at 30% 30%, #FF1493, #8B008B);
+  box-shadow: 
+    0 0 16px rgba(255, 20, 147, 0.8),
+    0 0 28px rgba(255, 107, 157, 0.6),
+    inset 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.custom-cursor.hover::after {
+  width: 28px;
+  height: 28px;
+  border-width: 3px;
+  border-color: rgba(255, 20, 147, 0.5);
 }
 
 .custom-cursor-follower.hover {
-  opacity: 0.7;
-  width: 4px;
-  height: 80px;
+  opacity: 0.25;
+  width: var(--cursor-follower-hover-size);
+  height: var(--cursor-follower-hover-size);
+  background: radial-gradient(circle, rgba(255, 20, 147, 0.5) 0%, rgba(255, 107, 157, 0.3) 40%, transparent 70%);
+}
+
+@keyframes cursorPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.15;
+  }
 }
 
 /* Fallback for devices without custom cursor support */
@@ -419,17 +449,17 @@ body.category-purple-elegance {
 
 .crochet-bot {
   position: fixed;
-  bottom: -120px;
-  right: 40px;
-  width: 100px;
-  height: 100px;
+  bottom: -130px;
+  right: 30px;
+  width: 120px;
+  height: 120px;
   z-index: 9999;
   pointer-events: none;
   transition: bottom 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .crochet-bot.visible {
-  bottom: 100px;
+  bottom: 30px;
 }
 
 .crochet-bot-character {
@@ -438,8 +468,8 @@ body.category-purple-elegance {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 70px;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  font-size: 90px;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
   animation: botFloat 3s ease-in-out infinite;
 }
 

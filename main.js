@@ -1446,19 +1446,18 @@ class CustomCursor {
     // Smooth cursor movement with easing
     const lerp = (start, end, factor) => start + (end - start) * factor;
     
-    // Main cursor (crochet hook) follows immediately for responsive feel
-    this.cursor.style.transform = `translate3d(${this.cursorPos.x - 3}px, ${this.cursorPos.y - 32}px, 0)`;
+    // Get cursor size from CSS variable (default to 12 if not set)
+    const cursorSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-size')) || 12;
+    const followerSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-follower-size')) || 40;
     
-    // Follower (yarn thread) has delay for smooth trail effect
-    this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.15);
-    this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.15);
+    // Main cursor (modern orb) follows immediately for responsive feel
+    this.cursor.style.transform = `translate3d(${this.cursorPos.x - cursorSize / 2}px, ${this.cursorPos.y - cursorSize / 2}px, 0)`;
     
-    // Calculate angle between cursor and follower for yarn thread rotation
-    const dx = this.cursorPos.x - this.followerPos.x;
-    const dy = this.cursorPos.y - this.followerPos.y;
-    const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+    // Follower (glowing trail) has delay for smooth trail effect
+    this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.12);
+    this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.12);
     
-    this.follower.style.transform = `translate3d(${this.followerPos.x - 1.5}px, ${this.followerPos.y - 30}px, 0) rotate(${angle}deg)`;
+    this.follower.style.transform = `translate3d(${this.followerPos.x - followerSize / 2}px, ${this.followerPos.y - followerSize / 2}px, 0)`;
     
     this.rafId = requestAnimationFrame(() => this.animate());
   }
