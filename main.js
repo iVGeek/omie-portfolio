@@ -1634,7 +1634,8 @@ class CrochetBot {
     this.autoHideTimeout = null;
     this.autoHideDuration = 6000; // 6 seconds before auto-hide
     this.nextAppearanceTimeout = null;
-    this.waveAnimationDuration = 1800; // 0.6s * 3 iterations = 1.8s
+    this.waveAnimationDuration = 1800; // Must match CSS: 0.6s * 3 iterations
+    this.initDelay = 1000; // 1 second delay for page to settle before first appearance
     
     this.init();
   }
@@ -1769,8 +1770,9 @@ class CrochetBot {
 
 // Initialize Crochet Bot after page loads
 window.addEventListener('load', () => {
+  const crochetBot = new CrochetBot();
   // Small delay to let the page settle
   setTimeout(() => {
-    new CrochetBot();
-  }, 1000);
+    // Bot initialization is handled by the class constructor
+  }, crochetBot.initDelay);
 });
