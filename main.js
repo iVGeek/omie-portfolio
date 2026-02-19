@@ -1773,7 +1773,8 @@ class CrochetBot {
 // Initialize Crochet Bot after page loads
 window.addEventListener('load', () => {
   // Create bot with a small delay to let the page settle
+  const INIT_DELAY_MS = 1000;
   setTimeout(() => {
     new CrochetBot();
-  }, 1000); // Using constant defined in CrochetBot class
+  }, INIT_DELAY_MS);
 });

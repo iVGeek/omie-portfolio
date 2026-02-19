@@ -463,23 +463,24 @@ body.category-purple-elegance {
 }
 
 @keyframes botFloatAndWave {
-  /* Combined floating and waving animation for 3 wave cycles
+  /* Combined floating and waving animation - 2.5 wave cycles
      Duration: 0.6s × 3 iterations = 1.8s total
-     Structure: 0% → 12.5% (1st peak) → 37.5% (1st valley) → 
-                62.5% (2nd peak) → 87.5% (2nd valley) → 100% (return to neutral) */
+     Pattern: Start (0%) → Right tilt (12.5%) → Left tilt (37.5%) → 
+              Right tilt (62.5%) → Left tilt (87.5%) → Return to neutral (100%)
+     This creates 2 complete wave cycles + return to start position */
   0%, 100% {
     transform: translateY(0) rotate(0deg);
   }
-  12.5% {  /* 1/8: First wave peak (right) */
+  12.5% {  /* 1/8: First wave - tilt right */
     transform: translateY(-3px) rotate(-15deg);
   }
-  37.5% {  /* 3/8: First wave valley (left) */
+  37.5% {  /* 3/8: First wave - tilt left */
     transform: translateY(-7px) rotate(15deg);
   }
-  62.5% {  /* 5/8: Second wave peak (right) */
+  62.5% {  /* 5/8: Second wave - tilt right */
     transform: translateY(-3px) rotate(-15deg);
   }
-  87.5% {  /* 7/8: Second wave valley (left) */
+  87.5% {  /* 7/8: Second wave - tilt left */
     transform: translateY(-7px) rotate(15deg);
   }
 }
