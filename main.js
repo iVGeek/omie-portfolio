@@ -1632,6 +1632,7 @@ class CrochetBot {
     this.appearanceCount = 0;
     this.maxAppearances = 4; // Limit to 4 appearances per session
     this.autoHideTimeout = null;
+    this.autoHideDuration = 6000; // 6 seconds before auto-hide
     
     this.init();
   }
@@ -1701,12 +1702,12 @@ class CrochetBot {
       this.showMessage();
     }, 800);
     
-    // Auto-hide after 6 seconds
+    // Auto-hide after configured duration
     this.autoHideTimeout = setTimeout(() => {
       if (this.isVisible) {
         this.hide();
       }
-    }, 6000);
+    }, this.autoHideDuration);
   }
   
   showMessage() {
