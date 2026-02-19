@@ -386,7 +386,8 @@ body.category-purple-elegance {
 }
 
 .crochet-bot-character.waving {
-  animation: botFloat 3s ease-in-out infinite, botWave 0.6s ease-in-out 3;
+  animation: botFloat 3s ease-in-out infinite, botWave 0.6s ease-in-out;
+  animation-iteration-count: infinite, 3;
 }
 
 .crochet-bot-message {

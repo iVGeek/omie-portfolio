@@ -1625,11 +1625,13 @@ class CrochetBot {
     this.appearances = [
       { minTime: 8000, maxTime: 15000 },   // First appearance: 8-15 seconds
       { minTime: 20000, maxTime: 35000 },  // Subsequent: 20-35 seconds
-      { minTime: 30000, maxTime: 50000 }   // Later: 30-50 seconds
+      { minTime: 30000, maxTime: 50000 },  // Later: 30-50 seconds
+      { minTime: 40000, maxTime: 60000 }   // Final: 40-60 seconds
     ];
     
     this.appearanceCount = 0;
     this.maxAppearances = 4; // Limit to 4 appearances per session
+    this.autoHideTimeout = null;
     
     this.init();
   }
@@ -1700,7 +1702,7 @@ class CrochetBot {
     }, 800);
     
     // Auto-hide after 6 seconds
-    setTimeout(() => {
+    this.autoHideTimeout = setTimeout(() => {
       if (this.isVisible) {
         this.hide();
       }
@@ -1716,6 +1718,12 @@ class CrochetBot {
   
   hide() {
     this.isVisible = false;
+    
+    // Clear auto-hide timeout if it exists
+    if (this.autoHideTimeout) {
+      clearTimeout(this.autoHideTimeout);
+      this.autoHideTimeout = null;
+    }
     
     // Remove visible class to slide down
     this.bot.classList.remove('visible');
