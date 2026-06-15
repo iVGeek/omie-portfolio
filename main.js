@@ -101,12 +101,6 @@ const galleryCategories = [
     color: '#9370DB', // Medium purple
     bgColor: 'linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(186, 85, 211, 0.1) 100%)',
     images: [
-      { src: 'images/gallery/Purple Elegance/purple-elegance-07.jpg', alt: 'Purple Elegance handcrafted piece' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-08.jpg', alt: 'Purple Elegance artistic creation' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-09.jpg', alt: 'Purple Elegance detailed work' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-10.jpg', alt: 'Purple Elegance fine craftsmanship' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-11.jpg', alt: 'Purple Elegance beautiful design' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-12.jpg', alt: 'Purple Elegance finished piece' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-13.jpg', alt: 'Purple Elegance charming design' },
     ]
   },
