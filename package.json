@@ -20,9 +20,8 @@
   "author": "OMIE",
   "license": "MIT",
   "devDependencies": {
-    "sharp": "^0.33.0"
+    "sharp": "^0.33.5"
   },
-  "dependencies": {},
   "engines": {
     "node": ">=14.0.0"
   }

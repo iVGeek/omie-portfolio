@@ -47,22 +47,14 @@ const galleryCategories = [
     materials: 'Premium cotton yarn, cotton stuffing',
     techniques: 'Blending traditional crochet techniques with modern color aesthetics',
     inspiration: 'Inspired by the graceful beauty of flamingos and tropical sunsets',
-    color: '#FF1493', // Deep pink
+    color: '#FF1493',
     bgColor: 'linear-gradient(135deg, rgba(255, 20, 147, 0.1) 0%, rgba(255, 182, 193, 0.1) 100%)',
     images: [
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-01.jpg', alt: 'Pinkie Flamingo handcrafted design' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-02.jpg', alt: 'Pinkie Flamingo detailed view' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-03.jpg', alt: 'Pinkie Flamingo artistic arrangement' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-04.jpg', alt: 'Pinkie Flamingo close-up detail' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-05.jpg', alt: 'Pinkie Flamingo craftsmanship showcase' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-06.jpg', alt: 'Pinkie Flamingo vibrant colors' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-07.jpg', alt: 'Pinkie Flamingo elegant design' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-08.jpg', alt: 'Pinkie Flamingo bold statement' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-09.jpg', alt: 'Pinkie Flamingo creative piece' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-10.jpg', alt: 'Pinkie Flamingo playful design' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-11.jpg', alt: 'Pinkie Flamingo cheerful creation' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-12.jpg', alt: 'Pinkie Flamingo vibrant artwork' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-13.jpg', alt: 'Pinkie Flamingo beautiful masterpiece' },
     ]
   },
   {
@@ -71,7 +63,7 @@ const galleryCategories = [
     materials: 'High-quality acrylic blend, reinforced stitching',
     techniques: 'Advanced stitch work combining texture and depth',
     inspiration: 'Drawing from the timeless elegance of precious rubies',
-    color: '#DC143C', // Crimson red
+    color: '#DC143C',
     bgColor: 'linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(255, 99, 71, 0.1) 100%)',
     images: [
       { src: 'images/gallery/Red Ruby/red-ruby-01.jpg', alt: 'Red Ruby elegant design' },
@@ -89,7 +81,7 @@ const galleryCategories = [
     materials: 'Soft merino wool, natural dyes',
     techniques: 'Color gradient work and intricate pattern blending',
     inspiration: 'Capturing the warm glow of sunset over the African savanna',
-    color: '#FF6600', // Vibrant orange
+    color: '#FF6600',
     bgColor: 'linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%)',
     images: [
       { src: 'images/gallery/Sunset Hues/sunset-hues-01.jpg', alt: 'Sunset Hues warm design' },
@@ -102,29 +94,12 @@ const galleryCategories = [
     ]
   },
   {
-    name: 'Purple Elegance',
-    description: 'Sophisticated purple designs that embody grace and refined artistry',
-    materials: 'Silk-blend yarn, delicate finishing',
-    techniques: 'Fine detail work with elegant stitch patterns',
-    inspiration: 'Inspired by royal elegance and the beauty of lavender fields',
-    color: '#9370DB', // Medium purple
-    bgColor: 'linear-gradient(135deg, rgba(147, 112, 219, 0.1) 0%, rgba(186, 85, 211, 0.1) 100%)',
-    images: [
-      { src: 'images/gallery/Purple Elegance/purple-elegance-07.jpg', alt: 'Purple Elegance handcrafted piece' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-08.jpg', alt: 'Purple Elegance artistic creation' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-09.jpg', alt: 'Purple Elegance detailed work' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-10.jpg', alt: 'Purple Elegance fine craftsmanship' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-11.jpg', alt: 'Purple Elegance beautiful design' },
-      { src: 'images/gallery/Purple Elegance/purple-elegance-12.jpg', alt: 'Purple Elegance finished piece' },
-    ]
-  },
-  {
     name: 'Blue Serenity',
     description: 'Calming blue designs that bring tranquility and peaceful elegance',
     materials: 'Soft cotton-blend yarn, gentle textures',
     techniques: 'Smooth stitch patterns with serene color blending',
     inspiration: 'Inspired by clear skies, ocean waves, and peaceful waters',
-    color: '#4169E1', // Royal blue
+    color: '#4169E1',
     bgColor: 'linear-gradient(135deg, rgba(65, 105, 225, 0.1) 0%, rgba(135, 206, 250, 0.1) 100%)',
     images: [
       { src: 'images/gallery/Blue Serenity/blue-serenity-01.jpg', alt: 'Blue Serenity tranquil design' },
@@ -132,6 +107,9 @@ const galleryCategories = [
       { src: 'images/gallery/Blue Serenity/blue-serenity-03.jpg', alt: 'Blue Serenity calming artwork' },
       { src: 'images/gallery/Blue Serenity/blue-serenity-04.jpg', alt: 'Blue Serenity serene beauty' },
       { src: 'images/gallery/Blue Serenity/blue-serenity-05.jpg', alt: 'Blue Serenity elegant masterpiece' },
+      { src: 'images/gallery/Blue Serenity/blue-serenity-06.jpg', alt: 'Blue Serenity tranquil piece' },
+      { src: 'images/gallery/Blue Serenity/blue-serenity-07.jpg', alt: 'Blue Serenity peaceful design' },
+      { src: 'images/gallery/Blue Serenity/blue-serenity-08.jpg', alt: 'Blue Serenity calming creation' },
     ]
   }
 ];
