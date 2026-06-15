@@ -53,7 +53,6 @@ const galleryCategories = [
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-01.jpg', alt: 'Pinkie Flamingo handcrafted design' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-02.jpg', alt: 'Pinkie Flamingo detailed view' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-03.jpg', alt: 'Pinkie Flamingo artistic arrangement' },
-      { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-07.jpg', alt: 'Pinkie Flamingo elegant design' },
       { src: 'images/gallery/Pinkie Flamingo/pink-flamingo-08.jpg', alt: 'Pinkie Flamingo bold statement' },
     ]
   },
@@ -108,6 +107,7 @@ const galleryCategories = [
       { src: 'images/gallery/Purple Elegance/purple-elegance-10.jpg', alt: 'Purple Elegance fine craftsmanship' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-11.jpg', alt: 'Purple Elegance beautiful design' },
       { src: 'images/gallery/Purple Elegance/purple-elegance-12.jpg', alt: 'Purple Elegance finished piece' },
+      { src: 'images/gallery/Purple Elegance/purple-elegance-13.jpg', alt: 'Purple Elegance charming design' },
     ]
   },
   {
