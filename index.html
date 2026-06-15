@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<!--
+  ✨ OMIE Portfolio ✨
+  
+  Want to use your own images instead of the placeholder images?
+  📖 See MEDIA_GUIDE.md for complete instructions!
+  
+  Quick steps:
+  1. Add images to public/images/
+  2. Replace Unsplash URLs in this file (search for "unsplash")
+  3. Replace Unsplash URLs in main.js
+  
+  📝 See EXAMPLES.md for before/after code examples
+-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  
+  <!-- Primary Meta Tags -->
+  <title>OMIE — Creative Portfolio & Handcrafted Crochet Gallery</title>
+  <meta name="title" content="OMIE — Creative Portfolio & Handcrafted Crochet Gallery" />
+  <meta name="description" content="Discover OMIE's stunning portfolio of handcrafted crochet designs. Explore unique, sustainable creations featuring vibrant colors and timeless elegance. Each piece is handmade with love and care." />
+  <meta name="keywords" content="crochet portfolio, handmade crafts, OMIE portfolio, handcrafted designs, sustainable crochet, Nairobi artisan, custom crochet, unique designs, crochet gallery" />
+  <meta name="author" content="OMIE" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#FF1493" />
+  <link rel="canonical" href="https://omie-portfolio.netlify.app/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- Fonts: Playfair Display (bold serif) for headings, Inter (clean sans-serif) for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Material Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="public/images/favicon.svg">
+  <link rel="apple-touch-icon" href="public/images/favicon.svg">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Preload hero image for faster LCP -->
+  <link rel="preload" as="image" href="images/hero/hero1.jpg.jpeg" fetchpriority="high">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omie-portfolio.netlify.app/">
+  <meta property="og:title" content="OMIE — Creative Portfolio & Handcrafted Crochet Gallery">
+  <meta property="og:description" content="Discover OMIE's stunning portfolio of handcrafted crochet designs. Explore unique, sustainable creations featuring vibrant colors and timeless elegance.">
+  <meta property="og:image" content="https://omie-portfolio.netlify.app/images/hero/hero1.jpg.jpeg">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="OMIE Portfolio" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://omie-portfolio.netlify.app/">
+  <meta name="twitter:title" content="OMIE — Creative Portfolio & Handcrafted Crochet Gallery">
+  <meta name="twitter:description" content="Discover OMIE's stunning portfolio of handcrafted crochet designs. Explore unique, sustainable creations.">
+  <meta name="twitter:image" content="https://omie-portfolio.netlify.app/images/hero/hero1.jpg.jpeg">
+
+  <!-- Structured Data / Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "OMIE",
+    "url": "https://omie-portfolio.netlify.app/",
+    "image": "https://omie-portfolio.netlify.app/images/hero/hero1.jpg.jpeg",
+    "sameAs": [
+      "https://instagram.com/yourusername/",
+      "https://pinterest.com/yourusername/"
+    ],
+    "jobTitle": "Crochet Artist & Designer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "OMIE"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressCountry": "Kenya"
+    },
+    "email": "hello@omie.com",
+    "description": "Handcrafted crochet artist creating unique, sustainable designs with love and care."
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css?v=2.1">
+  <link rel="stylesheet" href="dark-mode.css?v=1.0">
+  
+  <!-- Fallback for users without JavaScript -->
+  <noscript>
+    <style>
+      .gallery-item {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    </style>
+  </noscript>
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <span class="loading-title crochet-text">
+          <span class="stitch-letter" style="animation-delay: 0s">O</span>
+          <span class="stitch-letter" style="animation-delay: 0.3s">M</span>
+          <span class="stitch-letter" style="animation-delay: 0.6s">I</span>
+          <span class="stitch-letter" style="animation-delay: 0.9s">E</span>
+        </span>
+      </div>
+      <div class="crochet-hook-animation">
+        <div class="hook"></div>
+        <div class="yarn-trail"></div>
+      </div>
+      <p class="loading-text">Stitching your experience together...</p>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <header id="header" class="site-header" role="banner" aria-label="Site header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="#hero" class="brand-link" aria-label="Go to home">
+          <img src="public/images/logo.svg" alt="OMIE Logo" class="site-logo">
+          <span class="site-title">OMIE</span>
+        </a>
+      </div>
+
+      <nav class="nav" role="navigation" aria-label="Primary">
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
+          <span class="material-icons">menu</span>
+        </button>
+
+        <div id="mobile-menu" class="mobile-menu" hidden>
+          <a href="#about">About</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero Section with Full-Screen Slideshow -->
+    <section id="hero" class="hero-slideshow" aria-labelledby="hero-title">
+      <div class="slideshow-container">
+        <div class="slide active" style="background-image: url('images/hero/hero1.jpg.jpeg')">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="slide" style="background-image: url('images/hero/hero2.jpg.jpeg')">
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="slide" style="background-image: url('images/hero/hero3.jpg.jpeg')">
+          <div class="slide-overlay"></div>
+        </div>
+      </div>
+      
+      <div class="hero-content">
+        <div class="container">
+          <h1 id="hero-title" class="hero-title fade-in">CREATE.<br>SHOWCASE.<br>INSPIRE.</h1>
+          <p class="hero-subtitle fade-in">Every stitch tells a story, woven with love and creativity</p>
+          <div class="hero-cta fade-in">
+            <a class="btn btn-primary" href="#gallery">View Gallery</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slideshow-controls">
+        <button class="slide-btn prev" aria-label="Previous slide">
+          <span class="material-icons">chevron_left</span>
+        </button>
+        <button class="slide-btn next" aria-label="Next slide">
+          <span class="material-icons">chevron_right</span>
+        </button>
+      </div>
+
+      <div class="slideshow-indicators">
+        <button class="indicator active" aria-label="Slide 1"></button>
+        <button class="indicator" aria-label="Slide 2"></button>
+        <button class="indicator" aria-label="Slide 3"></button>
+      </div>
+    </section>
+
+    <!-- About Section - Completely Redesigned -->
+    <section id="about" class="section about-section" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-layout">
+          <!-- Left side: Image showcase -->
+          <div class="about-image-wrapper">
+            <div class="about-image-main">
+              <img src="images/about/crochet-work.jpg" alt="Handcrafted crochet work in progress" loading="lazy">
+              <div class="image-decoration"></div>
+            </div>
+            <div class="about-badge">
+              <span class="material-icons">handshake</span>
+              <div>
+                <strong>100% Handmade</strong>
+                <p>With Love & Care</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side: Content -->
+          <div class="about-content-wrapper">
+            <div class="about-header">
+              <span class="about-label">About OMIE</span>
+              <h2 id="about-title" class="about-title">Crafting Stories, One Stitch at a Time</h2>
+            </div>
+
+            <div class="about-story">
+              <p class="lead-paragraph">OMIE was born from a deep passion for crochet and the simple joy of creating something beautiful with my own hands.</p>
+              
+              <p>Each piece you see here represents hours of careful work, attention to detail, and genuine intention. I find peace in the rhythm of crochet — the gentle repetition, the feel of yarn through my fingers, and the transformation of simple thread into something meaningful.</p>
+              
+              <p>I'm drawn to soft textures, warm colors, and timeless designs that feel both cozy and elegant. Every creation is meant to bring comfort and beauty into everyday life — something you'll treasure for years to come.</p>
+            </div>
+
+            <!-- Values/Highlights -->
+            <div class="about-values">
+              <div class="value-card">
+                <span class="material-icons">favorite</span>
+                <h3>Made with Love</h3>
+                <p>Every stitch carries care and dedication</p>
+              </div>
+              <div class="value-card">
+                <span class="material-icons">eco</span>
+                <h3>Sustainable</h3>
+                <p>Quality materials, lasting creations</p>
+              </div>
+              <div class="value-card">
+                <span class="material-icons">palette</span>
+                <h3>Unique Designs</h3>
+                <p>One-of-a-kind handcrafted pieces</p>
+              </div>
+            </div>
+
+            <div class="about-closing">
+              <p>Thank you for being here and for supporting handmade artistry. Your appreciation means the world to me.</p>
+              <a href="#gallery" class="btn-link">Explore My Work <span class="material-icons">arrow_forward</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery - Finished Projects -->
+    <section id="gallery" class="section lookbook-section" aria-labelledby="gallery-title">
+      <div class="container">
+        <!-- Gallery Header with Navigation -->
+        <div class="gallery-header">
+          <nav class="gallery-breadcrumb" aria-label="Breadcrumb navigation">
+            <a href="#hero" class="breadcrumb-link">Home</a>
+            <span class="separator">/</span>
+            <span class="current">Gallery</span>
+          </nav>
+        </div>
+        
+        <h2 id="gallery-title" class="section-title centered scroll-fade-up">Gallery</h2>
+        <p class="section-subtitle centered scroll-fade-up">A showcase of handcrafted creations and artistic designs</p>
+
+        <!-- Filter Buttons -->
+        <div class="filter-buttons" role="group" aria-label="Gallery filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="pinkie-flamingo">Pinkie Flamingo</button>
+          <button class="filter-btn" data-filter="red-ruby">Red Ruby</button>
+          <button class="filter-btn" data-filter="sunset-hues">Sunset Hues</button>
+          <button class="filter-btn" data-filter="purple-elegance">Purple Elegance</button>
+          <button class="filter-btn" data-filter="blue-serenity">Blue Serenity</button>
+        </div>
+
+        <div id="lookbook-grid" class="lookbook-grid gallery-grid" aria-live="polite">
+          <!-- Populated by JavaScript -->
+        </div>
+        
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+          <span class="material-icons">arrow_upward</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials-section" aria-labelledby="testimonials-title">
+      <div class="container">
+        <h2 id="testimonials-title" class="section-title centered scroll-fade-up">What Customers Say</h2>
+        <p class="section-subtitle centered scroll-fade-up">Trusted by crafters and art lovers worldwide</p>
+        
+        <div class="testimonials-grid">
+          <div class="testimonial-card scroll-fade-up">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Absolutely stunning craftsmanship! Each piece is unique and shows incredible attention to detail. I'm in love with my Purple Elegance piece!"</p>
+            <div class="testimonial-author">
+              <strong>Sarah M.</strong>
+              <span>Nairobi, Kenya</span>
+            </div>
+          </div>
+          
+          <div class="testimonial-card scroll-fade-up">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"The colors are even more vibrant in person! OMIE's work truly captures the warmth and beauty of handmade artistry. Highly recommend!"</p>
+            <div class="testimonial-author">
+              <strong>Jennifer K.</strong>
+              <span>Mombasa, Kenya</span>
+            </div>
+          </div>
+          
+          <div class="testimonial-card scroll-fade-up">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Exceptional quality and beautiful designs. The Sunset Hues collection brightens up my entire living room. Worth every penny!"</p>
+            <div class="testimonial-author">
+              <strong>David O.</strong>
+              <span>Kisumu, Kenya</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-container scroll-fade-up">
+          <p class="cta-text">Ready to add handcrafted beauty to your space?</p>
+          <a class="btn btn-primary" href="#contact">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section - Simple & Elegant -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-layout">
+          <div class="contact-info scroll-fade-left">
+            <h2 id="contact-title" class="section-title">Let's Connect</h2>
+            <p class="lead-text">Interested in commissioning a custom piece? Have questions about my work? I'd love to hear from you!</p>
+            
+            <div class="contact-details">
+              <div class="contact-item scroll-fade-up">
+                <span class="material-icons">email</span>
+                <div>
+                  <h3>Email</h3>
+                  <a id="contact-email-link" href="mailto:hello@omie.com">hello@omie.com</a>
+                </div>
+              </div>
+              <div class="contact-item scroll-fade-up">
+                <span class="material-icons">location_on</span>
+                <div>
+                  <h3>Location</h3>
+                  <p>Nairobi, Kenya</p>
+                </div>
+              </div>
+              <div class="contact-item scroll-fade-up">
+                <span class="material-icons">schedule</span>
+                <div>
+                  <h3>Response Time</h3>
+                  <p>Usually within 24-48 hours</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="social-links scroll-scale">
+              <a href="https://instagram.com/yourusername/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram" title="Follow on Instagram">
+                <span class="material-icons">photo_camera</span>
+              </a>
+              <a href="https://pinterest.com/yourusername/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Pinterest" title="Follow on Pinterest">
+                <span class="material-icons">image</span>
+              </a>
+              <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="Chat on WhatsApp">
+                <span class="material-icons">chat</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-form-wrapper scroll-fade-right">
+            <form id="contact-form" class="contact-form" action="mailto:hello@omie.com" method="post" enctype="text/plain" aria-label="Contact form">
+              <label>
+                <span>Your Name</span>
+                <input name="name" type="text" required placeholder="Jane Doe">
+              </label>
+
+              <label>
+                <span>Email Address</span>
+                <input name="email" type="email" required placeholder="jane@example.com">
+              </label>
+
+              <label>
+                <span>Message</span>
+                <textarea name="message" rows="6" required placeholder="Tell me about your project or inquiry..."></textarea>
+              </label>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="button" id="copy-email" class="btn btn-secondary">Copy Email</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="public/images/logo.svg" alt="OMIE Logo" class="footer-logo">
+          <h3>OMIE</h3>
+          <p>Create. Craft. Connect.</p>
+        </div>
+        <div class="footer-nav">
+          <a href="#about">About</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> OMIE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Instagram DM floating action button -->
+  <a class="md-fab chat-fab" href="https://ig.me/m/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Contact on Instagram">
+    <span class="material-icons">chat</span>
+  </a>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+    <button class="lightbox-close" aria-label="Close lightbox">
+      <span class="material-icons">close</span>
+    </button>
+    <button class="lightbox-prev" aria-label="Previous image">
+      <span class="material-icons">chevron_left</span>
+    </button>
+    <button class="lightbox-next" aria-label="Next image">
+      <span class="material-icons">chevron_right</span>
+    </button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-info">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-category"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="theme-toggle.js" defer></script>
+  <script src="main.js?v=2.1" defer></script>
+</body>
+</html>

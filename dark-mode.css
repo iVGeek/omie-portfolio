@@ -1,0 +1,288 @@
+/* ================================
+   Dark Mode Support - OMIE Portfolio
+   ================================ */
+
+/* Dark mode color variables */
+:root[data-theme="dark"] {
+  /* Light & Dark Mode Colors */
+  --primary-coral: #FF1493;     /* Deep pink - stays vibrant */
+  --vibrant-orange: #FF6600;    /* Vibrant orange - stays vibrant */
+  --warm-pink: #FF69B4;         /* Hot pink */
+  --light-pink: #FFB6C1;        /* Light pink */
+  --lightest-pink: #FFF0F5;     /* Lightest pink */
+  --orange-deep: #FF4500;       /* Deep orange-red */
+  --orange-light: #FFA500;      /* Light orange */
+  --orange-mid: #FF7F00;        /* Mid orange */
+  
+  /* Dark Mode Text & Background */
+  --text-dark: #E8D5E8;         /* Light text for dark backgrounds */
+  --text-muted: #B0B0B0;        /* Muted text for dark mode */
+  --bg-white: #1A1A2E;          /* Dark background */
+  --bg-cream: #232D42;          /* Dark cream-equivalent */
+  --bg-light: #2D3A52;          /* Dark light-equivalent */
+  --bg-dark: linear-gradient(135deg, #FF1493 0%, #FF6600 100%); /* Pink to orange gradient */
+}
+
+/* System preference for dark mode */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --text-dark: #E8D5E8;
+    --text-muted: #B0B0B0;
+    --bg-white: #1A1A2E;
+    --bg-cream: #232D42;
+    --bg-light: #2D3A52;
+  }
+}
+
+/* Dark mode body styles */
+body[data-theme="dark"],
+body:not([data-theme])@media (prefers-color-scheme: dark) {
+  background: #1A1A2E;
+  color: #E8D5E8;
+}
+
+/* Dark mode category backgrounds - more subtle */
+body[data-theme="dark"].category-pinkie-flamingo,
+body:not([data-theme])@media (prefers-color-scheme: dark) .category-pinkie-flamingo {
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.15) 0%, rgba(255, 182, 193, 0.08) 100%);
+}
+
+body[data-theme="dark"].category-red-ruby,
+body:not([data-theme])@media (prefers-color-scheme: dark) .category-red-ruby {
+  background: linear-gradient(135deg, rgba(220, 20, 60, 0.15) 0%, rgba(255, 99, 71, 0.08) 100%);
+}
+
+body[data-theme="dark"].category-sunset-hues,
+body:not([data-theme])@media (prefers-color-scheme: dark) .category-sunset-hues {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.15) 0%, rgba(255, 165, 0, 0.08) 100%);
+}
+
+body[data-theme="dark"].category-purple-elegance,
+body:not([data-theme])@media (prefers-color-scheme: dark) .category-purple-elegance {
+  background: linear-gradient(135deg, rgba(147, 112, 219, 0.15) 0%, rgba(186, 85, 211, 0.08) 100%);
+}
+
+body[data-theme="dark"].category-blue-serenity,
+body:not([data-theme])@media (prefers-color-scheme: dark) .category-blue-serenity {
+  background: linear-gradient(135deg, rgba(65, 105, 225, 0.15) 0%, rgba(135, 206, 250, 0.08) 100%);
+}
+
+/* ================================
+   Header Dark Mode
+   ================================ */
+
+[data-theme="dark"] .site-header,
+@media (prefers-color-scheme: dark) .site-header:not([data-theme="light"]) {
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.2) 0%, rgba(255, 102, 0, 0.2) 100%);
+  background-color: #232D42;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .nav-links a,
+[data-theme="dark"] .mobile-menu a,
+@media (prefers-color-scheme: dark) .nav-links a:not([data-theme="light"]),
+@media (prefers-color-scheme: dark) .mobile-menu a:not([data-theme="light"]) {
+  color: #E8D5E8;
+}
+
+[data-theme="dark"] .nav-links a:hover,
+[data-theme="dark"] .mobile-menu a:hover,
+@media (prefers-color-scheme: dark) .nav-links a:hover:not([data-theme="light"]),
+@media (prefers-color-scheme: dark) .mobile-menu a:hover:not([data-theme="light"]) {
+  color: #FFB6C1;
+}
+
+/* ================================
+   Buttons Dark Mode
+   ================================ */
+
+[data-theme="dark"] .btn-primary,
+@media (prefers-color-scheme: dark) .btn-primary:not([data-theme="light"]) {
+  background: linear-gradient(135deg, #FF1493 0%, #FF6600 100%);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+[data-theme="dark"] .btn-primary:hover,
+@media (prefers-color-scheme: dark) .btn-primary:hover:not([data-theme="light"]) {
+  background: linear-gradient(135deg, #FF69B4 0%, #FF7F00 100%);
+  box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+}
+
+[data-theme="dark"] .btn-secondary,
+@media (prefers-color-scheme: dark) .btn-secondary:not([data-theme="light"]) {
+  background: transparent;
+  color: #FFB6C1;
+  border-color: #FFB6C1;
+}
+
+[data-theme="dark"] .btn-secondary:hover,
+@media (prefers-color-scheme: dark) .btn-secondary:hover:not([data-theme="light"]) {
+  background: rgba(255, 182, 193, 0.1);
+  border-color: #FF1493;
+  color: #FF1493;
+}
+
+/* ================================
+   Cards & Containers Dark Mode
+   ================================ */
+
+[data-theme="dark"] .testimonial-card,
+@media (prefers-color-scheme: dark) .testimonial-card:not([data-theme="light"]) {
+  background: #232D42;
+  border: 1px solid rgba(255, 182, 193, 0.2);
+  color: #E8D5E8;
+}
+
+[data-theme="dark"] .gallery-item,
+@media (prefers-color-scheme: dark) .gallery-item:not([data-theme="light"]) {
+  background: #232D42;
+}
+
+[data-theme="dark"] .gallery-item img,
+@media (prefers-color-scheme: dark) .gallery-item img:not([data-theme="light"]) {
+  opacity: 0.9;
+}
+
+[data-theme="dark"] .overlay,
+@media (prefers-color-scheme: dark) .overlay:not([data-theme="light"]) {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(35, 45, 66, 0.9) 100%);
+}
+
+[data-theme="dark"] .overlay h3,
+[data-theme="dark"] .overlay p,
+@media (prefers-color-scheme: dark) .overlay h3:not([data-theme="light"]),
+@media (prefers-color-scheme: dark) .overlay p:not([data-theme="light"]) {
+  color: #FFB6C1;
+}
+
+/* ================================
+   Input Fields Dark Mode
+   ================================ */
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+@media (prefers-color-scheme: dark) input:not([data-theme="light"]),
+@media (prefers-color-scheme: dark) textarea:not([data-theme="light"]) {
+  background: #232D42;
+  color: #E8D5E8;
+  border-color: rgba(255, 182, 193, 0.3);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder,
+@media (prefers-color-scheme: dark) input::placeholder:not([data-theme="light"]),
+@media (prefers-color-scheme: dark) textarea::placeholder:not([data-theme="light"]) {
+  color: rgba(232, 213, 232, 0.6);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+@media (prefers-color-scheme: dark) input:focus:not([data-theme="light"]),
+@media (prefers-color-scheme: dark) textarea:focus:not([data-theme="light"]) {
+  border-color: #FF1493;
+  background: #2D3A52;
+  box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.2);
+}
+
+/* ================================
+   Lightbox Dark Mode
+   ================================ */
+
+[data-theme="dark"] .lightbox,
+@media (prefers-color-scheme: dark) .lightbox:not([data-theme="light"]) {
+  background: rgba(26, 26, 46, 0.95);
+}
+
+[data-theme="dark"] .lightbox-info,
+@media (prefers-color-scheme: dark) .lightbox-info:not([data-theme="light"]) {
+  background: rgba(35, 45, 66, 0.8);
+  color: #E8D5E8;
+}
+
+[data-theme="dark"] .lightbox-info h3,
+@media (prefers-color-scheme: dark) .lightbox-info h3:not([data-theme="light"]) {
+  color: #FFB6C1;
+}
+
+/* ================================
+   Footer Dark Mode
+   ================================ */
+
+[data-theme="dark"] .site-footer,
+@media (prefers-color-scheme: dark) .site-footer:not([data-theme="light"]) {
+  background: #232D42;
+  border-top: 1px solid rgba(255, 182, 193, 0.2);
+  color: #E8D5E8;
+}
+
+[data-theme="dark"] .site-footer a,
+@media (prefers-color-scheme: dark) .site-footer a:not([data-theme="light"]) {
+  color: #FFB6C1;
+}
+
+[data-theme="dark"] .site-footer a:hover,
+@media (prefers-color-scheme: dark) .site-footer a:hover:not([data-theme="light"]) {
+  color: #FF1493;
+}
+
+/* ================================
+   Scrollbar Dark Mode
+   ================================ */
+
+[data-theme="dark"] ::-webkit-scrollbar-track,
+@media (prefers-color-scheme: dark) ::-webkit-scrollbar-track:not([data-theme="light"]) {
+  background: #232D42;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb,
+@media (prefers-color-scheme: dark) ::-webkit-scrollbar-thumb:not([data-theme="light"]) {
+  background: linear-gradient(180deg, #FF1493 0%, #FF6600 100%);
+}
+
+/* ================================
+   Theme Toggle Button
+   ================================ */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* ================================
+   Smooth Transitions
+   ================================ */
+
+body,
+main,
+header,
+footer,
+input,
+textarea,
+button,
+.btn,
+.card,
+.overlay,
+.lightbox {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
