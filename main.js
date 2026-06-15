@@ -39,7 +39,7 @@ function throttle(fn, delay) {
 
 // Gallery organized by categories
 // Each category contains multiple images with rich metadata
-// Note: 'images/' is a symlink to 'public/images/', both paths work
+// Note: 'images/' directory at root, all image paths use 'images/' prefix
 const galleryCategories = [
   {
     name: 'Pinkie Flamingo',

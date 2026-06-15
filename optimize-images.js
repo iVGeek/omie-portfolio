@@ -12,11 +12,11 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const dir = path.join(__dirname, 'public', 'images');
+const dir = path.join(__dirname, 'images');
 const sizes = [1600, 1200, 800, 480]; // widths to generate
 
 if (!fs.existsSync(dir)) {
-  console.error('Directory public/images does not exist. Create it and add images first.');
+  console.error('Directory images does not exist. Create it and add images first.');
   process.exit(1);
 }
 
