@@ -421,7 +421,7 @@ function renderMasonryGallery(filter = 'all') {
   
   filteredImages.forEach((image, index) => {
     const item = document.createElement('div');
-    item.className = 'gallery-item reveal-clip';
+    item.className = 'gallery-item';
     item.dataset.category = image.categorySlug;
     item.dataset.index = index;
     
@@ -1308,7 +1308,7 @@ class Tilt3D {
 
 class MagneticButtons {
   constructor() {
-    this.buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .filter-btn, .back-to-top');
+    this.buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
     this.init();
   }
 
@@ -1339,7 +1339,7 @@ class MagneticButtons {
 class ScrollColors {
   constructor() {
     this.sections = [
-      { id: 'hero', color: '' },
+      { id: 'hero', color: '#fff' },
       { id: 'about', color: 'linear-gradient(180deg, #fff5f7 0%, #fff 100%)' },
       { id: 'gallery', color: 'linear-gradient(180deg, #fff 0%, #fff5f7 100%)' },
       { id: 'testimonials', color: 'linear-gradient(180deg, #fff5f7 0%, #fff 100%)' },
@@ -1374,9 +1374,9 @@ class ScrollColors {
 // ================================
 
 function setupLightboxZoom() {
-  const lightboxContent = document.querySelector('.lightbox-content');
+  const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
-  if (!lightboxContent || !lightboxImg) return;
+  if (!lightbox || !lightboxImg) return;
 
   const container = document.createElement('div');
   container.className = 'lightbox-img-container';
@@ -1388,10 +1388,10 @@ function setupLightboxZoom() {
   let isDragging = false;
   let startX, startY, scrollLeft, scrollTop;
 
-  container.addEventListener('click', () => {
+  container.addEventListener('click', (e) => {
+    if (isDragging) return;
     isZoomed = !isZoomed;
     container.classList.toggle('zoomed');
-    container.style.cursor = isZoomed ? 'grab' : 'zoom-in';
     if (!isZoomed) {
       container.scrollLeft = 0;
       container.scrollTop = 0;
@@ -1402,10 +1402,20 @@ function setupLightboxZoom() {
     if (!isZoomed) return;
     isDragging = true;
     container.classList.add('grabbing');
-    startX = e.pageX - container.offsetLeft;
-    startY = e.pageY - container.offsetTop;
+    startX = e.clientX;
+    startY = e.clientY;
     scrollLeft = container.scrollLeft;
     scrollTop = container.scrollTop;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const x = e.clientX;
+    const y = e.clientY;
+    const walkX = (x - startX);
+    const walkY = (y - startY);
+    container.scrollLeft = scrollLeft - walkX;
+    container.scrollTop = scrollTop - walkY;
   });
 
   document.addEventListener('mouseup', () => {
@@ -1414,15 +1424,11 @@ function setupLightboxZoom() {
     container.classList.remove('grabbing');
   });
 
-  container.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - container.offsetLeft;
-    const y = e.pageY - container.offsetTop;
-    const walkX = (x - startX) * 1.5;
-    const walkY = (y - startY) * 1.5;
-    container.scrollLeft = scrollLeft - walkX;
-    container.scrollTop = scrollTop - walkY;
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox && isZoomed) {
+      isZoomed = false;
+      container.classList.remove('zoomed');
+    }
   });
 }
 
