@@ -404,7 +404,7 @@ function renderMasonryGallery(filter = 'all') {
   if (!grid) return;
   
   grid.innerHTML = '';
-  grid.classList.remove('category-view');
+  grid.classList.remove('category-view', 'lookbook-grid');
   
   // Prepare images if not already done
   if (allGalleryImages.length === 0) {
@@ -515,6 +515,13 @@ function openLightbox(index, images) {
 function closeLightbox() {
   const lightbox = document.getElementById('lightbox');
   if (!lightbox) return;
+  
+  const container = document.querySelector('.lightbox-img-container');
+  if (container) {
+    container.classList.remove('zoomed');
+    container.scrollLeft = 0;
+    container.scrollTop = 0;
+  }
   
   lightbox.classList.remove('active');
   lightbox.setAttribute('hidden', '');
@@ -672,10 +679,11 @@ function renderGallery() {
   if (currentView === 'categories') {
     // Reset body background classes when viewing categories
     document.body.className = document.body.className.replace(/category-\S+/g, '').trim();
-    grid.classList.add('category-view');
+    grid.classList.add('lookbook-grid', 'category-view');
     renderCategories(grid);
   } else {
     grid.classList.remove('category-view');
+    grid.classList.add('lookbook-grid');
     renderCategoryImages(grid);
   }
 }
