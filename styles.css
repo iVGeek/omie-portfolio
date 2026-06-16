@@ -431,10 +431,10 @@ body {
   transition: background 0.8s ease;
   
   /* Custom cursor variables */
-  --cursor-size: 20px;
-  --cursor-ring-size: 28px;
-  --cursor-follower-size: 50px;
-  --cursor-follower-hover-size: 70px;
+  --cursor-size: 24px;
+  --cursor-ring-size: 34px;
+  --cursor-follower-size: 60px;
+  --cursor-follower-hover-size: 90px;
 }
 
 /* Category-specific backgrounds */
@@ -468,13 +468,13 @@ body.custom-cursor-active {
   height: var(--cursor-size);
   pointer-events: none;
   z-index: 10001;
-  transition: transform 0.05s ease-out, opacity 0.3s ease;
+  transition: transform 0.08s ease-out, opacity 0.3s ease;
   opacity: 1;
   will-change: transform;
   transform-origin: center center;
+  filter: drop-shadow(0 0 6px rgba(255, 20, 147, 0.3));
 }
 
-/* Main cursor - yarn ball with texture */
 .custom-cursor::before {
   content: '';
   position: absolute;
@@ -483,42 +483,75 @@ body.custom-cursor-active {
   transform: translate(-50%, -50%);
   width: var(--cursor-size);
   height: var(--cursor-size);
-  background: 
-    radial-gradient(circle at 35% 35%, #FFB6C1 0%, #FF69B4 30%, #FF1493 60%),
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 255, 255, 0.15) 2px,
-      rgba(255, 255, 255, 0.15) 4px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 255, 255, 0.1) 2px,
-      rgba(255, 255, 255, 0.1) 4px
-    );
+  background:
+    radial-gradient(circle at 30% 30%, #FFF0F5 0%, #FFB6C1 15%, #FF69B4 35%, #FF1493 55%, #C71585 75%, #8B0060 100%);
   border-radius: 50%;
-  box-shadow: 
-    0 0 8px rgba(255, 20, 147, 0.6),
-    0 0 16px rgba(255, 105, 180, 0.4),
-    inset -2px -2px 6px rgba(0, 0, 0, 0.2),
-    inset 2px 2px 6px rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 0 12px rgba(255, 20, 147, 0.5),
+    0 0 24px rgba(255, 105, 180, 0.3),
+    inset -3px -3px 8px rgba(0, 0, 0, 0.25),
+    inset 3px 3px 10px rgba(255, 255, 255, 0.4);
 }
 
-/* Yarn strand trailing effect */
+/* Yarn texture cross-hatch overlay */
 .custom-cursor::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: calc(var(--cursor-size) * 0.85);
+  height: calc(var(--cursor-size) * 0.85);
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.12) 2px,
+      rgba(255, 255, 255, 0.12) 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.08) 2px,
+      rgba(255, 255, 255, 0.08) 4px
+    );
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* Orbiting ring */
+.custom-cursor-ring {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
   width: var(--cursor-ring-size);
   height: var(--cursor-ring-size);
-  border: 2px dashed rgba(255, 20, 147, 0.4);
+  border: 1.5px solid rgba(255, 20, 147, 0.25);
   border-radius: 50%;
-  animation: cursorPulse 2s ease-in-out infinite, yarnRotate 8s linear infinite;
+  animation: cursorOrbit 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.custom-cursor-ring::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: #FF69B4;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 105, 180, 0.8);
+}
+
+.custom-cursor-ring.hover::before {
+  width: 6px;
+  height: 6px;
+  background: #FF1493;
+  box-shadow: 0 0 10px rgba(255, 20, 147, 1);
 }
 
 /* Smooth glowing yarn trail follower */
@@ -529,102 +562,67 @@ body.custom-cursor-active {
   width: var(--cursor-follower-size);
   height: var(--cursor-follower-size);
   pointer-events: none;
-  z-index: 10000;
-  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 9999;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
   will-change: transform;
-  opacity: 0.2;
+  opacity: 0.15;
   border-radius: 50%;
-  background: 
-    radial-gradient(circle, rgba(255, 182, 193, 0.5) 0%, rgba(255, 105, 180, 0.3) 30%, transparent 60%),
-    repeating-radial-gradient(
-      circle,
-      transparent 0%,
-      transparent 8%,
-      rgba(255, 20, 147, 0.1) 8%,
-      rgba(255, 20, 147, 0.1) 10%
-    );
-  filter: blur(6px);
-  animation: yarnGlow 3s ease-in-out infinite;
+  background:
+    radial-gradient(circle, rgba(255, 182, 193, 0.4) 0%, rgba(255, 105, 180, 0.25) 25%, rgba(255, 20, 147, 0.1) 50%, transparent 70%);
+  filter: blur(8px);
+}
+
+/* Trail segments */
+.yarn-trail-segment {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  opacity: 0;
 }
 
 .custom-cursor.hover {
-  transform: scale(1.4);
+  transform: scale(1.6);
+  filter: drop-shadow(0 0 12px rgba(255, 20, 147, 0.5));
 }
 
 .custom-cursor.hover::before {
-  background: 
-    radial-gradient(circle at 35% 35%, #FF69B4 0%, #FF1493 30%, #C71585 60%),
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 255, 255, 0.2) 2px,
-      rgba(255, 255, 255, 0.2) 4px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 255, 255, 0.15) 2px,
-      rgba(255, 255, 255, 0.15) 4px
-    );
-  box-shadow: 
-    0 0 12px rgba(255, 20, 147, 0.8),
-    0 0 24px rgba(255, 105, 180, 0.6),
-    inset -3px -3px 8px rgba(0, 0, 0, 0.3),
-    inset 3px 3px 8px rgba(255, 255, 255, 0.6);
+  background:
+    radial-gradient(circle at 30% 30%, #FFE4EC 0%, #FF69B4 20%, #FF1493 40%, #C71585 60%, #8B0060 85%, #4A0030 100%);
+  box-shadow:
+    0 0 18px rgba(255, 20, 147, 0.8),
+    0 0 36px rgba(255, 105, 180, 0.5),
+    inset -4px -4px 10px rgba(0, 0, 0, 0.3),
+    inset 4px 4px 12px rgba(255, 255, 255, 0.5);
 }
 
 .custom-cursor.hover::after {
-  width: 32px;
-  height: 32px;
-  border-width: 3px;
-  border-color: rgba(255, 20, 147, 0.6);
+  opacity: 0.8;
+}
+
+.custom-cursor.hover + .custom-cursor-ring {
+  width: calc(var(--cursor-ring-size) * 1.4);
+  height: calc(var(--cursor-ring-size) * 1.4);
+  border-color: rgba(255, 20, 147, 0.4);
 }
 
 .custom-cursor-follower.hover {
-  opacity: 0.3;
+  opacity: 0.25;
   width: var(--cursor-follower-hover-size);
   height: var(--cursor-follower-hover-size);
-  background: 
-    radial-gradient(circle, rgba(255, 182, 193, 0.6) 0%, rgba(255, 105, 180, 0.4) 30%, transparent 60%),
-    repeating-radial-gradient(
-      circle,
-      transparent 0%,
-      transparent 8%,
-      rgba(255, 20, 147, 0.15) 8%,
-      rgba(255, 20, 147, 0.15) 10%
-    );
+  background:
+    radial-gradient(circle, rgba(255, 182, 193, 0.5) 0%, rgba(255, 105, 180, 0.3) 25%, rgba(255, 20, 147, 0.15) 50%, transparent 70%);
 }
 
-@keyframes cursorPulse {
+@keyframes cursorOrbit {
   0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.15);
-    opacity: 0.2;
-  }
-}
-
-@keyframes yarnRotate {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-@keyframes yarnGlow {
-  0%, 100% {
-    opacity: 0.2;
-    filter: blur(6px);
-  }
-  50% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
     opacity: 0.3;
-    filter: blur(8px);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.15);
+    opacity: 0.6;
   }
 }
 
@@ -634,7 +632,9 @@ body.custom-cursor-active {
     cursor: auto;
   }
   .custom-cursor,
-  .custom-cursor-follower {
+  .custom-cursor-follower,
+  .custom-cursor-ring,
+  .yarn-trail-segment {
     display: none;
   }
 }

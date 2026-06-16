@@ -1115,12 +1115,15 @@ class CustomCursor {
 
     this.cursor = null;
     this.follower = null;
+    this.ring = null;
     this.cursorPos = { x: 0, y: 0 };
     this.followerPos = { x: 0, y: 0 };
+    this.prevPos = { x: 0, y: 0 };
     this.isHovering = false;
     this.rafId = null;
     this.trail = [];
-    this.trailLength = 12;
+    this.trailLength = 16;
+    this.lastMoveTime = 0;
     
     this.init();
   }
@@ -1130,21 +1133,28 @@ class CustomCursor {
     this.cursor = document.createElement('div');
     this.cursor.className = 'custom-cursor';
     
+    this.ring = document.createElement('div');
+    this.ring.className = 'custom-cursor-ring';
+
     this.follower = document.createElement('div');
     this.follower.className = 'custom-cursor-follower';
     
     document.body.appendChild(this.cursor);
+    document.body.appendChild(this.ring);
     document.body.appendChild(this.follower);
 
     for (let i = 0; i < this.trailLength; i++) {
       const seg = document.createElement('div');
       seg.className = 'yarn-trail-segment';
       const ratio = 1 - i / this.trailLength;
-      const size = 4 + ratio * 6;
+      const size = 3 + ratio * 7;
       seg.style.width = size + 'px';
       seg.style.height = size + 'px';
-      const hue = 330 + ratio * 30;
-      seg.style.background = `hsla(${hue}, 80%, 60%, ${0.1 + ratio * 0.4})`;
+      const hue = 340 + ratio * 20;
+      const sat = 75 + ratio * 10;
+      const lit = 55 + ratio * 15;
+      seg.style.background = `hsla(${hue}, ${sat}%, ${lit}%, ${0.05 + ratio * 0.35})`;
+      seg.style.boxShadow = `0 0 ${4 + ratio * 4}px hsla(${hue}, ${sat}%, ${lit}%, ${0.05 + ratio * 0.15})`;
       document.body.appendChild(seg);
       this.trail.push({ el: seg, x: 0, y: 0 });
     }
@@ -1157,24 +1167,29 @@ class CustomCursor {
   handleMouseMove(e) {
     this.cursorPos.x = e.clientX;
     this.cursorPos.y = e.clientY;
+    this.lastMoveTime = performance.now();
   }
 
   setupHoverEffects() {
-    const hoverElements = 'a, button, [role="button"], .lookbook-item, .category-item, .slide-btn, .indicator, .btn, input, textarea';
+    const hoverElements = 'a, button, [role="button"], .lookbook-item, .category-item, .slide-btn, .indicator, .btn, input, textarea, .gallery-item';
     
     document.addEventListener('mouseover', (e) => {
-      if (e.target.closest(hoverElements)) {
+      const target = e.target.closest(hoverElements);
+      if (target) {
         this.isHovering = true;
         this.cursor.classList.add('hover');
         this.follower.classList.add('hover');
+        this.ring.classList.add('hover');
       }
     }, { passive: true });
 
     document.addEventListener('mouseout', (e) => {
-      if (e.target.closest(hoverElements)) {
+      const target = e.target.closest(hoverElements);
+      if (target) {
         this.isHovering = false;
         this.cursor.classList.remove('hover');
         this.follower.classList.remove('hover');
+        this.ring.classList.remove('hover');
       }
     }, { passive: true });
   }
@@ -1182,13 +1197,16 @@ class CustomCursor {
   animate() {
     const lerp = (start, end, factor) => start + (end - start) * factor;
     
-    const cursorSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-size')) || 12;
-    const followerSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-follower-size')) || 40;
+    const cursorSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-size')) || 24;
+    const ringSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-ring-size')) || 34;
+    const followerSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-follower-size')) || 60;
     
     this.cursor.style.transform = `translate3d(${this.cursorPos.x - cursorSize / 2}px, ${this.cursorPos.y - cursorSize / 2}px, 0)`;
     
-    this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.12);
-    this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.12);
+    this.ring.style.transform = `translate3d(${this.cursorPos.x - ringSize / 2}px, ${this.cursorPos.y - ringSize / 2}px, 0)`;
+    
+    this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.08);
+    this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.08);
     
     this.follower.style.transform = `translate3d(${this.followerPos.x - followerSize / 2}px, ${this.followerPos.y - followerSize / 2}px, 0)`;
 
@@ -1196,12 +1214,19 @@ class CustomCursor {
     let py = this.followerPos.y;
     for (let i = 0; i < this.trail.length; i++) {
       const seg = this.trail[i];
-      seg.x = lerp(seg.x, px, 0.18);
-      seg.y = lerp(seg.y, py, 0.18);
-      seg.el.style.transform = `translate3d(${seg.x - parseFloat(seg.el.style.width) / 2}px, ${seg.y - parseFloat(seg.el.style.height) / 2}px, 0)`;
+      seg.x = lerp(seg.x, px, 0.2);
+      seg.y = lerp(seg.y, py, 0.2);
+      const w = parseFloat(seg.el.style.width);
+      seg.el.style.transform = `translate3d(${seg.x - w / 2}px, ${seg.y - w / 2}px, 0)`;
+      const speed = Math.hypot(this.cursorPos.x - this.prevPos.x, this.cursorPos.y - this.prevPos.y);
+      const boost = Math.min(speed / 40, 1);
+      const ratio = 1 - i / this.trail.length;
+      seg.el.style.opacity = Math.max(0, (ratio * boost - 0.1)).toFixed(2);
       px = seg.x;
       py = seg.y;
     }
+    this.prevPos.x = this.cursorPos.x;
+    this.prevPos.y = this.cursorPos.y;
     
     this.rafId = requestAnimationFrame(() => this.animate());
   }
