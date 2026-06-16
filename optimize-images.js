@@ -13,39 +13,37 @@ const fs = require('fs');
 const path = require('path');
 
 const dir = path.join(__dirname, 'images');
-const sizes = [1600, 1200, 800, 480]; // widths to generate
 
 if (!fs.existsSync(dir)) {
   console.error('Directory images does not exist. Create it and add images first.');
   process.exit(1);
 }
 
-async function processFile(file) {
-  const input = path.join(dir, file);
-  const name = path.parse(file).name;
-  console.log(`Processing ${file}...`);
+async function processFile(input) {
+  const parse = path.parse(input);
+  const outWebp = path.join(parse.dir, `${parse.name}.webp`);
+  console.log(`WebP: ${path.relative(dir, input)}`);
+  await sharp(input).webp({ quality: 85 }).toFile(outWebp);
+}
 
-  // generate sizes as jpg
-  for (const w of sizes) {
-    const outJpg = path.join(dir, `${name}-${w}.jpg`);
-    await sharp(input).resize({ width: w }).jpeg({ quality: 80 }).toFile(outJpg);
+function walk(dirPath) {
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+    if (entry.isDirectory()) {
+      walk(fullPath);
+    } else if (/\.(jpe?g|png)$/i.test(entry.name)) {
+      // skip if webp already exists
+      const webpPath = path.join(dirPath, `${path.parse(entry.name).name}.webp`);
+      if (!fs.existsSync(webpPath)) {
+        processFile(fullPath);
+      }
+    }
   }
-
-  // generate webp (full size)
-  const outWebp = path.join(dir, `${name}.webp`);
-  await sharp(input).webp({ quality: 80 }).toFile(outWebp);
-
-  console.log(`Done ${file}`);
 }
 
 (async () => {
-  const files = fs.readdirSync(dir).filter(f => /\.(jpe?g|png)$/i.test(f));
-  for (const f of files) {
-    try {
-      await processFile(f);
-    } catch (e) {
-      console.error('Error processing', f, e);
-    }
-  }
+  console.log(`Generating WebP for images in ${dir}...`);
+  walk(dir);
   console.log('All done.');
 })();

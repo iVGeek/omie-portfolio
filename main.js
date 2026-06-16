@@ -125,9 +125,6 @@ const galleryCategories = [
   }
 ];
 
-// Legacy support - convert categories to old lookbook format for lightbox
-const lookbook = [];
-
 // ================================
 // Hero Slideshow
 // ================================
@@ -370,261 +367,6 @@ class MobileMenu {
 // ================================
 // Lightbox Gallery (Book View)
 // ================================
-
-class LightboxGallery {
-  constructor() {
-    this.currentProject = 0;
-    this.currentImage = 0;
-    this.modal = null;
-    this.init();
-  }
-  
-  init() {
-    // Create modal structure
-    this.createModal();
-    
-    // Add event listeners
-    this.setupEventListeners();
-  }
-  
-  createModal() {
-    const modal = document.createElement('div');
-    modal.className = 'lightbox-modal';
-    modal.id = 'lightbox-modal';
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('aria-label', 'Image gallery viewer');
-    
-    modal.innerHTML = `
-      <div class="lightbox-overlay"></div>
-      <div class="lightbox-content">
-        <button class="lightbox-close" aria-label="Close gallery">
-          <span class="material-icons">close</span>
-        </button>
-        
-        <button class="lightbox-nav lightbox-prev" aria-label="Previous image">
-          <span class="material-icons">chevron_left</span>
-        </button>
-        
-        <div class="lightbox-image-container">
-          <img class="lightbox-image" src="" alt="" />
-          <div class="lightbox-caption"></div>
-          <div class="lightbox-counter"></div>
-        </div>
-        
-        <button class="lightbox-nav lightbox-next" aria-label="Next image">
-          <span class="material-icons">chevron_right</span>
-        </button>
-        
-        <div class="lightbox-indicators"></div>
-      </div>
-    `;
-    
-    document.body.appendChild(modal);
-    this.modal = modal;
-  }
-  
-  setupEventListeners() {
-    // Close button
-    const closeBtn = this.modal.querySelector('.lightbox-close');
-    closeBtn.addEventListener('click', () => this.close());
-    
-    // Overlay click to close
-    const overlay = this.modal.querySelector('.lightbox-overlay');
-    overlay.addEventListener('click', () => this.close());
-    
-    // Navigation buttons
-    const prevBtn = this.modal.querySelector('.lightbox-prev');
-    const nextBtn = this.modal.querySelector('.lightbox-next');
-    
-    prevBtn.addEventListener('click', () => this.previousImage());
-    nextBtn.addEventListener('click', () => this.nextImage());
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (!this.modal.classList.contains('active')) return;
-      
-      switch(e.key) {
-        case 'Escape':
-          this.close();
-          break;
-        case 'ArrowLeft':
-          this.previousImage();
-          break;
-        case 'ArrowRight':
-          this.nextImage();
-          break;
-      }
-    });
-    
-    // Touch/swipe support for mobile
-    this.setupTouchEvents();
-  }
-  
-  setupTouchEvents() {
-    const imageContainer = this.modal.querySelector('.lightbox-image-container');
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    const handleSwipe = () => {
-      const swipeThreshold = 50;
-      const diff = touchStartX - touchEndX;
-      
-      if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-          // Swipe left - next image
-          this.nextImage();
-        } else {
-          // Swipe right - previous image
-          this.previousImage();
-        }
-      }
-    };
-    
-    imageContainer.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-    
-    imageContainer.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-  }
-  
-  open(projectIndex, imageIndex = null) {
-    this.currentProject = projectIndex;
-    this.currentImage = imageIndex ?? 0;
-    
-    // Prevent body scroll when modal is open
-    document.body.style.overflow = 'hidden';
-    
-    // Show modal
-    this.modal.classList.add('active');
-    
-    // Load and display image
-    this.updateImage();
-    
-    // Create indicators
-    this.createIndicators();
-    
-    // Focus trap for accessibility
-    this.modal.querySelector('.lightbox-close').focus();
-  }
-  
-  close() {
-    this.modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-  
-  updateImage() {
-    const project = lookbook[this.currentProject];
-    const image = project.images[this.currentImage];
-    
-    const imgElement = this.modal.querySelector('.lightbox-image');
-    const captionElement = this.modal.querySelector('.lightbox-caption');
-    const counterElement = this.modal.querySelector('.lightbox-counter');
-    
-    // Fade out
-    imgElement.style.opacity = '0';
-    
-    setTimeout(() => {
-      imgElement.src = image.src;
-      imgElement.alt = image.alt;
-      
-      // Hide caption - users want just images, nothing else
-      captionElement.innerHTML = '';
-      
-      // Update counter
-      counterElement.textContent = `${this.currentImage + 1} / ${project.images.length}`;
-      
-      // Fade in
-      imgElement.style.opacity = '1';
-    }, 200);
-    
-    // Update navigation buttons visibility
-    const prevBtn = this.modal.querySelector('.lightbox-prev');
-    const nextBtn = this.modal.querySelector('.lightbox-next');
-    
-    // Show/hide navigation based on image count
-    if (project.images.length === 1) {
-      prevBtn.style.display = 'none';
-      nextBtn.style.display = 'none';
-    } else {
-      prevBtn.style.display = 'flex';
-      nextBtn.style.display = 'flex';
-    }
-    
-    // Update active indicator
-    this.updateIndicators();
-  }
-  
-  createIndicators() {
-    const project = lookbook[this.currentProject];
-    const indicatorsContainer = this.modal.querySelector('.lightbox-indicators');
-    
-    indicatorsContainer.innerHTML = '';
-    
-    // Only show indicators if there are multiple images
-    if (project.images.length <= 1) {
-      indicatorsContainer.style.display = 'none';
-      return;
-    }
-    
-    indicatorsContainer.style.display = 'flex';
-    
-    project.images.forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.className = 'lightbox-indicator';
-      dot.setAttribute('aria-label', `Go to image ${index + 1}`);
-      
-      if (index === this.currentImage) {
-        dot.classList.add('active');
-      }
-      
-      dot.addEventListener('click', () => {
-        this.currentImage = index;
-        this.updateImage();
-      });
-      
-      indicatorsContainer.appendChild(dot);
-    });
-  }
-  
-  updateIndicators() {
-    const indicators = this.modal.querySelectorAll('.lightbox-indicator');
-    indicators.forEach((indicator, index) => {
-      if (index === this.currentImage) {
-        indicator.classList.add('active');
-      } else {
-        indicator.classList.remove('active');
-      }
-    });
-  }
-  
-  nextImage() {
-    const project = lookbook[this.currentProject];
-    
-    if (this.currentImage < project.images.length - 1) {
-      this.currentImage++;
-    } else {
-      this.currentImage = 0; // Loop back to first image
-    }
-    
-    this.updateImage();
-  }
-  
-  previousImage() {
-    const project = lookbook[this.currentProject];
-    
-    if (this.currentImage > 0) {
-      this.currentImage--;
-    } else {
-      this.currentImage = project.images.length - 1; // Loop to last image
-    }
-    
-    this.updateImage();
-  }
-}
 
 // ================================
 // Gallery State Management
@@ -886,8 +628,9 @@ function setupFilterButtons() {
       // Remove active class and reset styles from all buttons
       filterButtons.forEach(btn => {
         btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
         const rgb = btn.dataset.categoryRgb;
-        if (rgb && !btn.dataset.filter === 'all') {
+        if (rgb && btn.dataset.filter !== 'all') {
           btn.style.background = 'white';
           btn.style.borderColor = btn.dataset.categoryColor;
           btn.style.color = btn.dataset.categoryColor;
@@ -897,6 +640,7 @@ function setupFilterButtons() {
       
       // Add active class to clicked button
       button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
       
       // Apply active styles for buttons with dynamic colors
       if (categoryColor && categoryRgb && lighterColor) {
@@ -1086,17 +830,11 @@ function renderCategoryImages(grid) {
   // Use DocumentFragment for efficient DOM manipulation
   const fragment = document.createDocumentFragment();
   
-  // Build category images array and update lookbook for lightbox compatibility
-  // The lookbook array must be updated for the existing lightbox gallery to function
-  // Create a single project with all images in the category
-  const categoryProject = {
-    title: category.name,
-    images: category.images
-  };
-  
-  // Update global lookbook array (required by LightboxGallery class)
-  lookbook.length = 0;
-  lookbook.push(categoryProject);
+  // Build flat images array with category info for lightbox
+  const categoryImagesForLightbox = category.images.map(img => ({
+    ...img,
+    category: category.name
+  }));
   
   category.images.forEach((image, imageIndex) => {
     const article = document.createElement('article');
@@ -1133,20 +871,14 @@ function renderCategoryImages(grid) {
     article.setAttribute('aria-label', `View ${category.name} image ${imageIndex + 1}`);
     
     article.addEventListener('click', () => {
-      if (window.lightboxGallery) {
-        // Open the first (and only) project in lookbook, but start at the clicked image
-        window.lightboxGallery.open(0, imageIndex);
-      }
+      openLightbox(imageIndex, categoryImagesForLightbox);
     });
     
     // Add keyboard support for accessibility
     article.addEventListener('keypress', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        if (window.lightboxGallery) {
-          // Open the first (and only) project in lookbook, but start at the clicked image
-          window.lightboxGallery.open(0, imageIndex);
-        }
+        openLightbox(imageIndex, categoryImagesForLightbox);
       }
     });
     
@@ -1351,9 +1083,6 @@ document.addEventListener('DOMContentLoaded', () => {
   new HeaderScroll();
   new MobileMenu();
   
-  // Initialize lightbox gallery (stored globally for access from renderLookbook)
-  window.lightboxGallery = new LightboxGallery();
-  
   // Initialize Graffico.it-style enhancements
   new CustomCursor();
   new StaggerAnimation();
@@ -1387,6 +1116,7 @@ class CustomCursor {
 
   init() {
     // Create cursor elements
+    document.body.classList.add('custom-cursor-active');
     this.cursor = document.createElement('div');
     this.cursor.className = 'custom-cursor';
     
@@ -1579,20 +1309,4 @@ function observeStatNumbers() {
   });
 }
 
-// Initialize stat counter animation
-document.addEventListener('DOMContentLoaded', () => {
-  observeStatNumbers();
-});
 
-// ================================
-// Crochet Bot - Cute Assistant
-// ================================
-
-
-
-// Optional: Cleanup on page unload (useful for SPAs)
-window.addEventListener('beforeunload', () => {
-  if (crochetBotInstance) {
-    crochetBotInstance.destroy();
-  }
-});
