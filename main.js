@@ -199,7 +199,7 @@ class Slideshow {
 
 class ScrollAnimations {
   constructor() {
-    this.elements = document.querySelectorAll('.reveal, .scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-scale, .stagger-item');
+    this.elements = document.querySelectorAll('.reveal, .reveal-clip, .scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-scale, .stagger-item');
     this.init();
   }
   
@@ -421,7 +421,7 @@ function renderMasonryGallery(filter = 'all') {
   
   filteredImages.forEach((image, index) => {
     const item = document.createElement('div');
-    item.className = 'gallery-item';
+    item.className = 'gallery-item reveal-clip';
     item.dataset.category = image.categorySlug;
     item.dataset.index = index;
     
@@ -1083,9 +1083,13 @@ document.addEventListener('DOMContentLoaded', () => {
   new HeaderScroll();
   new MobileMenu();
   
-  // Initialize Graffico.it-style enhancements
+  // Initialize visual enhancements
   new CustomCursor();
   new StaggerAnimation();
+  new Tilt3D();
+  new MagneticButtons();
+  new ScrollColors();
+  setupLightboxZoom();
   
   // Add loading complete class
   setTimeout(() => {
@@ -1099,10 +1103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 class CustomCursor {
   constructor() {
-    // Only initialize on non-touch devices
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-      return;
-    }
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
     this.cursor = null;
     this.follower = null;
@@ -1110,12 +1111,13 @@ class CustomCursor {
     this.followerPos = { x: 0, y: 0 };
     this.isHovering = false;
     this.rafId = null;
+    this.trail = [];
+    this.trailLength = 12;
     
     this.init();
   }
 
   init() {
-    // Create cursor elements
     document.body.classList.add('custom-cursor-active');
     this.cursor = document.createElement('div');
     this.cursor.className = 'custom-cursor';
@@ -1126,13 +1128,21 @@ class CustomCursor {
     document.body.appendChild(this.cursor);
     document.body.appendChild(this.follower);
 
-    // Track mouse movement with passive listener for better performance
+    for (let i = 0; i < this.trailLength; i++) {
+      const seg = document.createElement('div');
+      seg.className = 'yarn-trail-segment';
+      const ratio = 1 - i / this.trailLength;
+      const size = 4 + ratio * 6;
+      seg.style.width = size + 'px';
+      seg.style.height = size + 'px';
+      const hue = 330 + ratio * 30;
+      seg.style.background = `hsla(${hue}, 80%, 60%, ${0.1 + ratio * 0.4})`;
+      document.body.appendChild(seg);
+      this.trail.push({ el: seg, x: 0, y: 0 });
+    }
+
     document.addEventListener('mousemove', (e) => this.handleMouseMove(e), { passive: true });
-    
-    // Track hoverable elements
     this.setupHoverEffects();
-    
-    // Start animation loop
     this.animate();
   }
 
@@ -1162,21 +1172,28 @@ class CustomCursor {
   }
 
   animate() {
-    // Smooth cursor movement with easing
     const lerp = (start, end, factor) => start + (end - start) * factor;
     
-    // Get cursor size from CSS variable (default to 12 if not set)
     const cursorSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-size')) || 12;
     const followerSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cursor-follower-size')) || 40;
     
-    // Main cursor (modern orb) follows immediately for responsive feel
     this.cursor.style.transform = `translate3d(${this.cursorPos.x - cursorSize / 2}px, ${this.cursorPos.y - cursorSize / 2}px, 0)`;
     
-    // Follower (glowing trail) has delay for smooth trail effect
     this.followerPos.x = lerp(this.followerPos.x, this.cursorPos.x, 0.12);
     this.followerPos.y = lerp(this.followerPos.y, this.cursorPos.y, 0.12);
     
     this.follower.style.transform = `translate3d(${this.followerPos.x - followerSize / 2}px, ${this.followerPos.y - followerSize / 2}px, 0)`;
+
+    let px = this.followerPos.x;
+    let py = this.followerPos.y;
+    for (let i = 0; i < this.trail.length; i++) {
+      const seg = this.trail[i];
+      seg.x = lerp(seg.x, px, 0.18);
+      seg.y = lerp(seg.y, py, 0.18);
+      seg.el.style.transform = `translate3d(${seg.x - parseFloat(seg.el.style.width) / 2}px, ${seg.y - parseFloat(seg.el.style.height) / 2}px, 0)`;
+      px = seg.x;
+      py = seg.y;
+    }
     
     this.rafId = requestAnimationFrame(() => this.animate());
   }
@@ -1237,6 +1254,176 @@ class StaggerAnimation {
       this.mutationObserver.observe(galleryGrid, { childList: true });
     }
   }
+}
+
+// ================================
+// 3D Tilt Effect on Gallery Items
+// ================================
+
+class Tilt3D {
+  constructor() {
+    this.container = document.querySelector('.lookbook-grid') || document.getElementById('lookbook-grid');
+    if (!this.container) return;
+    this.container.classList.add('tilt-3d');
+    this.items = new Set();
+    this.mutationObserver = null;
+    this.observeItems();
+    this.watchForChanges();
+  }
+
+  observeItems() {
+    this.container.querySelectorAll('.lookbook-item, .gallery-item').forEach(el => {
+      if (!this.items.has(el)) {
+        this.items.add(el);
+        el.addEventListener('mousemove', (e) => this.handleTilt(e, el));
+        el.addEventListener('mouseleave', (e) => this.resetTilt(e, el));
+      }
+    });
+  }
+
+  watchForChanges() {
+    this.mutationObserver = new MutationObserver(() => this.observeItems());
+    this.mutationObserver.observe(this.container, { childList: true });
+  }
+
+  handleTilt(e, el) {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  }
+
+  resetTilt(e, el) {
+    el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+  }
+}
+
+// ================================
+// Magnetic Hover on Buttons
+// ================================
+
+class MagneticButtons {
+  constructor() {
+    this.buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .filter-btn, .back-to-top');
+    this.init();
+  }
+
+  init() {
+    this.buttons.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => this.handleMagnet(e, btn));
+      btn.addEventListener('mouseleave', (e) => this.resetMagnet(e, btn));
+    });
+  }
+
+  handleMagnet(e, btn) {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const strength = btn.classList.contains('filter-btn') ? 4 : 8;
+    btn.style.transform = `translate3d(${x * 0.3}px, ${y * 0.3}px, 0)`;
+  }
+
+  resetMagnet(e, btn) {
+    btn.style.transform = '';
+  }
+}
+
+// ================================
+// Scroll-Driven Background Colors
+// ================================
+
+class ScrollColors {
+  constructor() {
+    this.sections = [
+      { id: 'hero', color: '' },
+      { id: 'about', color: 'linear-gradient(180deg, #fff5f7 0%, #fff 100%)' },
+      { id: 'gallery', color: 'linear-gradient(180deg, #fff 0%, #fff5f7 100%)' },
+      { id: 'testimonials', color: 'linear-gradient(180deg, #fff5f7 0%, #fff 100%)' },
+      { id: 'contact', color: 'linear-gradient(180deg, #fff 0%, #fdf2f4 100%)' },
+    ];
+    this.currentBg = '';
+    this.init();
+  }
+
+  init() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const section = this.sections.find(s => s.id === entry.target.id);
+          if (section && section.color) {
+            document.body.style.transition = 'background 0.8s ease';
+            document.body.style.background = section.color;
+          }
+        }
+      });
+    }, { threshold: 0.3 });
+
+    this.sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+  }
+}
+
+// ================================
+// Lightbox Zoom
+// ================================
+
+function setupLightboxZoom() {
+  const lightboxContent = document.querySelector('.lightbox-content');
+  const lightboxImg = document.getElementById('lightbox-img');
+  if (!lightboxContent || !lightboxImg) return;
+
+  const container = document.createElement('div');
+  container.className = 'lightbox-img-container';
+  lightboxImg.classList.add('lightbox-img-target');
+  lightboxImg.parentNode.insertBefore(container, lightboxImg);
+  container.appendChild(lightboxImg);
+
+  let isZoomed = false;
+  let isDragging = false;
+  let startX, startY, scrollLeft, scrollTop;
+
+  container.addEventListener('click', () => {
+    isZoomed = !isZoomed;
+    container.classList.toggle('zoomed');
+    container.style.cursor = isZoomed ? 'grab' : 'zoom-in';
+    if (!isZoomed) {
+      container.scrollLeft = 0;
+      container.scrollTop = 0;
+    }
+  });
+
+  container.addEventListener('mousedown', (e) => {
+    if (!isZoomed) return;
+    isDragging = true;
+    container.classList.add('grabbing');
+    startX = e.pageX - container.offsetLeft;
+    startY = e.pageY - container.offsetTop;
+    scrollLeft = container.scrollLeft;
+    scrollTop = container.scrollTop;
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    container.classList.remove('grabbing');
+  });
+
+  container.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    const y = e.pageY - container.offsetTop;
+    const walkX = (x - startX) * 1.5;
+    const walkY = (y - startY) * 1.5;
+    container.scrollLeft = scrollLeft - walkX;
+    container.scrollTop = scrollTop - walkY;
+  });
 }
 
 // ================================
