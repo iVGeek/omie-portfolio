@@ -1006,7 +1006,7 @@ function setupBackToTop() {
 // ================================
 
 // Loading screen configuration constants
-const LOADING_SCREEN_MIN_DURATION = 500; // Minimum time to show loading screen (ms)
+const LOADING_SCREEN_MIN_DURATION = 5000; // Minimum time to show loading screen (ms)
 const LOADING_SCREEN_FADE_DURATION = 500; // Time for fade-out animation (ms)
 const LOADING_SCREEN_MAX_TIMEOUT = 3000; // Maximum time before forcing loading screen removal (ms)
 
