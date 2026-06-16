@@ -137,6 +137,8 @@ class Slideshow {
     this.nextBtn = document.querySelector('.slide-btn.next');
     this.currentSlide = 0;
     this.autoplayInterval = null;
+    this.touchStartX = 0;
+    this.touchEndX = 0;
     
     this.init();
   }
@@ -144,10 +146,8 @@ class Slideshow {
   init() {
     if (this.slides.length === 0) return;
     
-    // Start autoplay
     this.startAutoplay();
     
-    // Add event listeners
     this.prevBtn?.addEventListener('click', () => this.previousSlide());
     this.nextBtn?.addEventListener('click', () => this.nextSlide());
     
@@ -155,10 +155,26 @@ class Slideshow {
       indicator.addEventListener('click', () => this.goToSlide(index));
     });
     
-    // Pause on hover
     const heroSection = document.querySelector('.hero-slideshow');
     heroSection?.addEventListener('mouseenter', () => this.stopAutoplay());
     heroSection?.addEventListener('mouseleave', () => this.startAutoplay());
+    
+    this.setupTouch(heroSection);
+  }
+  
+  setupTouch(container) {
+    if (!container) return;
+    container.addEventListener('touchstart', (e) => {
+      this.touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    container.addEventListener('touchend', (e) => {
+      this.touchEndX = e.changedTouches[0].screenX;
+      const diff = this.touchStartX - this.touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) this.nextSlide();
+        else this.previousSlide();
+      }
+    }, { passive: true });
   }
   
   goToSlide(index) {
@@ -341,26 +357,36 @@ class MobileMenu {
   constructor() {
     this.menuBtn = document.getElementById('mobile-menu-btn');
     this.mobileMenu = document.getElementById('mobile-menu');
+    this.overlay = null;
     this.init();
   }
   
   init() {
     if (!this.menuBtn || !this.mobileMenu) return;
     
+    this.overlay = document.createElement('div');
+    this.overlay.className = 'mobile-menu-overlay';
+    this.overlay.setAttribute('aria-hidden', 'true');
+    this.mobileMenu.parentNode.insertBefore(this.overlay, this.mobileMenu.nextSibling);
+    
+    const toggle = (show) => {
+      this.menuBtn.setAttribute('aria-expanded', String(show));
+      this.mobileMenu.hidden = !show;
+      this.overlay.hidden = !show;
+      document.body.style.overflow = show ? 'hidden' : '';
+    };
+    
     this.menuBtn.addEventListener('click', () => {
       const isExpanded = this.menuBtn.getAttribute('aria-expanded') === 'true';
-      this.menuBtn.setAttribute('aria-expanded', String(!isExpanded));
-      this.mobileMenu.hidden = isExpanded;
+      toggle(!isExpanded);
     });
     
-    // Close menu when clicking a link
     const links = this.mobileMenu.querySelectorAll('a');
     links.forEach(link => {
-      link.addEventListener('click', () => {
-        this.menuBtn.setAttribute('aria-expanded', 'false');
-        this.mobileMenu.hidden = true;
-      });
+      link.addEventListener('click', () => toggle(false));
     });
+    
+    this.overlay.addEventListener('click', () => toggle(false));
   }
 }
 
@@ -489,6 +515,8 @@ function observeGalleryItemsForReveal() {
 
 let currentLightboxIndex = 0;
 let currentLightboxImages = [];
+
+let lightboxTouchX = 0;
 
 function openLightbox(index, images) {
   currentLightboxIndex = index;
@@ -1059,14 +1087,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   if (lightbox) {
-    // Close on background click
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
         closeLightbox();
       }
     });
     
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lightbox.classList.contains('active')) {
         closeLightbox();
@@ -1076,6 +1102,18 @@ document.addEventListener('DOMContentLoaded', () => {
         nextLightboxImage();
       }
     });
+    
+    // Touch swipe for lightbox
+    lightbox.addEventListener('touchstart', (e) => {
+      lightboxTouchX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      const diff = lightboxTouchX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextLightboxImage();
+        else prevLightboxImage();
+      }
+    }, { passive: true });
   }
   
   // Legacy render and setup
